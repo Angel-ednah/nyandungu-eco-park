@@ -48,7 +48,7 @@ const Index = () => (
         <div className="animate-fade-up">
           <p className="text-primary-foreground/80 text-sm font-medium tracking-widest uppercase mb-3">Welcome to</p>
           <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-4">
-            Nyandungu Eco-Park
+            Discover Nyandungu Eco Park
           </h1>
           <p className="text-xl md:text-2xl text-primary-foreground/90 font-light mb-2">Scan · Learn · Protect</p>
           <p className="text-primary-foreground/70 max-w-lg mx-auto mb-8">
