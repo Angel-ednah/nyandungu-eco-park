@@ -26,7 +26,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         p { color:#666; font-size:12px; margin:4px 0; }
         .url { font-size:11px; word-break:break-all; max-width:300px; text-align:center; }
       </style></head><body>
-      <h2>Nyandungu Eco-Park</h2>
+      <h2>Discover Nyandungu Eco Park</h2>
       <p>${sectionName}</p>
       ${printContent.innerHTML}
       <p class="url">${url}</p>

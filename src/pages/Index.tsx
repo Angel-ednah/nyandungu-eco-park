@@ -72,7 +72,7 @@ const Index = () => (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {[
             { icon: QrCode, title: "Scan", desc: "Scan QR codes at each park section for a digital experience" },
-            { icon: Leaf, title: "Learn", desc: "Discover wildlife, plants, and the rich history of Nyandungu" },
+            { icon: Leaf, title: "Learn", desc: "Discover wildlife, plants, and the rich history of Nyandungu Eco Park" },
             { icon: Bird, title: "Protect", desc: "Learn how to preserve this beautiful wetland ecosystem" },
           ].map(f => (
             <div key={f.title} className="text-center p-6">

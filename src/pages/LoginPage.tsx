@@ -51,7 +51,7 @@ const LoginPage = () => {
     <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <img src={logo} alt="Nyandungu" width={64} height={64} className="mx-auto mb-4" />
+          <img src={logo} alt="Discover Nyandungu Eco Park" width={64} height={64} className="mx-auto mb-4" />
           <h1 className="font-heading text-2xl font-bold">
             {isSignUp ? "Create Admin Account" : "Admin Login"}
           </h1>

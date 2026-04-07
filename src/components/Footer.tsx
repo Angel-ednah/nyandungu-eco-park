@@ -9,7 +9,7 @@ const Footer = () => (
         <Link to="/" className="hover:text-primary transition-colors">Home</Link>
         <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link>
       </div>
-      <p className="text-xs text-muted-foreground mt-4">© {new Date().getFullYear()} Nyandungu Eco-Park. All rights reserved.</p>
+      <p className="text-xs text-muted-foreground mt-4">© {new Date().getFullYear()} Discover Nyandungu Eco Park. All rights reserved.</p>
     </div>
   </footer>
 );

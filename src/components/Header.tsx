@@ -18,8 +18,8 @@ const Header = () => {
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur no-print">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Nyandungu Eco-Park" width={40} height={40} />
-          <span className="font-heading text-lg font-bold text-foreground">Nyandungu</span>
+          <img src={logo} alt="Discover Nyandungu Eco Park" width={40} height={40} />
+          <span className="font-heading text-lg font-bold text-foreground">Discover Nyandungu</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">

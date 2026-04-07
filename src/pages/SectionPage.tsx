@@ -20,8 +20,8 @@ interface SectionContent {
 
 const sectionData: Record<string, SectionContent> = {
   "nyandungu-info": {
-    title: "Welcome to Nyandungu Eco-Park",
-    titleKn: "Murakaza neza muri Nyandungu Eco-Park",
+    title: "Welcome to Discover Nyandungu Eco Park",
+    titleKn: "Murakaza neza muri Discover Nyandungu Eco Park",
     image: heroPark,
     highlights: [
       {
