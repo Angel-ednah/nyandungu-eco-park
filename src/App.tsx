@@ -3,11 +3,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "./hooks/useAuth";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Index from "./pages/Index";
 import SectionPage from "./pages/SectionPage";
 import AdminPage from "./pages/AdminPage";
+import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -18,16 +21,23 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Header />
-        <main className="min-h-screen">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/section/:id" element={<SectionPage />} />
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main className="min-h-screen">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/section/:id" element={<SectionPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/admin" element={
+                <ProtectedRoute>
+                  <AdminPage />
+                </ProtectedRoute>
+              } />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
