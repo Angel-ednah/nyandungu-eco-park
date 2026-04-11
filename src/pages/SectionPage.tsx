@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, QrCode } from "lucide-react";
+import { ArrowLeft, QrCode, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackVisit } from "@/lib/visitTracker";
 import QRCodeCard from "@/components/QRCodeCard";
@@ -11,6 +11,7 @@ const SectionPage = () => {
   const { id } = useParams<{ id: string }>();
   const section = id ? sectionData[id] : null;
   const baseUrl = window.location.origin;
+  const [lang, setLang] = useState<"en" | "kn">("en");
 
   useEffect(() => {
     if (id) trackVisit(id);
@@ -25,6 +26,8 @@ const SectionPage = () => {
     );
   }
 
+  const isKn = lang === "kn";
+
   return (
     <div>
       {/* Hero */}
@@ -32,11 +35,24 @@ const SectionPage = () => {
         <img src={section.image} alt={section.title} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-overlay" />
         <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12">
-          <Link to="/" className="text-primary-foreground/70 text-sm hover:text-primary-foreground mb-2 inline-flex items-center gap-1">
-            <ArrowLeft className="h-4 w-4" /> Back to Home
-          </Link>
-          <h1 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground">{section.title}</h1>
-          {section.titleKn && <p className="text-primary-foreground/80 mt-1">{section.titleKn}</p>}
+          <div className="flex items-center justify-between mb-2">
+            <Link to="/" className="text-primary-foreground/70 text-sm hover:text-primary-foreground inline-flex items-center gap-1">
+              <ArrowLeft className="h-4 w-4" /> {isKn ? "Subira Ahabanza" : "Back to Home"}
+            </Link>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setLang(isKn ? "en" : "kn")}
+              className="bg-white/20 backdrop-blur border-white/30 text-white hover:bg-white/30 hover:text-white"
+            >
+              <Globe className="mr-1 h-4 w-4" />
+              {isKn ? "English" : "Ikinyarwanda"}
+            </Button>
+          </div>
+          <h1 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground">
+            {isKn ? section.titleKn : section.title}
+          </h1>
+          {!isKn && section.titleKn && <p className="text-primary-foreground/80 mt-1">{section.titleKn}</p>}
         </div>
       </section>
 
@@ -44,7 +60,6 @@ const SectionPage = () => {
       <section className="container py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
-            {/* Image Gallery */}
             {section.gallery && section.gallery.length > 0 && (
               <div className="animate-fade-up">
                 <ImageGallery images={section.gallery} sectionTitle={section.title} />
@@ -59,21 +74,43 @@ const SectionPage = () => {
                   </div>
                 )}
                 <div className="p-6">
-                  <h3 className="font-heading text-xl font-semibold text-foreground mb-1">{h.title}</h3>
-                  {h.titleKn && <p className="text-sm text-primary font-medium mb-2">{h.titleKn}</p>}
-                  <p className="text-muted-foreground">{h.description}</p>
-                  {h.descriptionKn && <p className="text-sm text-muted-foreground/80 mt-2 italic">{h.descriptionKn}</p>}
+                  <h3 className="font-heading text-xl font-semibold text-foreground mb-1">
+                    {isKn && h.titleKn ? h.titleKn : h.title}
+                  </h3>
+                  {!isKn && h.titleKn && <p className="text-sm text-primary font-medium mb-2">{h.titleKn}</p>}
+                  <p className="text-muted-foreground">
+                    {isKn && h.descriptionKn ? h.descriptionKn : h.description}
+                  </p>
+
+                  {/* Details */}
+                  {h.details && h.details.length > 0 && (
+                    <div className="mt-4 space-y-3">
+                      {h.details.map((d, j) => (
+                        <div key={j} className="pl-4 border-l-2 border-primary/30">
+                          <p className="text-sm font-semibold text-foreground">
+                            {isKn && d.labelKn ? d.labelKn : d.label}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {isKn && d.textKn ? d.textKn : d.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
 
             {section.rules && (
               <div className="bg-destructive/5 rounded-xl p-6 border border-destructive/20">
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-3">Rules / Amategeko</h3>
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-3">
+                  {isKn ? "Amategeko" : "Rules / Amategeko"}
+                </h3>
                 <ul className="space-y-2">
                   {section.rules.map((r, i) => (
                     <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <span className="w-2 h-2 rounded-full bg-destructive flex-shrink-0" /> {r}
+                      <span className="w-2 h-2 rounded-full bg-destructive flex-shrink-0" />
+                      {isKn ? r.kn : `${r.en} / ${r.kn}`}
                     </li>
                   ))}
                 </ul>
@@ -86,8 +123,10 @@ const SectionPage = () => {
             <QRCodeCard sectionId={id!} sectionName={section.title} baseUrl={baseUrl} />
             <div className="bg-muted rounded-xl p-5 border border-border">
               <QrCode className="h-6 w-6 text-primary mb-2" />
-              <h4 className="font-semibold text-sm mb-1">No smartphone?</h4>
-              <p className="text-xs text-muted-foreground mb-2">Share this link with anyone:</p>
+              <h4 className="font-semibold text-sm mb-1">{isKn ? "Nta telefone?" : "No smartphone?"}</h4>
+              <p className="text-xs text-muted-foreground mb-2">
+                {isKn ? "Sangiza iyi link uwo ushaka:" : "Share this link with anyone:"}
+              </p>
               <code className="text-xs bg-background p-2 rounded block break-all border">{baseUrl}/section/{id}</code>
             </div>
           </div>
