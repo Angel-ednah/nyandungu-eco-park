@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, QrCode, Globe } from "lucide-react";
+import { ArrowLeft, Globe, MessageSquare, Star, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { trackVisit } from "@/lib/visitTracker";
 import QRCodeCard from "@/components/QRCodeCard";
 import ImageGallery from "@/components/ImageGallery";
 import { sectionData } from "@/data/sectionData";
+import { toast } from "sonner";
 
 const SectionPage = () => {
   const { id } = useParams<{ id: string }>();
   const section = id ? sectionData[id] : null;
   const baseUrl = window.location.origin;
   const [lang, setLang] = useState<"en" | "kn">("en");
+  const [feedback, setFeedback] = useState("");
+  const [rating, setRating] = useState(0);
+  const [feedbackSent, setFeedbackSent] = useState(false);
 
   useEffect(() => {
     if (id) trackVisit(id);
@@ -27,6 +32,19 @@ const SectionPage = () => {
   }
 
   const isKn = lang === "kn";
+
+  const handleFeedback = () => {
+    if (!feedback.trim() && rating === 0) {
+      toast.error(isKn ? "Andika igitekerezo cyawe" : "Please write your feedback or select a rating");
+      return;
+    }
+    // Store in localStorage for now
+    const feedbacks = JSON.parse(localStorage.getItem("park-feedback") || "[]");
+    feedbacks.push({ sectionId: id, rating, feedback: feedback.trim(), date: new Date().toISOString() });
+    localStorage.setItem("park-feedback", JSON.stringify(feedbacks));
+    setFeedbackSent(true);
+    toast.success(isKn ? "Murakoze! Igitekerezo cyanyu cyakiriwe." : "Thank you! Your feedback has been received.");
+  };
 
   return (
     <div>
@@ -60,29 +78,36 @@ const SectionPage = () => {
       <section className="container py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
+            {/* Gallery */}
             {section.gallery && section.gallery.length > 0 && (
               <div className="animate-fade-up">
                 <ImageGallery images={section.gallery} sectionTitle={section.title} />
               </div>
             )}
 
+            {/* Highlights: Title → Photo → Description */}
             {section.highlights.map((h, i) => (
-              <div key={i} className="bg-card rounded-xl overflow-hidden shadow-card border border-border animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
-                {h.image && (
-                  <div className="aspect-[16/7] overflow-hidden">
-                    <img src={h.image} alt={h.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-                  </div>
-                )}
-                <div className="p-6">
-                  <h3 className="font-heading text-xl font-semibold text-foreground mb-1">
+              <div key={i} className="bg-card rounded-xl overflow-hidden shadow-card border border-border animate-fade-up" style={{ animationDelay: `${i * 0.05}s` }}>
+                <div className="p-6 pb-2">
+                  <h3 className="font-heading text-xl font-semibold text-foreground">
                     {isKn && h.titleKn ? h.titleKn : h.title}
                   </h3>
-                  {!isKn && h.titleKn && <p className="text-sm text-primary font-medium mb-2">{h.titleKn}</p>}
-                  <p className="text-muted-foreground">
+                  {!isKn && h.titleKn && <p className="text-sm text-primary font-medium mt-0.5">{h.titleKn}</p>}
+                </div>
+
+                {h.image && (
+                  <div className="px-6 pb-2">
+                    <div className="aspect-[16/9] rounded-lg overflow-hidden">
+                      <img src={h.image} alt={h.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    </div>
+                  </div>
+                )}
+
+                <div className="p-6 pt-2">
+                  <p className="text-muted-foreground leading-relaxed">
                     {isKn && h.descriptionKn ? h.descriptionKn : h.description}
                   </p>
 
-                  {/* Details */}
                   {h.details && h.details.length > 0 && (
                     <div className="mt-4 space-y-3">
                       {h.details.map((d, j) => (
@@ -101,6 +126,7 @@ const SectionPage = () => {
               </div>
             ))}
 
+            {/* Rules */}
             {section.rules && (
               <div className="bg-destructive/5 rounded-xl p-6 border border-destructive/20">
                 <h3 className="font-heading text-lg font-semibold text-foreground mb-3">
@@ -116,19 +142,73 @@ const SectionPage = () => {
                 </ul>
               </div>
             )}
+
+            {/* Feedback Section */}
+            <div className="bg-card rounded-xl p-6 border border-border">
+              <div className="flex items-center gap-2 mb-4">
+                <MessageSquare className="h-5 w-5 text-primary" />
+                <h3 className="font-heading text-lg font-semibold text-foreground">
+                  {isKn ? "Tanga Igitekerezo" : "Share Your Feedback"}
+                </h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                {isKn
+                  ? "Ese amakuru yagufashije? Tugire icyo utubwira!"
+                  : "Did you find this information useful? Let us know!"}
+              </p>
+
+              {feedbackSent ? (
+                <div className="text-center py-6">
+                  <div className="text-4xl mb-2">🎉</div>
+                  <p className="font-semibold text-foreground">
+                    {isKn ? "Murakoze cyane!" : "Thank you so much!"}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {isKn ? "Igitekerezo cyanyu cyatumijwe neza." : "Your feedback has been recorded."}
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm font-medium text-foreground mb-2">
+                      {isKn ? "Igitekerezo cyawe (inyenyeri)" : "Your Rating"}
+                    </p>
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          onClick={() => setRating(star)}
+                          className="p-1 transition-transform hover:scale-110"
+                        >
+                          <Star
+                            className={`h-7 w-7 ${
+                              star <= rating
+                                ? "fill-yellow-400 text-yellow-400"
+                                : "text-muted-foreground/30"
+                            }`}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <Textarea
+                    placeholder={isKn ? "Andika igitekerezo cyawe hano..." : "Write your feedback here..."}
+                    value={feedback}
+                    onChange={(e) => setFeedback(e.target.value)}
+                    rows={3}
+                  />
+                  <Button onClick={handleFeedback} className="w-full sm:w-auto">
+                    <Send className="mr-2 h-4 w-4" />
+                    {isKn ? "Ohereza" : "Submit Feedback"}
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* QR Code Sidebar */}
+          {/* Sidebar */}
           <div className="space-y-6">
             <QRCodeCard sectionId={id!} sectionName={section.title} baseUrl={baseUrl} />
-            <div className="bg-muted rounded-xl p-5 border border-border">
-              <QrCode className="h-6 w-6 text-primary mb-2" />
-              <h4 className="font-semibold text-sm mb-1">{isKn ? "Nta telefone?" : "No smartphone?"}</h4>
-              <p className="text-xs text-muted-foreground mb-2">
-                {isKn ? "Sangiza iyi link uwo ushaka:" : "Share this link with anyone:"}
-              </p>
-              <code className="text-xs bg-background p-2 rounded block break-all border">{baseUrl}/section/{id}</code>
-            </div>
           </div>
         </div>
       </section>
