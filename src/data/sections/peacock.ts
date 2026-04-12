@@ -5,7 +5,7 @@ import docPeacockGrass from "@/assets/doc-peacock-grass.jpg";
 
 export const peacockSection: SectionContent = {
   title: "Discover the Beauty of the Peacock",
-  titleKn: "Vumbura Ubwiza bw'Ingabo z'Inyoni",
+  titleKn: "Vumbura Ubwiza bw'Inkanga",
   image: docPeacockDisplay,
   gallery: [docPeacockDisplay, docPeacockGrass, docPeacock],
   highlights: [
@@ -33,6 +33,7 @@ export const peacockSection: SectionContent = {
         "Prevents disease transmission between humans and animals. Maintains natural behavior. Shelter helps them adapt and supports feeding.",
       descriptionKn:
         "Birinda kwanduza indwara hagati y'abantu n'inyamaswa. Kubungabunga imyitwarire kamere. Ubuhungiro bubafasha kumenyera no kubona amafunguro.",
+      image: docPeacockGrass,
     },
     {
       title: "Fun Facts",

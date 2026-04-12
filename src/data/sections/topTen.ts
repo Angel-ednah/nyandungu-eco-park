@@ -18,8 +18,8 @@ import docInfoCenter from "@/assets/doc-info-center.jpg";
 export const topTenSection: SectionContent = {
   title: "Top 10 Sites to Visit in Nyandungu",
   titleKn: "Ahantu 10 Heza Cyane ho Gusura muri Nyandungu",
-  image: docMedicinalGarden,
-  gallery: [docMedicinalSign, docPopesGarden, docBambooTrail, docGreatLakes, docPlayground],
+  image: docMedicinalSign,
+  gallery: [docMedicinalGarden, docPopesGarden, docBambooTrail, docGreatLakes, docPlayground, docInfoCenter],
   highlights: [
     {
       title: "1. Medicinal Garden",
@@ -31,8 +31,8 @@ export const topTenSection: SectionContent = {
       image: docMedicinalSign,
       details: [
         {
-          label: "Discovery & Learning",
-          labelKn: "Ubumenyi n'Ubuvumbuzi",
+          label: "The Heritage of Traditional Healing",
+          labelKn: "Umurage w'Ubuvuzi Gakondo",
           text: "Learn the names and medicinal uses of various plants in Rwandan traditional medicine, as each tree is clearly labeled.",
           textKn:
             "Uzahigira amazina y'ibimera bitandukanye n'akamaro kabyo mu muvuzi gakondo w'u Rwanda, dore ko buri giti kiba cyanditseho izina ryacyo.",
@@ -44,15 +44,21 @@ export const topTenSection: SectionContent = {
           textKn:
             "Iyo uri kumwe n'Umugide, aguha amakuru yimbitse ku mateka n'uburyo buri giti cyifashishwa mu kubungabunga afya.",
         },
+        {
+          label: "A Meaningful Experience",
+          labelKn: "Uruzinduko Rufite Intego",
+          text: "Your visit becomes a journey of discovery and conservation awareness.",
+          textKn: "Uruzinduko rwawe rurushaho kuba urw'ubumenyi n'ubuvumbuzi bw'urusobe rw'ibinyabuzima.",
+        },
       ],
     },
     {
       title: "2. Pope's Garden",
       titleKn: "Ubusitani bwa Papa",
       description:
-        "This is the sacred site where the Pope celebrated Mass during his visit to Rwanda. A living symbol of restoration success.",
+        "This is the sacred site where the Pope celebrated Mass during his visit to Rwanda.",
       descriptionKn:
-        "Aha ni ahantu hashishe amateka aho Papa yasomeye Misa ubwo yageraga mu Rwanda. Ni ikimenyetso kigaragaza intsinzi y'uko Nyandungu yakuwe mu kaba ikagirwa pariki nziza.",
+        "Aha ni ahantu hashishe amateka aho Papa yasomeye Misa ubwo yageraga mu Rwanda.",
       image: docPopesGarden,
       details: [
         {
@@ -60,6 +66,12 @@ export const topTenSection: SectionContent = {
           labelKn: "Imyizerere n'Umugisha",
           text: "Many visitors believe that visiting this garden brings special blessings.",
           textKn: "Abasura ubu busitani benshi banyuzwa n'imyizerere yuko bahakura umugisha udasanzwe.",
+        },
+        {
+          label: "Restoration Success",
+          labelKn: "Ikimenyetso cy'Isubiranya",
+          text: "The garden serves as a living symbol of how the Nyandungu restoration was successfully achieved.",
+          textKn: "Ubu busitani ni ikimenyetso kigaragaza intsinzi y'uko Nyandungu yakuwe mu kaba ikagirwa pariki nziza.",
         },
         {
           label: "Educational Value",
@@ -92,6 +104,12 @@ export const topTenSection: SectionContent = {
           textKn:
             "Ahantu heza cyane ho kunyura n'igare, aho ushobora kwitegereza uburyo amazi yinjira muri pariki n'uko asukurwa mu buryo bw'umwimerere.",
         },
+        {
+          label: "Key Location",
+          labelKn: "Aho iherereye",
+          text: "Left side after entering the Info Center gate.",
+          textKn: "Mu gice cy'ibumoso ukimara kurenga irembo rya Info Center.",
+        },
       ],
     },
     {
@@ -116,6 +134,12 @@ export const topTenSection: SectionContent = {
           text: "Observe the diverse plant species and see firsthand how the natural vegetation works as a filter to purify the water.",
           textKn:
             "Ihere ijisho ubwoko bw'ibiti n'ibimera bitandukanye, unimenyere uburyo urusobe rw'ibimera rukora akazi gakomeye ko kuyungurura no gusukura amazi.",
+        },
+        {
+          label: "Connecting the Park",
+          labelKn: "Umuhanda uhuza pariki",
+          text: "A scenic route connecting the Information Center gate to the Masoro gate.",
+          textKn: "Inzira nyabagendwa ihuza irembo rya Info Center n'irya Masoro.",
         },
       ],
     },
@@ -142,6 +166,12 @@ export const topTenSection: SectionContent = {
           textKn:
             "Ibi biyaga ni rurembo rw'urusobe rw'ibinyabuzima, aho ushobora kwitegereza amafi n'inyoni zo mu mazi.",
         },
+        {
+          label: "A Moment of Reflection",
+          labelKn: "Ahantu ho Gutekereza",
+          text: "The perfect spot for quiet reflection or capturing artistic photos of the water reflecting the sky.",
+          textKn: "Ni ahantu heza cyane ho kuruhukira mu mutwe, cyangwa gufatira amafoto y'ubuhanga yerekana ishusho y'ijuru mu mazi.",
+        },
       ],
     },
     {
@@ -167,6 +197,12 @@ export const topTenSection: SectionContent = {
           textKn:
             "Iyo uririye hano muri pariki, uba ushyigikiye imirimo yo kubungabunga no kwita kuri iri soko ry'ubuzima rya Nyandungu.",
         },
+        {
+          label: "Opening Hours",
+          labelKn: "Igihe bafungurira",
+          text: "Open daily to serve you breakfast, lunch, and snacks.",
+          textKn: "Hafunguye buri munsi kugira ngo baguhereze ifunguro rya mu gitondo, irya saa sita, n'ibindi binyobwa binyuranye.",
+        },
       ],
     },
     {
@@ -175,22 +211,28 @@ export const topTenSection: SectionContent = {
       description:
         "The quietest sector in the park, specifically preserved for meditation, yoga, and those seeking deep silence away from city noise.",
       descriptionKn:
-        "Iki ni igice gitekanye kurusha ibindi muri pariki; cyahariwe abashaka gutekereza, gukora imyitozo y'ituze, n'abashaka kwitandukanya n'urusaku rw'umujyi.",
+        "Iki ni igice gitekanye kurusha ibindi muri pariki; cyahariwe by'umwihariko abashaka gutekereza, gukora imyitozo y'ituze, n'abashaka kwitandukanya n'urusaku rw'umujyi.",
       image: docSanctuaryBird,
       details: [
         {
           label: "Ancient Trees & High Canopy",
           labelKn: "Ibiti birebire n'Igicucu cyibayo",
-          text: "Home to the tallest and oldest trees in the park, providing thick canopy of shade.",
+          text: "Home to the tallest and oldest trees in the park, providing thick canopy of shade that keeps the area cool even on the hottest days.",
           textKn:
-            "Ni rurembo rw'ibiti birebire n'ibya kera muri pariki, bitanga igicucu cyiza n'akayaga gakonje.",
+            "Ni rurembo rw'ibiti birebire n'ibya kera muri pariki, bitanga igicucu cyiza n'akayaga gakonje n'iyo ryaba ari izuba ryinshi.",
         },
         {
           label: "A Paradise for Birdwatchers",
           labelKn: "Indiri y'Inyoni z'Ubwoko Butandukanye",
-          text: "Due to the height of the trees, this sector is a favorite for rare bird species.",
+          text: "Due to the height of the trees, this sector is a favorite for rare bird species. It's the best spot to sit quietly and listen to nature's symphony.",
           textKn:
-            "Kubera uburebure bw'ibiti byaho, iki gice ni indiri y'ubwoko bw'inyoni budasanzwe.",
+            "Kubera uburebure bw'ibiti byaho, iki gice ni indiri y'ubwoko bw'inyoni budasanzwe. Ni ahantu heza ho kwicara utuje ukumva amajwi y'inyoni.",
+        },
+        {
+          label: "Nature's Cathedral",
+          labelKn: "Ingoro y'Ibidukikije",
+          text: "Walk slowly and breathe in the purest oxygen under the giant trees.",
+          textKn: "Tambuka gahoro maze uhumeke umwuka mwiza w'umwimerere munsi y'ibi biti bishishe.",
         },
       ],
     },
@@ -198,17 +240,23 @@ export const topTenSection: SectionContent = {
       title: "8. The Peacock Sanctuary",
       titleKn: "Icyanya cy'Inkanga",
       description:
-        "Visit the home of the majestic peacocks, the most colorful and iconic birds of the park.",
+        "Visit the home of the majestic peacocks, the most colorful and iconic birds of the park. Watch them display their beautiful feathers in their natural habitat.",
       descriptionKn:
-        "Sura ubu busitani bw'inkanga, inyoni zirangwa n'amabara atangaje n'ubwiza budasanzwe.",
+        "Sura ubu busitani bw'inkanga, inyoni zirangwa n'amabara atangaje n'ubwiza budasanzwe. Ihere ijisho uko zitembera n'uko zigaba amababa yazo muri uyu mwanya wazo w'umwimerere.",
       image: docPeacockDisplay,
       details: [
         {
           label: "Birdwatching & Biodiversity",
           labelKn: "Kwiga ku rusobe rw'ibinyabuzima",
-          text: "Beyond peacocks, this site is a hub for various other bird species and small wildlife like turtles.",
+          text: "Beyond peacocks, this site is a hub for various other bird species and small wildlife like turtles. It is the perfect spot for nature lovers.",
           textKn:
-            "Usibye n'inkanga, hano ni ihuriro ry'ubwoko bwinshi bw'inyoni n'utunyamaswa duto nka tureture.",
+            "Usibye n'inkanga, hano ni ihuriro ry'ubwoko bwinshi bw'inyoni n'utunyamaswa duto nka tureture. Ni ahantu heza ho kwigira ku rusobe rw'ibinyabuzima.",
+        },
+        {
+          label: "Visitor Respect",
+          labelKn: "Amabwiriza ku bashyitsi",
+          text: "Please keep a respectful distance and avoid feeding the birds to protect their well-being.",
+          textKn: "Turasaba abashyitsi kutegerera izi nyoni cyane cyangwa kuzigaburira kugira ngo dukomeze kuzibungabungira umutekano n'ubuzima.",
         },
       ],
     },
@@ -252,6 +300,12 @@ export const topTenSection: SectionContent = {
           text: "Meet our professional guides and pick up a park map to ensure you don't miss any hidden gems.",
           textKn:
             "Hura n'abaguide bacu b'ababizobereye urebe ikarita ya pariki. Ibi bituma udasiba na hamwe mu hantu nyaburanga.",
+        },
+        {
+          label: "Exhibition & Education",
+          labelKn: "Imurikabikorwa n'Inyigisho",
+          text: "Explore the educational displays that explain the importance of wetlands and how Nyandungu protects the city from flooding while cleaning the air and water.",
+          textKn: "Ihere ijisho ibyanditse n'amafoto asobanura akamaro k'ibishanga n'uburyo Nyandungu irinda umujyi imyuzure.",
         },
         {
           label: "Starting Point for All Tours",

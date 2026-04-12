@@ -11,7 +11,7 @@ export const nyandunguInfoSection: SectionContent = {
   title: "Welcome to Nyandungu Eco-Park",
   titleKn: "Murakaza neza muri Nyandungu Eco-Park",
   image: docQrSign,
-  gallery: [docRestaurant, docRestaurantNight, docPonds, docCranes, docBicycles],
+  gallery: [docRestaurant, docRestaurantNight, docPonds, docPeacock, docCranes, docBicycles],
   highlights: [
     {
       title: "1. Dining & Refreshments",
@@ -28,7 +28,7 @@ export const nyandunguInfoSection: SectionContent = {
       description:
         "Discover our learning ponds representing Rwanda's major lakes: Kivu, Muhazi, Ihema, and Ruhondo.",
       descriptionKn:
-        "Vumbura ibiyaga byacu by'imyigishirize bigaragaza ibiyaga bikuru by'u Rwanda.",
+        "Vumbura ibiyaga byacu by'imyigishirize bigaragaza ibiyaga bikuru by'u Rwanda: Kivu, Muhazi, Ihema, na Ruhondo.",
       image: docPonds,
     },
     {
@@ -83,6 +83,22 @@ export const nyandunguInfoSection: SectionContent = {
           text: "Dedicated children's playground and safe relaxation areas for everyone.",
           textKn:
             "Ni ahantu hatuje, heza, kandi hafite umutekano ku bakundana kuhagirira ibihe bitazibagirana.",
+        },
+      ],
+    },
+    {
+      title: "Park Fees",
+      titleKn: "Ikiguzi cyo Kwinjira",
+      description:
+        "Entry Fee: 2,000 RWF for Rwandans · 5,000 RWF for African citizens · 20,000 RWF for international visitors. Designed to be affordable for everyone.",
+      descriptionKn:
+        "Ikiguzi cyo kwinjira: 2,000 RWF ku Banyarwanda · 5,000 RWF ku benegihugu ba Afurika · 20,000 RWF ku bashyitsi mpuzamahanga. Byateguwe kugira ngo buri wese abashe kuhasura.",
+      details: [
+        {
+          label: "Visit Today",
+          labelKn: "Sura Pariki",
+          text: "Turn your curiosity into a real experience at Nyandungu Eco-Park.",
+          textKn: "Hindura amatsiko yawe ibyishimo bifatika usura Nyandungu Eco-Park uyu munsi.",
         },
       ],
     },
