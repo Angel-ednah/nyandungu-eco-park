@@ -3,6 +3,11 @@ import { useRef } from "react";
 import { Printer, Link as LinkIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import nyandunguGate from "@/assets/nyandungu-gate.jpg";
+import wetlandsImage from "@/assets/14.jpeg";
+import docBicycles from "@/assets/doc-bicycles.jpg";
+import docBirds from "@/assets/doc-cranes.jpg";
+import docPonds from "@/assets/doc-ponds.jpg";
+import docTrails from "@/assets/doc-bamboo-trail.jpg";
 
 interface QRCodeCardProps {
   sectionId: string;
