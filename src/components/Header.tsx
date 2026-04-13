@@ -2,17 +2,9 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo.png";
-import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const { user, signOut } = useAuth();
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    await signOut();
-    navigate("/");
-  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur no-print">
