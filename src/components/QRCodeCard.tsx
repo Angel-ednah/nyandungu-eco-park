@@ -571,11 +571,18 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   return (
     <div className="bg-card rounded-xl overflow-hidden shadow-card border border-border flex flex-col items-center gap-4">
-      <img src={nyandunguGate} alt="Nyandungu Gate" className="w-full h-32 object-cover" />
+      {isParkInfo ? (
+        <img src={wetlandsImage} alt="Nyandungu Wetlands" className="w-full h-40 object-cover" />
+      ) : (
+        <img src={nyandunguGate} alt="Nyandungu Gate" className="w-full h-32 object-cover" />
+      )}
       <div className="px-6 w-full text-center">
         <p className="text-xs font-semibold text-primary tracking-widest uppercase">Nyandungu Eco-Park</p>
         <h3 className="font-heading font-semibold text-foreground mt-1">{sectionName}</h3>
         <p className="text-xs text-muted-foreground mt-1">{label.subtitle}</p>
+        {isParkInfo && (
+          <p className="text-xs text-primary font-medium mt-1">Entry: 2,000 RWF (Rwandans)</p>
+        )}
       </div>
       <div ref={printRef} className="bg-card p-4 rounded-lg">
         <div className="qr-container">
