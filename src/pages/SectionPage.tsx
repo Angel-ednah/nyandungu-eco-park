@@ -22,6 +22,12 @@ const SectionPage = () => {
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [highlightImageIndices, setHighlightImageIndices] = useState<Record<number, number>>({});
   const isKn = lang === "kn";
+  const getHighlightImages = (highlight: { image?: string; carouselImages?: string[] }) =>
+    highlight.carouselImages && highlight.carouselImages.length > 0
+      ? highlight.carouselImages
+      : highlight.image
+        ? [highlight.image]
+        : [];
 
   const seoDescription = section
     ? (
@@ -72,11 +78,12 @@ const SectionPage = () => {
 
     const intervals: NodeJS.Timeout[] = [];
     section.highlights.forEach((highlight, index) => {
-      if (highlight.carouselImages && highlight.carouselImages.length > 1) {
+      const images = getHighlightImages(highlight);
+      if (images.length > 1) {
         const interval = setInterval(() => {
           setHighlightImageIndices((current) => ({
             ...current,
-            [index]: ((current[index] || 0) + 1) % highlight.carouselImages!.length,
+            [index]: ((current[index] || 0) + 1) % images.length,
           }));
         }, 4000);
         intervals.push(interval);
@@ -159,83 +166,77 @@ const SectionPage = () => {
             )}
 
             {section.highlights.map((highlight, index) => (
-              <div
-                key={index}
-                className="animate-fade-up overflow-hidden rounded-xl border border-border bg-card shadow-card"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <div className="p-6 pb-2">
-                  <h2 className="font-heading text-xl font-semibold text-foreground">
-                    {isKn && highlight.titleKn ? highlight.titleKn : highlight.title}
-                  </h2>
-                  {!isKn && highlight.titleKn && (
-                    <p className="mt-0.5 text-sm font-medium text-primary">{highlight.titleKn}</p>
-                  )}
-                </div>
+              (() => {
+                const highlightImages = getHighlightImages(highlight);
 
-                {highlight.image && (
-                  <div className="px-6 pb-2">
-                    <div className="aspect-[16/9] overflow-hidden rounded-lg">
-                      <img
-                        src={highlight.image}
-                        alt={highlight.title}
-                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
+                return (
+                  <div
+                    key={index}
+                    className="animate-fade-up overflow-hidden rounded-xl border border-border bg-card shadow-card"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <div className="p-6 pb-2">
+                      <h2 className="font-heading text-xl font-semibold text-foreground">
+                        {isKn && highlight.titleKn ? highlight.titleKn : highlight.title}
+                      </h2>
+                      {!isKn && highlight.titleKn && (
+                        <p className="mt-0.5 text-sm font-medium text-primary">{highlight.titleKn}</p>
+                      )}
                     </div>
-                  </div>
-                )}
 
-                {highlight.carouselImages && highlight.carouselImages.length > 0 && (
-                  <div className="px-6 pb-2">
-                    <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-gray-100">
-                      <img
-                        src={highlight.carouselImages[highlightImageIndices[index] || 0]}
-                        alt={`${highlight.title} - Image ${(highlightImageIndices[index] || 0) + 1}`}
-                        className="h-full w-full object-cover transition-all duration-1000"
-                      />
-                      {highlight.carouselImages.length > 1 && (
-                        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 space-x-2">
-                          {highlight.carouselImages.map((_, imageIndex) => (
-                            <button
-                              key={imageIndex}
-                              onClick={() =>
-                                setHighlightImageIndices((current) => ({ ...current, [index]: imageIndex }))
-                              }
-                              className={`h-2 w-2 rounded-full transition-all ${
-                                imageIndex === (highlightImageIndices[index] || 0)
-                                  ? "scale-125 bg-white"
-                                  : "bg-white/50 hover:bg-white/75"
-                              }`}
-                              aria-label={`View image ${imageIndex + 1}`}
-                            />
+                    {highlightImages.length > 0 && (
+                      <div className="px-6 pb-2">
+                        <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-gray-100">
+                          <img
+                            src={highlightImages[highlightImageIndices[index] || 0]}
+                            alt={`${highlight.title} - Image ${(highlightImageIndices[index] || 0) + 1}`}
+                            className="h-full w-full object-cover transition-all duration-1000"
+                          />
+                          {highlightImages.length > 1 && (
+                            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 space-x-2">
+                              {highlightImages.map((_, imageIndex) => (
+                                <button
+                                  key={imageIndex}
+                                  onClick={() =>
+                                    setHighlightImageIndices((current) => ({ ...current, [index]: imageIndex }))
+                                  }
+                                  className={`h-2 w-2 rounded-full transition-all ${
+                                    imageIndex === (highlightImageIndices[index] || 0)
+                                      ? "scale-125 bg-white"
+                                      : "bg-white/50 hover:bg-white/75"
+                                  }`}
+                                  aria-label={`View image ${imageIndex + 1}`}
+                                />
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="p-6 pt-2">
+                      <p className="leading-relaxed text-muted-foreground">
+                        {isKn && highlight.descriptionKn ? highlight.descriptionKn : highlight.description}
+                      </p>
+
+                      {highlight.details && highlight.details.length > 0 && (
+                        <div className="mt-4 space-y-3">
+                          {highlight.details.map((detail, detailIndex) => (
+                            <div key={detailIndex} className="border-l-2 border-primary/30 pl-4">
+                              <p className="text-sm font-semibold text-foreground">
+                                {isKn && detail.labelKn ? detail.labelKn : detail.label}
+                              </p>
+                              <p className="text-sm text-muted-foreground">
+                                {isKn && detail.textKn ? detail.textKn : detail.text}
+                              </p>
+                            </div>
                           ))}
                         </div>
                       )}
                     </div>
                   </div>
-                )}
-
-                <div className="p-6 pt-2">
-                  <p className="leading-relaxed text-muted-foreground">
-                    {isKn && highlight.descriptionKn ? highlight.descriptionKn : highlight.description}
-                  </p>
-
-                  {highlight.details && highlight.details.length > 0 && (
-                    <div className="mt-4 space-y-3">
-                      {highlight.details.map((detail, detailIndex) => (
-                        <div key={detailIndex} className="border-l-2 border-primary/30 pl-4">
-                          <p className="text-sm font-semibold text-foreground">
-                            {isKn && detail.labelKn ? detail.labelKn : detail.label}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {isKn && detail.textKn ? detail.textKn : detail.text}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
+                );
+              })()
             ))}
 
             {section.rules && (

@@ -7,9 +7,15 @@ import docBarbet2 from "@/assets/doc-barbet2.jpg";
 
 import docFishEagle from "@/assets/doc-fish-eagle.jpg";
 
-import docFlameTree from "@/assets/doc-flame-tree.jpg";
+import docFlameTree from "@/assets/doc-flame-tree.jpeg";
 
 import docKingfisher from "@/assets/doc-kingfisher.jpg";
+
+import dracaenaAfromontana from "@/assets/Dracaena afromontana.jpeg";
+
+import dracaenaSteudneri from "@/assets/Dracaena steudneri.jpeg";
+
+import jacarandaTree from "@/assets/Jacakaranda mimosiforia.jpeg";
 
 import docTrailCranes from "@/assets/doc-trail-cranes.jpg";
 
@@ -220,6 +226,7 @@ export const trailsSection: SectionContent = {
         "In Rwandan culture, the Igihondohondo is a sacred tree that represents the longevity of the Kingdom. It was planted to keep the history of the King alive.",
       descriptionKn:
         "Mu muco nyarwanda, Igihondohondo ni igiti cy'amateka cyarangaga kuramba kw'ingoma. Cyaterwaga kenshi kugira ngo amateka y'Abami akomeze kwibukwa.",
+      image: dracaenaSteudneri,
       details: [
         {
           label: "A Long-Living Giant",
@@ -248,6 +255,7 @@ export const trailsSection: SectionContent = {
         "In Rwanda, the Umuhate tree is historically used as a 'Living Fence.' It was planted to mark boundaries between lands, symbolizing peace between neighbors.",
       descriptionKn:
         "Mu muco nyarwanda, Umuhate ni igiti cyifashishwa nk'uruzitiro ruzima. Cyaterwaga ku mbibi z'amasambu kugira ngo kigaragaze urubibi, kikaba ikimenyetso cy'ubwumvikane n'ituze.",
+      image: dracaenaAfromontana,
       details: [
         {
           label: "A Natural Healer",
@@ -276,6 +284,7 @@ export const trailsSection: SectionContent = {
         "This tree is listed on the IUCN Red List as Endangered. It is rare and disappearing worldwide, making its presence in Nyandungu a major contribution to global conservation.",
       descriptionKn:
         "Iki giti kiri ku rutonde rw'ibimera bibangamiwe cyane ku rwego rw'isi (IUCN Red List). Ni imbonekarime iri kugenda ikendera ku isi yose, bityo kuba kiri muri Nyandungu ni ishema.",
+      image: docFlameTree,
       details: [
         {
           label: "Unique Beauty & Dark Wood",
@@ -298,6 +307,7 @@ export const trailsSection: SectionContent = {
         "An exotic species from South America that has become a beloved part of Rwanda's urban landscape. Famous for its high, spreading branches that produce a sea of purple flowers.",
       descriptionKn:
         "Ni igiti cy'amahanga cyakomotse muri Amerika y'Epfo, ariko kikaba cyaramenyereye u Rwanda. Kizwiho kugira amashami maremare agaba amababa yuzuyeho indabyo z'amabara y'itumbwe.",
+      image: jacarandaTree,
       details: [
         {
           label: "The Purple Canopy",

@@ -7,7 +7,7 @@ import docBarbet2 from "@/assets/doc-barbet2.jpg";
 import docBicycles from "@/assets/doc-bicycles.jpg";
 import docCranes from "@/assets/doc-cranes.jpg";
 import docFishEagle from "@/assets/doc-fish-eagle.jpg";
-import docFlameTree from "@/assets/doc-flame-tree.jpg";
+import docFlameTree from "@/assets/doc-flame-tree.jpeg";
 import docGreatLakes from "@/assets/doc-great-lakes.jpg";
 import docInfoCenter from "@/assets/doc-info-center.jpg";
 import docKingfisher from "@/assets/doc-kingfisher.jpg";
