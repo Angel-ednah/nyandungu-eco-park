@@ -3,6 +3,8 @@ import logo from "@/assets/logo.png";
 
 import { Button } from "@/components/ui/button";
 
+import { useSEO } from "@/hooks/useSEO";
+
 import { Input } from "@/components/ui/input";
 
 import { Label } from "@/components/ui/label";
@@ -25,6 +27,13 @@ const LoginPage = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const { signIn } = useAuth();
   const navigate = useNavigate();
+
+  useSEO({
+    title: isSignUp ? "Create Admin Account" : "Admin Login",
+    description: "Secure administrator access for Nyandungu Eco Park content management and QR dashboard tools.",
+    path: "/login",
+    noindex: true,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

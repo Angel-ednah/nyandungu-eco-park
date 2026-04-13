@@ -3,6 +3,8 @@ import ImageGallery from "@/components/ImageGallery";
 
 import QRCodeCard from "@/components/QRCodeCard";
 
+import { useSEO } from "@/hooks/useSEO";
+
 import { Button } from "@/components/ui/button";
 
 import { Textarea } from "@/components/ui/textarea";
@@ -27,6 +29,44 @@ const SectionPage = () => {
   const [rating, setRating] = useState(0);
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [highlightImageIndices, setHighlightImageIndices] = useState<Record<number, number>>({});
+  const isKn = lang === "kn";
+
+  const seoDescription = section
+    ? (isKn
+        ? section.highlights
+            .map((highlight) => highlight.descriptionKn || highlight.description)
+            .join(" ")
+        : section.highlights.map((highlight) => highlight.description).join(" "))
+        .slice(0, 180)
+    : "Explore Nyandungu Eco Park section information, highlights, and visitor guidance.";
+
+  useSEO({
+    title: section ? section.title : "Section Not Found",
+    description: seoDescription,
+    path: id ? `/section/${id}` : window.location.pathname,
+    image: section?.image,
+    lang: isKn ? "rw" : "en",
+    noindex: !section,
+    keywords: section
+      ? [section.title, section.titleKn, "Nyandungu Eco Park", "Kigali tourism", "Rwanda nature"]
+      : ["Nyandungu Eco Park"],
+    jsonLd: section
+      ? {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: isKn ? section.titleKn : section.title,
+          description: seoDescription,
+          url: id ? `/section/${id}` : window.location.pathname,
+          image: section.image,
+          inLanguage: isKn ? "rw" : "en",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Discover Nyandungu Eco Park",
+            url: "/",
+          },
+        }
+      : undefined,
+  });
 
   useEffect(() => {
     if (id) trackVisit(id);
@@ -59,8 +99,6 @@ const SectionPage = () => {
       </div>
     );
   }
-
-  const isKn = lang === "kn";
 
   const handleFeedback = () => {
     if (!feedback.trim() && rating === 0) {
