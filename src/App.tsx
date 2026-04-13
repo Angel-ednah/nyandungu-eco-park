@@ -35,8 +35,14 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-foreground focus:shadow-card"
+          >
+            Skip to content
+          </a>
           <Header />
-          <main className="min-h-screen">
+          <main id="main-content" className="min-h-screen">
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/section/:id" element={<SectionPage />} />

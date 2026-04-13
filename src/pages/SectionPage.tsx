@@ -1,20 +1,12 @@
-
 import ImageGallery from "@/components/ImageGallery";
-
 import QRCodeCard from "@/components/QRCodeCard";
-
 import { useSEO } from "@/hooks/useSEO";
-
 import { Button } from "@/components/ui/button";
-
 import { Textarea } from "@/components/ui/textarea";
-
 import { sectionData } from "@/data/sectionData";
-
 import { trackVisit } from "@/lib/visitTracker";
 
 import { ArrowLeft, Globe, MessageSquare, Send, Star } from "lucide-react";
-
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -32,12 +24,11 @@ const SectionPage = () => {
   const isKn = lang === "kn";
 
   const seoDescription = section
-    ? (isKn
-        ? section.highlights
-            .map((highlight) => highlight.descriptionKn || highlight.description)
-            .join(" ")
-        : section.highlights.map((highlight) => highlight.description).join(" "))
-        .slice(0, 180)
+    ? (
+        isKn
+          ? section.highlights.map((highlight) => highlight.descriptionKn || highlight.description).join(" ")
+          : section.highlights.map((highlight) => highlight.description).join(" ")
+      ).slice(0, 180)
     : "Explore Nyandungu Eco Park section information, highlights, and visitor guidance.";
 
   useSEO({
@@ -69,33 +60,42 @@ const SectionPage = () => {
   });
 
   useEffect(() => {
-    if (id) trackVisit(id);
+    if (id) {
+      trackVisit(id);
+    }
   }, [id]);
 
-  // Auto-rotate carousel images
   useEffect(() => {
-    if (section?.highlights) {
-      const intervals: NodeJS.Timeout[] = [];
-      section.highlights.forEach((highlight, i) => {
-        if (highlight.carouselImages && highlight.carouselImages.length > 1) {
-          const interval = setInterval(() => {
-            setHighlightImageIndices(prev => ({
-              ...prev,
-              [i]: ((prev[i] || 0) + 1) % highlight.carouselImages!.length
-            }));
-          }, 4000);
-          intervals.push(interval);
-        }
-      });
-      return () => intervals.forEach(clearInterval);
+    if (!section?.highlights) {
+      return;
     }
+
+    const intervals: NodeJS.Timeout[] = [];
+    section.highlights.forEach((highlight, index) => {
+      if (highlight.carouselImages && highlight.carouselImages.length > 1) {
+        const interval = setInterval(() => {
+          setHighlightImageIndices((current) => ({
+            ...current,
+            [index]: ((current[index] || 0) + 1) % highlight.carouselImages!.length,
+          }));
+        }, 4000);
+        intervals.push(interval);
+      }
+    });
+
+    return () => intervals.forEach(clearInterval);
   }, [section]);
 
   if (!section) {
     return (
       <div className="container py-20 text-center">
-        <h1 className="font-heading text-3xl font-bold mb-4">Section Not Found</h1>
-        <Button asChild><Link to="/"><ArrowLeft className="mr-2 h-4 w-4" /> Back to Home</Link></Button>
+        <h1 className="font-heading mb-4 text-3xl font-bold">Section Not Found</h1>
+        <Button asChild>
+          <Link to="/">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Home
+          </Link>
+        </Button>
       </div>
     );
   }
@@ -105,9 +105,14 @@ const SectionPage = () => {
       toast.error(isKn ? "Andika igitekerezo cyawe" : "Please write your feedback or select a rating");
       return;
     }
-    // Store in localStorage for now
+
     const feedbacks = JSON.parse(localStorage.getItem("park-feedback") || "[]");
-    feedbacks.push({ sectionId: id, rating, feedback: feedback.trim(), date: new Date().toISOString() });
+    feedbacks.push({
+      sectionId: id,
+      rating,
+      feedback: feedback.trim(),
+      date: new Date().toISOString(),
+    });
     localStorage.setItem("park-feedback", JSON.stringify(feedbacks));
     setFeedbackSent(true);
     toast.success(isKn ? "Murakoze! Igitekerezo cyanyu cyakiriwe." : "Thank you! Your feedback has been received.");
@@ -115,81 +120,93 @@ const SectionPage = () => {
 
   return (
     <div>
-      {/* Hero */}
       <section className="relative h-[40vh] min-h-[280px]">
-        <img src={section.image} alt={section.title} className="absolute inset-0 w-full h-full object-cover" />
+        <img src={section.image} alt={section.title} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-overlay" />
-        <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12">
-          <div className="flex items-center justify-between mb-2">
-            <Link to="/" className="text-primary-foreground/70 text-sm hover:text-primary-foreground inline-flex items-center gap-1">
-              <ArrowLeft className="h-4 w-4" /> {isKn ? "Subira Ahabanza" : "Back to Home"}
+        <div className="relative z-10 flex h-full flex-col justify-end p-6 md:p-12">
+          <div className="mb-2 flex items-center justify-between">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1 text-sm text-primary-foreground/70 hover:text-primary-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              {isKn ? "Subira Ahabanza" : "Back to Home"}
             </Link>
             <Button
               variant="outline"
               size="sm"
               onClick={() => setLang(isKn ? "en" : "kn")}
-              className="bg-white/20 backdrop-blur border-white/30 text-white hover:bg-white/30 hover:text-white"
+              className="border-white/30 bg-white/20 text-white backdrop-blur hover:bg-white/30 hover:text-white"
             >
               <Globe className="mr-1 h-4 w-4" />
               {isKn ? "English" : "Ikinyarwanda"}
             </Button>
           </div>
-          <h1 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground">
+          <h1 className="font-heading text-3xl font-bold text-primary-foreground md:text-4xl">
             {isKn ? section.titleKn : section.title}
           </h1>
-          {!isKn && section.titleKn && <p className="text-primary-foreground/80 mt-1">{section.titleKn}</p>}
+          {!isKn && section.titleKn && <p className="mt-1 text-primary-foreground/80">{section.titleKn}</p>}
         </div>
       </section>
 
-      {/* Content */}
       <section className="container py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            {/* Gallery */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          <div className="space-y-8 lg:col-span-2">
             {section.gallery && section.gallery.length > 0 && (
               <div className="animate-fade-up">
                 <ImageGallery images={section.gallery} sectionTitle={section.title} />
               </div>
             )}
 
-            {/* Highlights: Title → Photo → Description */}
-            {section.highlights.map((h, i) => (
-              <div key={i} className="bg-card rounded-xl overflow-hidden shadow-card border border-border animate-fade-up" style={{ animationDelay: `${i * 0.05}s` }}>
+            {section.highlights.map((highlight, index) => (
+              <div
+                key={index}
+                className="animate-fade-up overflow-hidden rounded-xl border border-border bg-card shadow-card"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
                 <div className="p-6 pb-2">
-                  <h3 className="font-heading text-xl font-semibold text-foreground">
-                    {isKn && h.titleKn ? h.titleKn : h.title}
-                  </h3>
-                  {!isKn && h.titleKn && <p className="text-sm text-primary font-medium mt-0.5">{h.titleKn}</p>}
+                  <h2 className="font-heading text-xl font-semibold text-foreground">
+                    {isKn && highlight.titleKn ? highlight.titleKn : highlight.title}
+                  </h2>
+                  {!isKn && highlight.titleKn && (
+                    <p className="mt-0.5 text-sm font-medium text-primary">{highlight.titleKn}</p>
+                  )}
                 </div>
 
-                {h.image && (
+                {highlight.image && (
                   <div className="px-6 pb-2">
-                    <div className="aspect-[16/9] rounded-lg overflow-hidden">
-                      <img src={h.image} alt={h.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    <div className="aspect-[16/9] overflow-hidden rounded-lg">
+                      <img
+                        src={highlight.image}
+                        alt={highlight.title}
+                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
                     </div>
                   </div>
                 )}
 
-                {h.carouselImages && h.carouselImages.length > 0 && (
+                {highlight.carouselImages && highlight.carouselImages.length > 0 && (
                   <div className="px-6 pb-2">
-                    <div className="aspect-[16/9] rounded-lg overflow-hidden relative bg-gray-100">
+                    <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-gray-100">
                       <img
-                        src={h.carouselImages[highlightImageIndices[i] || 0]}
-                        alt={`${h.title} - Image ${(highlightImageIndices[i] || 0) + 1}`}
-                        className="w-full h-full object-cover transition-all duration-1000"
+                        src={highlight.carouselImages[highlightImageIndices[index] || 0]}
+                        alt={`${highlight.title} - Image ${(highlightImageIndices[index] || 0) + 1}`}
+                        className="h-full w-full object-cover transition-all duration-1000"
                       />
-                      {h.carouselImages.length > 1 && (
-                        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                          {h.carouselImages.map((_, imgIndex) => (
+                      {highlight.carouselImages.length > 1 && (
+                        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 space-x-2">
+                          {highlight.carouselImages.map((_, imageIndex) => (
                             <button
-                              key={imgIndex}
-                              onClick={() => setHighlightImageIndices(prev => ({ ...prev, [i]: imgIndex }))}
-                              className={`w-2 h-2 rounded-full transition-all ${
-                                imgIndex === (highlightImageIndices[i] || 0)
-                                  ? "bg-white scale-125"
+                              key={imageIndex}
+                              onClick={() =>
+                                setHighlightImageIndices((current) => ({ ...current, [index]: imageIndex }))
+                              }
+                              className={`h-2 w-2 rounded-full transition-all ${
+                                imageIndex === (highlightImageIndices[index] || 0)
+                                  ? "scale-125 bg-white"
                                   : "bg-white/50 hover:bg-white/75"
                               }`}
-                              aria-label={`View image ${imgIndex + 1}`}
+                              aria-label={`View image ${imageIndex + 1}`}
                             />
                           ))}
                         </div>
@@ -199,19 +216,19 @@ const SectionPage = () => {
                 )}
 
                 <div className="p-6 pt-2">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {isKn && h.descriptionKn ? h.descriptionKn : h.description}
+                  <p className="leading-relaxed text-muted-foreground">
+                    {isKn && highlight.descriptionKn ? highlight.descriptionKn : highlight.description}
                   </p>
 
-                  {h.details && h.details.length > 0 && (
+                  {highlight.details && highlight.details.length > 0 && (
                     <div className="mt-4 space-y-3">
-                      {h.details.map((d, j) => (
-                        <div key={j} className="pl-4 border-l-2 border-primary/30">
+                      {highlight.details.map((detail, detailIndex) => (
+                        <div key={detailIndex} className="border-l-2 border-primary/30 pl-4">
                           <p className="text-sm font-semibold text-foreground">
-                            {isKn && d.labelKn ? d.labelKn : d.label}
+                            {isKn && detail.labelKn ? detail.labelKn : detail.label}
                           </p>
                           <p className="text-sm text-muted-foreground">
-                            {isKn && d.textKn ? d.textKn : d.text}
+                            {isKn && detail.textKn ? detail.textKn : detail.text}
                           </p>
                         </div>
                       ))}
@@ -221,51 +238,46 @@ const SectionPage = () => {
               </div>
             ))}
 
-            {/* Rules */}
             {section.rules && (
-              <div className="bg-destructive/5 rounded-xl p-6 border border-destructive/20">
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-3">
+              <div className="rounded-xl border border-destructive/20 bg-destructive/5 p-6">
+                <h2 className="font-heading mb-3 text-lg font-semibold text-foreground">
                   {isKn ? "Amategeko" : "Rules / Amategeko"}
-                </h3>
+                </h2>
                 <ul className="space-y-2">
-                  {section.rules.map((r, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <span className="w-2 h-2 rounded-full bg-destructive flex-shrink-0" />
-                      {isKn ? r.kn : `${r.en} / ${r.kn}`}
+                  {section.rules.map((rule, index) => (
+                    <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span className="h-2 w-2 flex-shrink-0 rounded-full bg-destructive" />
+                      {isKn ? rule.kn : `${rule.en} / ${rule.kn}`}
                     </li>
                   ))}
                 </ul>
               </div>
             )}
 
-            {/* Feedback Section */}
-            <div className="bg-card rounded-xl p-6 border border-border">
-              <div className="flex items-center gap-2 mb-4">
+            <div className="rounded-xl border border-border bg-card p-6">
+              <div className="mb-4 flex items-center gap-2">
                 <MessageSquare className="h-5 w-5 text-primary" />
-                <h3 className="font-heading text-lg font-semibold text-foreground">
+                <h2 className="font-heading text-lg font-semibold text-foreground">
                   {isKn ? "Tanga Igitekerezo" : "Share Your Feedback"}
-                </h3>
+                </h2>
               </div>
-              <p className="text-sm text-muted-foreground mb-4">
-                {isKn
-                  ? "Ese amakuru yagufashije? Tugire icyo utubwira!"
-                  : "Did you find this information useful? Let us know!"}
+              <p className="mb-4 text-sm text-muted-foreground">
+                {isKn ? "Ese amakuru yagufashije? Tugire icyo utubwira!" : "Did you find this information useful? Let us know!"}
               </p>
 
               {feedbackSent ? (
-                <div className="text-center py-6">
-                  <div className="text-4xl mb-2">🎉</div>
+                <div className="py-6 text-center">
                   <p className="font-semibold text-foreground">
                     {isKn ? "Murakoze cyane!" : "Thank you so much!"}
                   </p>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="mt-1 text-sm text-muted-foreground">
                     {isKn ? "Igitekerezo cyanyu cyatumijwe neza." : "Your feedback has been recorded."}
                   </p>
                 </div>
               ) : (
                 <div className="space-y-4">
                   <div>
-                    <p className="text-sm font-medium text-foreground mb-2">
+                    <p className="mb-2 text-sm font-medium text-foreground">
                       {isKn ? "Igitekerezo cyawe (inyenyeri)" : "Your Rating"}
                     </p>
                     <div className="flex gap-1">
@@ -277,9 +289,7 @@ const SectionPage = () => {
                         >
                           <Star
                             className={`h-7 w-7 ${
-                              star <= rating
-                                ? "fill-yellow-400 text-yellow-400"
-                                : "text-muted-foreground/30"
+                              star <= rating ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground/30"
                             }`}
                           />
                         </button>
@@ -301,10 +311,9 @@ const SectionPage = () => {
             </div>
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
+          <aside className="space-y-6">
             <QRCodeCard sectionId={id!} sectionName={section.title} baseUrl={baseUrl} />
-          </div>
+          </aside>
         </div>
       </section>
     </div>
