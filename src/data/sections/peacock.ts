@@ -1,7 +1,10 @@
-import type { SectionContent } from "../sectionData";
-import docPeacock from "@/assets/doc-peacock.jpg";
+
 import docPeacockDisplay from "@/assets/doc-peacock-display.jpg";
+
 import docPeacockGrass from "@/assets/doc-peacock-grass.jpg";
+
+import docPeacock from "@/assets/doc-peacock.jpg";
+import type { SectionContent } from "../sectionData";
 
 export const peacockSection: SectionContent = {
   title: "Discover the Beauty of the Peacock",

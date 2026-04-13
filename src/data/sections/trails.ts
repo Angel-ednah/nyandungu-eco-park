@@ -1,12 +1,20 @@
-import type { SectionContent } from "../sectionData";
-import docTrailsSign from "@/assets/doc-trails-sign.jpg";
-import docTrailCranes from "@/assets/doc-trail-cranes.jpg";
-import docBarbet from "@/assets/doc-barbet.jpg";
-import docBarbet2 from "@/assets/doc-barbet2.jpg";
-import docKingfisher from "@/assets/doc-kingfisher.jpg";
-import docFishEagle from "@/assets/doc-fish-eagle.jpg";
-import docFlameTree from "@/assets/doc-flame-tree.jpg";
+
 import docBambooPath from "@/assets/doc-bamboo-path.jpg";
+
+import docBarbet from "@/assets/doc-barbet.jpg";
+
+import docBarbet2 from "@/assets/doc-barbet2.jpg";
+
+import docFishEagle from "@/assets/doc-fish-eagle.jpg";
+
+import docFlameTree from "@/assets/doc-flame-tree.jpg";
+
+import docKingfisher from "@/assets/doc-kingfisher.jpg";
+
+import docTrailCranes from "@/assets/doc-trail-cranes.jpg";
+
+import docTrailsSign from "@/assets/doc-trails-sign.jpg";
+import type { SectionContent } from "../sectionData";
 
 export const trailsSection: SectionContent = {
   title: "Umudobori Lane — Trails & Wildlife",

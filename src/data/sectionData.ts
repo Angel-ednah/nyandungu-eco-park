@@ -1,6 +1,9 @@
 import { nyandunguInfoSection } from "./sections/nyandunguInfo";
+
 import { peacockSection } from "./sections/peacock";
+
 import { topTenSection } from "./sections/topTen";
+
 import { trailsSection } from "./sections/trails";
 
 export interface SectionHighlight {

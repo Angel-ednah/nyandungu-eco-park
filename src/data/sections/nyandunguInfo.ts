@@ -1,25 +1,46 @@
-import type { SectionContent } from "../sectionData";
-import docQrSign from "@/assets/doc-qr-sign.jpg";
-import docRestaurant from "@/assets/doc-restaurant.jpg";
-import docRestaurantNight from "@/assets/doc-restaurant-night.jpg";
-import docPonds from "@/assets/doc-ponds.jpg";
-import docPeacock from "@/assets/doc-peacock.jpg";
-import docCranes from "@/assets/doc-cranes.jpg";
-import docBicycles from "@/assets/doc-bicycles.jpg";
+
 import img1 from "@/assets/1.jpeg";
+
 import img9 from "@/assets/9.jpeg";
+
 import img10 from "@/assets/10.jpeg";
+
 import img11 from "@/assets/11.jpeg";
+
 import img14 from "@/assets/14.jpeg";
+
 import img17 from "@/assets/17.jpeg";
+
 import img21 from "@/assets/21.jpeg";
-import peacock from "@/assets/peacock.jpg";
-import fishEagle from "@/assets/fish-eagle.jpg";
-import kingfisher from "@/assets/kingfisher.jpg";
+
 import docBarbet from "@/assets/doc-barbet.jpg";
+
 import docBarbet2 from "@/assets/doc-barbet2.jpg";
-import docKingfisher from "@/assets/doc-kingfisher.jpg";
+
+import docBicycles from "@/assets/doc-bicycles.jpg";
+
+import docCranes from "@/assets/doc-cranes.jpg";
+
 import docInfoCenter from "@/assets/doc-info-center.jpg";
+
+import docKingfisher from "@/assets/doc-kingfisher.jpg";
+
+import docPeacock from "@/assets/doc-peacock.jpg";
+
+import docPonds from "@/assets/doc-ponds.jpg";
+
+import docQrSign from "@/assets/doc-qr-sign.jpg";
+
+import docRestaurantNight from "@/assets/doc-restaurant-night.jpg";
+
+import docRestaurant from "@/assets/doc-restaurant.jpg";
+
+import fishEagle from "@/assets/fish-eagle.jpg";
+
+import kingfisher from "@/assets/kingfisher.jpg";
+
+import peacock from "@/assets/peacock.jpg";
+import type { SectionContent } from "../sectionData";
 
 export const nyandunguInfoSection: SectionContent = {
   title: "Welcome to Nyandungu Eco-Park",

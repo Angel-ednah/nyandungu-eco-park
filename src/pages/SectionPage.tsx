@@ -1,12 +1,21 @@
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Globe, MessageSquare, Star, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { trackVisit } from "@/lib/visitTracker";
-import QRCodeCard from "@/components/QRCodeCard";
+
 import ImageGallery from "@/components/ImageGallery";
+
+import QRCodeCard from "@/components/QRCodeCard";
+
+import { Button } from "@/components/ui/button";
+
+import { Textarea } from "@/components/ui/textarea";
+
 import { sectionData } from "@/data/sectionData";
+
+import { trackVisit } from "@/lib/visitTracker";
+
+import { ArrowLeft, Globe, MessageSquare, Send, Star } from "lucide-react";
+
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import { toast } from "sonner";
 
 const SectionPage = () => {

@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
-import { Users, QrCode, TrendingUp, Calendar, Printer } from "lucide-react";
-import { getStats, getTotalVisits, getTodayVisits, type SectionStats } from "@/lib/visitTracker";
+
 import QRCodeCard from "@/components/QRCodeCard";
+
 import { Button } from "@/components/ui/button";
+
+import { getStats, getTodayVisits, getTotalVisits, type SectionStats } from "@/lib/visitTracker";
+
+import { Calendar, Printer, QrCode, TrendingUp, Users } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const AdminPage = () => {
   const [stats, setStats] = useState<SectionStats[]>([]);
