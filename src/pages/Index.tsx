@@ -1,37 +1,66 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { QrCode, Leaf, Bird, Map } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import SectionCard from "@/components/SectionCard";
 
-// Main section images
-import heroPark from "@/assets/nyandungu-gate.jpg";
-import peacockImg from "@/assets/peacock-real.jpg";
-import trailsImg from "@/assets/18.jpeg";
 import topTenImg from "@/assets/3.jpeg";
+
+import trailsImg from "@/assets/18.jpeg";
+
+import docBambooPath from "@/assets/doc-bamboo-path.jpg";
+
+import docBambooTrail from "@/assets/doc-bamboo-trail.jpg";
+
+import docBarbet from "@/assets/doc-barbet.jpg";
+
+import docBarbet2 from "@/assets/doc-barbet2.jpg";
+
+import docBicycles from "@/assets/doc-bicycles.jpg";
+
+import docCranes from "@/assets/doc-cranes.jpg";
+
+import docFishEagle from "@/assets/doc-fish-eagle.jpg";
+
+import docFlameTree from "@/assets/doc-flame-tree.jpg";
+
+import docGreatLakes from "@/assets/doc-great-lakes.jpg";
+
+import docInfoCenter from "@/assets/doc-info-center.jpg";
+
+import docKingfisher from "@/assets/doc-kingfisher.jpg";
+
 
 // Gallery images from all sections
 import docMedicinalGarden from "@/assets/doc-medicinal-garden.jpg";
-import docPopesGarden from "@/assets/doc-popes-garden.jpg";
-import docBambooTrail from "@/assets/doc-bamboo-trail.jpg";
-import docGreatLakes from "@/assets/doc-great-lakes.jpg";
-import docPlayground from "@/assets/doc-playground.jpg";
-import docInfoCenter from "@/assets/doc-info-center.jpg";
+
 import docPeacockDisplay from "@/assets/doc-peacock-display.jpg";
+
 import docPeacockGrass from "@/assets/doc-peacock-grass.jpg";
+
 import docPeacock from "@/assets/doc-peacock.jpg";
-import docRestaurant from "@/assets/doc-restaurant.jpg";
-import docRestaurantNight from "@/assets/doc-restaurant-night.jpg";
+
+import docPlayground from "@/assets/doc-playground.jpg";
+
 import docPonds from "@/assets/doc-ponds.jpg";
-import docCranes from "@/assets/doc-cranes.jpg";
-import docBicycles from "@/assets/doc-bicycles.jpg";
+
+import docPopesGarden from "@/assets/doc-popes-garden.jpg";
+
+import docRestaurantNight from "@/assets/doc-restaurant-night.jpg";
+
+import docRestaurant from "@/assets/doc-restaurant.jpg";
+
 import docTrailCranes from "@/assets/doc-trail-cranes.jpg";
-import docBarbet from "@/assets/doc-barbet.jpg";
-import docBarbet2 from "@/assets/doc-barbet2.jpg";
-import docFishEagle from "@/assets/doc-fish-eagle.jpg";
-import docKingfisher from "@/assets/doc-kingfisher.jpg";
-import docFlameTree from "@/assets/doc-flame-tree.jpg";
-import docBambooPath from "@/assets/doc-bamboo-path.jpg";
+
+
+// Main section images
+import heroPark from "@/assets/nyandungu-gate.jpg";
+
+import peacockImg from "@/assets/peacock-real.jpg";
+
+import SectionCard from "@/components/SectionCard";
+
+import { Button } from "@/components/ui/button";
+
+import { Bird, Leaf, Map, QrCode } from "lucide-react";
+
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const sections = [
   {

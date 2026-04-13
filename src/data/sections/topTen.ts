@@ -1,19 +1,34 @@
-import type { SectionContent } from "../sectionData";
-import docMedicinalSign from "@/assets/doc-medicinal-sign.jpg";
-import docMedicinalGarden from "@/assets/doc-medicinal-garden.jpg";
-import docPopesGarden from "@/assets/doc-popes-garden.jpg";
-import docBambooTrail from "@/assets/doc-bamboo-trail.jpg";
+
 import docBambooPath from "@/assets/doc-bamboo-path.jpg";
-import docMainCorridor from "@/assets/doc-main-corridor.jpg";
+
+import docBambooTrail from "@/assets/doc-bamboo-trail.jpg";
+
 import docGreatLakes from "@/assets/doc-great-lakes.jpg";
-import docRestaurantTop10 from "@/assets/doc-restaurant-top10.jpg";
-import docVandungeRestaurant from "@/assets/doc-vandunge-restaurant.jpg";
-import docSanctuaryBird from "@/assets/doc-sanctuary-bird.jpg";
-import docPeacockDisplay from "@/assets/doc-peacock-display.jpg";
-import docPeacockGrass from "@/assets/doc-peacock-grass.jpg";
-import docPlayground from "@/assets/doc-playground.jpg";
-import docPlayground2 from "@/assets/doc-playground2.jpg";
+
 import docInfoCenter from "@/assets/doc-info-center.jpg";
+
+import docMainCorridor from "@/assets/doc-main-corridor.jpg";
+
+import docMedicinalGarden from "@/assets/doc-medicinal-garden.jpg";
+
+import docMedicinalSign from "@/assets/doc-medicinal-sign.jpg";
+
+import docPeacockDisplay from "@/assets/doc-peacock-display.jpg";
+
+import docPeacockGrass from "@/assets/doc-peacock-grass.jpg";
+
+import docPlayground from "@/assets/doc-playground.jpg";
+
+import docPlayground2 from "@/assets/doc-playground2.jpg";
+
+import docPopesGarden from "@/assets/doc-popes-garden.jpg";
+
+import docRestaurantTop10 from "@/assets/doc-restaurant-top10.jpg";
+
+import docSanctuaryBird from "@/assets/doc-sanctuary-bird.jpg";
+
+import docVandungeRestaurant from "@/assets/doc-vandunge-restaurant.jpg";
+import type { SectionContent } from "../sectionData";
 
 export const topTenSection: SectionContent = {
   title: "Top 10 Sites to Visit in Nyandungu",

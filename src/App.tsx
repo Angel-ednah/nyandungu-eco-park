@@ -1,17 +1,30 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { AuthProvider } from "./hooks/useAuth";
-import Header from "./components/Header";
+
 import Footer from "./components/Footer";
+
+import Header from "./components/Header";
+
 import ProtectedRoute from "./components/ProtectedRoute";
-import Index from "./pages/Index";
-import SectionPage from "./pages/SectionPage";
+
+import { AuthProvider } from "./hooks/useAuth";
+
 import AdminPage from "./pages/AdminPage";
+
+import Index from "./pages/Index";
+
 import LoginPage from "./pages/LoginPage";
+
 import NotFound from "./pages/NotFound";
+
+import SectionPage from "./pages/SectionPage";
+
+import { Toaster as Sonner } from "@/components/ui/sonner";
+
+import { Toaster } from "@/components/ui/toaster";
+
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
