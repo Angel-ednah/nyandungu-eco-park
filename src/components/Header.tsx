@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
+import logo from "@/assets/logo.png";
 import logo from "@/assets/logo.png";
 
 const Header = () => {
