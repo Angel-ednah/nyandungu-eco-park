@@ -1,6 +1,8 @@
 
 import QRCodeCard from "@/components/QRCodeCard";
 
+import { useSEO } from "@/hooks/useSEO";
+
 import { Button } from "@/components/ui/button";
 
 import { getStats, getTodayVisits, getTotalVisits, type SectionStats } from "@/lib/visitTracker";
@@ -13,6 +15,13 @@ const AdminPage = () => {
   const [totalVisits, setTotalVisits] = useState(0);
   const [todayVisits, setTodayVisits] = useState(0);
   const baseUrl = window.location.origin;
+
+  useSEO({
+    title: "Admin Dashboard",
+    description: "Private admin dashboard for Nyandungu Eco Park QR management and visit monitoring.",
+    path: "/admin",
+    noindex: true,
+  });
 
   useEffect(() => {
     setStats(getStats());

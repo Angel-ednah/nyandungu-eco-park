@@ -55,6 +55,8 @@ import peacockImg from "@/assets/peacock-real.jpg";
 
 import SectionCard from "@/components/SectionCard";
 
+import { useSEO } from "@/hooks/useSEO";
+
 import { Button } from "@/components/ui/button";
 
 import { Bird, Leaf, Map, QrCode } from "lucide-react";
@@ -128,6 +130,36 @@ const carouselImages = [
 
 const Index = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useSEO({
+    title: "Discover Nyandungu Eco Park",
+    description:
+      "Plan your visit to Nyandungu Eco Park in Kigali. Explore trails, wildlife, top attractions, and QR-guided visitor information before you arrive.",
+    path: "/",
+    image: heroPark,
+    keywords: [
+      "Nyandungu Eco Park",
+      "Kigali eco park",
+      "Rwanda tourist attraction",
+      "Nyandungu trails",
+      "Nyandungu QR guide",
+    ],
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      name: "Discover Nyandungu Eco Park",
+      description:
+        "QR-guided visitor experience for Nyandungu Eco Park featuring trails, wildlife, top attractions, and visitor information.",
+      image: heroPark,
+      url: "/",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Kigali",
+        addressCountry: "RW",
+      },
+      touristType: ["Families", "Nature Lovers", "Birdwatchers", "Cyclists"],
+    },
+  });
 
   // Image carousel effect
   useEffect(() => {
