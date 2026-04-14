@@ -23,13 +23,13 @@ import millettiaLaurentii from "@/assets/millettia-laurentii.jpeg";
 
 import docTrailCranes from "@/assets/doc-trail-cranes.jpg";
 
-import docTrailsSign from "@/assets/doc-trails-sign.jpg";
+import skyView from "@/assets/sky-view.jpeg";
 import type { SectionContent } from "../sectionData";
 
 export const trailsSection: SectionContent = {
   title: "Umudobori Lane — Trails & Wildlife",
   titleKn: "Murakaza neza muri Umudobori Lane",
-  image: docTrailsSign,
+  image: skyView,
   gallery: [docTrailCranes, docBarbet, docBarbet2, docFishEagle, docKingfisher, docFlameTree, docBambooPath],
   highlights: [
     {
