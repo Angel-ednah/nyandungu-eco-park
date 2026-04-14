@@ -1,4 +1,3 @@
-import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
 import { NavLink } from "./NavLink";
 
@@ -17,8 +16,6 @@ const visitLinks = [
 ];
 
 const Footer = () => {
-  const { user, signOut } = useAuth();
-
   return (
     <footer className="border-t border-border bg-muted/60 no-print">
       <div className="container py-12">
@@ -66,21 +63,6 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                {user ? (
-                  <button
-                    type="button"
-                    onClick={() => void signOut()}
-                    className="text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    Sign out of admin
-                  </button>
-                ) : (
-                  <Link to="/login" className="text-muted-foreground transition-colors hover:text-primary">
-                    Admin login
-                  </Link>
-                )}
-              </li>
             </ul>
           </section>
         </div>

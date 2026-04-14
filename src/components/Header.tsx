@@ -1,10 +1,7 @@
 import logo from "@/assets/logo.png";
-import { useAuth } from "@/hooks/useAuth";
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { NavLink } from "./NavLink";
-
 import { useState } from "react";
 
 const primaryLinks = [
@@ -17,7 +14,6 @@ const primaryLinks = [
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const { user, signOut } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur no-print">
@@ -40,24 +36,6 @@ const Header = () => {
             </NavLink>
           ))}
         </nav>
-
-        <div className="hidden md:flex items-center gap-3">
-          {user ? (
-            <>
-              <Button asChild variant="outline" size="sm">
-                <Link to="/admin">Dashboard</Link>
-              </Button>
-              <Button variant="ghost" size="sm" onClick={() => void signOut()}>
-                Sign Out
-              </Button>
-            </>
-          ) : (
-            <Button asChild variant="ghost" size="sm">
-              <Link to="/login">Admin Login</Link>
-            </Button>
-          )}
-        </div>
-
         <button
           type="button"
           onClick={() => setOpen(!open)}
@@ -89,34 +67,6 @@ const Header = () => {
                 {link.label}
               </NavLink>
             ))}
-          </div>
-
-          <div className="mt-4 border-t border-border pt-4">
-            {user ? (
-              <div className="flex flex-col gap-2">
-                <Button asChild variant="outline" size="sm">
-                  <Link to="/admin" onClick={() => setOpen(false)}>
-                    Dashboard
-                  </Link>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setOpen(false);
-                    void signOut();
-                  }}
-                >
-                  Sign Out
-                </Button>
-              </div>
-            ) : (
-              <Button asChild variant="ghost" size="sm" className="w-full justify-start px-2">
-                <Link to="/login" onClick={() => setOpen(false)}>
-                  Admin Login
-                </Link>
-              </Button>
-            )}
           </div>
         </nav>
       )}
