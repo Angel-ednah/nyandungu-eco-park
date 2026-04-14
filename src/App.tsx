@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import SectionsPage from "./pages/SectionsPage";
 import SectionPage from "./pages/SectionPage";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -24,6 +25,7 @@ const App = () => (
       <main id="main-content" className="min-h-screen">
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/section" element={<SectionsPage />} />
           <Route path="/section/:id" element={<SectionPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

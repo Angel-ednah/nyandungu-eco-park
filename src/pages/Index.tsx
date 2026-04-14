@@ -1,5 +1,3 @@
-import topTenImg from "@/assets/3.jpeg";
-import trailsImg from "@/assets/18.jpeg";
 import docBambooPath from "@/assets/doc-bamboo-path.jpg";
 import docBambooTrail from "@/assets/doc-bamboo-trail.jpg";
 import docBarbet from "@/assets/doc-barbet.jpg";
@@ -25,6 +23,7 @@ import heroPark from "@/assets/nyandungu-gate.jpg";
 import peacockImg from "@/assets/peacock-real.jpg";
 
 import SectionCard from "@/components/SectionCard";
+import { sectionDirectory } from "@/data/sectionDirectory";
 import { SITE_NAME, useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 
@@ -32,42 +31,11 @@ import { Bird, Leaf, Map, QrCode } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const sections = [
-  {
-    id: "nyandungu-info",
-    title: "Visitor Guide",
-    titleKn: "Amakuru ya Nyandungu",
-    description: "Discover nature, wildlife, peaceful trails, visitor rules, and useful park information.",
-    image: heroPark,
-  },
-  {
-    id: "peacock",
-    title: "Peacock Sanctuary",
-    titleKn: "Aho Inkanga Ziri",
-    description: "Discover the beauty of the peafowl and learn their story, behavior, and protection guidelines.",
-    image: peacockImg,
-  },
-  {
-    id: "top-ten",
-    title: "Top 10 Attractions",
-    titleKn: "Ahantu 10 Heza Cyane",
-    description: "Explore the park's must-see locations, from gardens and ponds to learning spaces and viewpoints.",
-    image: topTenImg,
-  },
-  {
-    id: "trails",
-    title: "Trails and Wildlife",
-    titleKn: "Inzira n'Ibinyabuzima",
-    description: "Walk Umudobori Lane, discover birds like the Gray Crowned Crane, and explore unique plants.",
-    image: trailsImg,
-  },
-];
-
 const carouselImages = [
   { src: heroPark, alt: "Nyandungu Eco Park main gate" },
   { src: peacockImg, alt: "Peacock display at Nyandungu Eco Park" },
-  { src: topTenImg, alt: "Top attractions at Nyandungu Eco Park" },
-  { src: trailsImg, alt: "Nature trail at Nyandungu Eco Park" },
+  { src: sectionDirectory[2].image, alt: "Top attractions at Nyandungu Eco Park" },
+  { src: sectionDirectory[3].image, alt: "Nature trail at Nyandungu Eco Park" },
   { src: docMedicinalGarden, alt: "Medicinal garden" },
   { src: docPopesGarden, alt: "Pope's Garden" },
   { src: docBambooTrail, alt: "Bamboo trail" },
@@ -135,7 +103,7 @@ const Index = () => {
         "@context": "https://schema.org",
         "@type": "ItemList",
         name: "Nyandungu Eco Park sections",
-        itemListElement: sections.map((section, index) => ({
+        itemListElement: sectionDirectory.map((section, index) => ({
           "@type": "ListItem",
           position: index + 1,
           name: section.title,
@@ -186,10 +154,10 @@ const Index = () => {
             </p>
             <div className="flex flex-col justify-center gap-3 sm:flex-row">
               <Button asChild size="lg" className="bg-gradient-hero text-primary-foreground hover:opacity-90">
-                <a href="#sections">
+                <Link to="/section">
                   <QrCode className="mr-2 h-5 w-5" />
                   Explore Sections
-                </a>
+                </Link>
               </Button>
               <Button
                 asChild
@@ -233,7 +201,7 @@ const Index = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {sections.map((section) => (
+            {sectionDirectory.map((section) => (
               <SectionCard key={section.id} {...section} />
             ))}
           </div>
