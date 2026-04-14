@@ -111,7 +111,7 @@ export const trailsSection: SectionContent = {
         "The largest of all Kingfishers. Its impressive size and powerful beak make it a true master of the water bodies in Nyandungu.",
       descriptionKn:
         "Ni yo nini mu bwoko bwose bw'inyoni zirya amafi. Uburebure bwayo n'umunwa wayo ukomeye bituma iba umami w'amazi muri Nyandungu.",
-      image: docKingfisher,
+      image: giantKingfisherNew,
       details: [
         {
           label: "The Patient Hunter",
