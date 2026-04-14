@@ -159,6 +159,17 @@ const SectionPage = () => {
       <section className="container py-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
+            {section.video && (
+              <div className="animate-fade-up overflow-hidden rounded-xl">
+                <video
+                  src={section.video}
+                  controls
+                  className="w-full rounded-xl"
+                  preload="metadata"
+                />
+              </div>
+            )}
+
             {section.gallery && section.gallery.length > 0 && (
               <div className="animate-fade-up">
                 <ImageGallery images={section.gallery} sectionTitle={section.title} />
