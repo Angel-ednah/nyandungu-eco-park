@@ -29,7 +29,7 @@ import docPeacock from "@/assets/doc-peacock.jpg";
 
 import docPonds from "@/assets/doc-ponds.jpg";
 
-import docQrSign from "@/assets/doc-qr-sign.jpg";
+import nyandunguGate from "@/assets/nyandungu-gate.jpg";
 
 import docRestaurantNight from "@/assets/doc-restaurant-night.jpg";
 
@@ -45,7 +45,7 @@ import type { SectionContent } from "../sectionData";
 export const nyandunguInfoSection: SectionContent = {
   title: "Welcome to Nyandungu Eco-Park",
   titleKn: "Murakaza neza muri Nyandungu Eco-Park",
-  image: docQrSign,
+  image: nyandunguGate,
   gallery: [docRestaurant, docRestaurantNight, docPonds, docPeacock, docCranes, docBicycles],
   highlights: [
     {

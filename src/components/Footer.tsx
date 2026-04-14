@@ -10,7 +10,7 @@ const exploreLinks = [
 ];
 
 const visitLinks = [
-  { to: "/#sections", label: "Browse QR sections" },
+  { to: "/section", label: "Browse sections" },
   { to: "/section/nyandungu-info", label: "Park rules and fees" },
   { to: "/section/top-ten", label: "Plan a full visit" },
 ];
