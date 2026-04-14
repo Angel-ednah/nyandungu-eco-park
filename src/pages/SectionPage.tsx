@@ -2,21 +2,18 @@ import ImageGallery from "@/components/ImageGallery";
 import QRCodeCard from "@/components/QRCodeCard";
 import { SITE_NAME, useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { sectionData } from "@/data/sectionData";
-import { ArrowLeft, Globe, MessageSquare, Send, Star } from "lucide-react";
+import { ArrowLeft, ExternalLink, Globe, MessageSquare } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
+
+const GOOGLE_REVIEW_URL = "https://share.google/2uD5Q43HBBiGSpYtA";
 
 const SectionPage = () => {
   const { id } = useParams<{ id: string }>();
   const section = id ? sectionData[id] : null;
   const baseUrl = window.location.origin;
   const [lang, setLang] = useState<"en" | "kn">("en");
-  const [feedback, setFeedback] = useState("");
-  const [rating, setRating] = useState(0);
-  const [feedbackSent, setFeedbackSent] = useState(false);
   const [highlightImageIndices, setHighlightImageIndices] = useState<Record<number, number>>({});
   const isKn = lang === "kn";
   const getHighlightImages = (highlight: { image?: string; carouselImages?: string[] }) =>
@@ -138,24 +135,6 @@ const SectionPage = () => {
       </div>
     );
   }
-
-  const handleFeedback = () => {
-    if (!feedback.trim() && rating === 0) {
-      toast.error(isKn ? "Andika igitekerezo cyawe" : "Please write your feedback or select a rating");
-      return;
-    }
-
-    const feedbacks = JSON.parse(localStorage.getItem("park-feedback") || "[]");
-    feedbacks.push({
-      sectionId: id,
-      rating,
-      feedback: feedback.trim(),
-      date: new Date().toISOString(),
-    });
-    localStorage.setItem("park-feedback", JSON.stringify(feedbacks));
-    setFeedbackSent(true);
-    toast.success(isKn ? "Murakoze! Igitekerezo cyanyu cyakiriwe." : "Thank you! Your feedback has been received.");
-  };
 
   return (
     <div>
@@ -318,50 +297,19 @@ const SectionPage = () => {
               <p className="mb-4 text-sm text-muted-foreground">
                 {isKn ? "Ese amakuru yagufashije? Tugire icyo utubwira!" : "Did you find this information useful? Let us know!"}
               </p>
-
-              {feedbackSent ? (
-                <div className="py-6 text-center">
-                  <p className="font-semibold text-foreground">
-                    {isKn ? "Murakoze cyane!" : "Thank you so much!"}
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {isKn ? "Igitekerezo cyanyu cyatumijwe neza." : "Your feedback has been recorded."}
-                  </p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <div>
-                    <p className="mb-2 text-sm font-medium text-foreground">
-                      {isKn ? "Igitekerezo cyawe (inyenyeri)" : "Your Rating"}
-                    </p>
-                    <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <button
-                          key={star}
-                          onClick={() => setRating(star)}
-                          className="p-1 transition-transform hover:scale-110"
-                        >
-                          <Star
-                            className={`h-7 w-7 ${
-                              star <= rating ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground/30"
-                            }`}
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <Textarea
-                    placeholder={isKn ? "Andika igitekerezo cyawe hano..." : "Write your feedback here..."}
-                    value={feedback}
-                    onChange={(e) => setFeedback(e.target.value)}
-                    rows={3}
-                  />
-                  <Button onClick={handleFeedback} className="w-full sm:w-auto">
-                    <Send className="mr-2 h-4 w-4" />
-                    {isKn ? "Ohereza" : "Submit Feedback"}
-                  </Button>
-                </div>
-              )}
+              <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+                <p className="text-sm text-muted-foreground">
+                  {isKn
+                    ? "Niba wishimiye uruzinduko rwawe, wadusigira isubiramo kuri Google."
+                    : "If you enjoyed your visit, please leave us a review on Google."}
+                </p>
+                <Button asChild className="mt-4 w-full sm:w-auto">
+                  <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noreferrer">
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    {isKn ? "Duhere Isubiramo kuri Google" : "Leave a Google Review"}
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
 
