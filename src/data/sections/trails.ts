@@ -5,7 +5,7 @@ import docBarbet from "@/assets/doc-barbet.jpg";
 
 import docBarbet2 from "@/assets/doc-barbet2.jpg";
 
-import docFishEagle from "@/assets/doc-fish-eagle.jpg";
+import docFishEagle from "@/assets/fish-eagle-new.jpg";
 
 import docFlameTree from "@/assets/doc-flame-tree.jpeg";
 
@@ -105,37 +105,7 @@ export const trailsSection: SectionContent = {
       ],
     },
     {
-      title: "3. White-collared Oliveback",
-      titleKn: "Inyoni y'Imbonekarime",
-      description:
-        "Very rare—hard to find even in large forests like Nyungwe or Volcanoes National Park, but it has found a safe home here in Nyandungu.",
-      descriptionKn:
-        "Ni imbonekarime cyane. Nubwo kuyibona bitoroshye ndetse no mu mashyamba manini nka Nyungwe, yatoranyije Nyandungu nk'ubuhungiro bwayo.",
-      details: [
-        {
-          label: "Strength in Numbers",
-          labelKn: "Imbaraga mu Bufatanye",
-          text: "These birds live in flocks and fly together in large groups as a defense strategy to escape predators.",
-          textKn:
-            "Izi nyoni zibera mu matsinda kandi zigurukira hamwe ari nyamwinshi kugira ngo zicike inyamaswa zishaka kuzirya.",
-        },
-        {
-          label: "Riverside Life",
-          labelKn: "Ubuzima hafi y'amazi",
-          text: "They prefer living near rivers and water bodies where they can easily find their favorite food—mainly seeds.",
-          textKn: "Zikunda kuba hafi y'imigezi n'ahantu hari amazi, kuko ari ho zibona amafunguro zikunda cyane, cyane cyane imbuto.",
-        },
-        {
-          label: "Nature's Harmony",
-          labelKn: "Ubwumvikane bw'ibinyabuzima",
-          text: "Their presence in Nyandungu is a sign of a healthy and well-restored urban wetland.",
-          textKn:
-            "Kuba izi nyoni ziba muri Nyandungu ni ikimenyetso cy'uko iki gishanga cyasubiranyijwe neza.",
-        },
-      ],
-    },
-    {
-      title: "4. Giant Kingfisher (Umunyamyira)",
+      title: "3. Giant Kingfisher (Umunyamyira)",
       titleKn: "Umunyamyira",
       description:
         "The largest of all Kingfishers. Its impressive size and powerful beak make it a true master of the water bodies in Nyandungu.",
@@ -166,7 +136,7 @@ export const trailsSection: SectionContent = {
       ],
     },
     {
-      title: "5. African Fish Eagle (Kagoma)",
+      title: "4. African Fish Eagle (Kagoma)",
       titleKn: "Inkora",
       description:
         "A majestic bird, often seen as a symbol of power and leadership. Can catch a fish weighing up to 4kg and fly with it!",
@@ -187,6 +157,36 @@ export const trailsSection: SectionContent = {
           text: "Famous for its iconic high-pitched call, often referred to as 'The Voice of Africa.'",
           textKn:
             "Izwiho ijwi ryayo ryumvikana kure cyane, rikaba ari rimwe mu majwi aranga ishyamba n'amazi muri Afurika.",
+        },
+      ],
+    },
+    {
+      title: "5. White-collared Oliveback",
+      titleKn: "Inyoni y'Imbonekarime",
+      description:
+        "Very rare—hard to find even in large forests like Nyungwe or Volcanoes National Park, but it has found a safe home here in Nyandungu.",
+      descriptionKn:
+        "Ni imbonekarime cyane. Nubwo kuyibona bitoroshye ndetse no mu mashyamba manini nka Nyungwe, yatoranyije Nyandungu nk'ubuhungiro bwayo.",
+      details: [
+        {
+          label: "Strength in Numbers",
+          labelKn: "Imbaraga mu Bufatanye",
+          text: "These birds live in flocks and fly together in large groups as a defense strategy to escape predators.",
+          textKn:
+            "Izi nyoni zibera mu matsinda kandi zigurukira hamwe ari nyamwinshi kugira ngo zicike inyamaswa zishaka kuzirya.",
+        },
+        {
+          label: "Riverside Life",
+          labelKn: "Ubuzima hafi y'amazi",
+          text: "They prefer living near rivers and water bodies where they can easily find their favorite food—mainly seeds.",
+          textKn: "Zikunda kuba hafi y'imigezi n'ahantu hari amazi, kuko ari ho zibona amafunguro zikunda cyane, cyane cyane imbuto.",
+        },
+        {
+          label: "Nature's Harmony",
+          labelKn: "Ubwumvikane bw'ibinyabuzima",
+          text: "Their presence in Nyandungu is a sign of a healthy and well-restored urban wetland.",
+          textKn:
+            "Kuba izi nyoni ziba muri Nyandungu ni ikimenyetso cy'uko iki gishanga cyasubiranyijwe neza.",
         },
       ],
     },
