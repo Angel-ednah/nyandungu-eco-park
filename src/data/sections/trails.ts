@@ -11,11 +11,13 @@ import docFlameTree from "@/assets/doc-flame-tree.jpeg";
 
 import docKingfisher from "@/assets/doc-kingfisher.jpg";
 
-import dracaenaAfromontana from "@/assets/Dracaena afromontana.jpeg";
+import dracaenaAfromontana from "@/assets/dracaena-afromontana-new.jpeg";
 
-import dracaenaSteudneri from "@/assets/Dracaena steudneri.jpeg";
+import dracaenaSteudneri from "@/assets/dracaena-steudneri-new.jpeg";
 
-import jacarandaTree from "@/assets/Jacakaranda mimosiforia.jpeg";
+import jacarandaTree from "@/assets/jacaranda-new.jpeg";
+
+import millettiaLaurentii from "@/assets/millettia-laurentii.jpeg";
 
 import docTrailCranes from "@/assets/doc-trail-cranes.jpg";
 
@@ -284,7 +286,7 @@ export const trailsSection: SectionContent = {
         "This tree is listed on the IUCN Red List as Endangered. It is rare and disappearing worldwide, making its presence in Nyandungu a major contribution to global conservation.",
       descriptionKn:
         "Iki giti kiri ku rutonde rw'ibimera bibangamiwe cyane ku rwego rw'isi (IUCN Red List). Ni imbonekarime iri kugenda ikendera ku isi yose, bityo kuba kiri muri Nyandungu ni ishema.",
-      image: docFlameTree,
+      image: millettiaLaurentii,
       details: [
         {
           label: "Unique Beauty & Dark Wood",
@@ -335,5 +337,7 @@ export const trailsSection: SectionContent = {
     { en: "Stay on designated trails", kn: "Guma mu nzira zabugenewe" },
     { en: "No smoking", kn: "Kunywa itabi birabujijwe" },
     { en: "Use dustbins — separate biodegradable waste", kn: "Koresha ibyandani — tandukanya imyanda ibora n'itabora" },
+    { en: "No outside food or drink (without authorization)", kn: "Nta mafunguro cyangwa ibinyobwa byo hanze (uretse ubyemerewe)" },
+    { en: "No single-use plastic bottles", kn: "Amacupa y'ikirahuri akoreshwa rimwe arabujijwe" },
   ],
 };
