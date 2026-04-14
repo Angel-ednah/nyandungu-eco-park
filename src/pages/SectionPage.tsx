@@ -1,6 +1,6 @@
 import ImageGallery from "@/components/ImageGallery";
 import QRCodeCard from "@/components/QRCodeCard";
-import { useSEO } from "@/hooks/useSEO";
+import { SITE_NAME, useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { sectionData } from "@/data/sectionData";
@@ -33,32 +33,73 @@ const SectionPage = () => {
           : section.highlights.map((highlight) => highlight.description).join(" ")
       ).slice(0, 180)
     : "Explore Nyandungu Eco Park section information, highlights, and visitor guidance.";
+  const sectionUrl = id ? `/section/${id}` : window.location.pathname;
+  const breadcrumbJsonLd = section
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: section.title,
+            item: sectionUrl,
+          },
+        ],
+      }
+    : undefined;
 
   useSEO({
     title: section ? section.title : "Section Not Found",
     description: seoDescription,
-    path: id ? `/section/${id}` : window.location.pathname,
+    path: sectionUrl,
     image: section?.image,
+    imageAlt: section ? `${section.title} at Nyandungu Eco Park` : "Nyandungu Eco Park visitor guide",
     lang: isKn ? "rw" : "en",
     noindex: !section,
     keywords: section
       ? [section.title, section.titleKn, "Nyandungu Eco Park", "Kigali tourism", "Rwanda nature"]
       : ["Nyandungu Eco Park"],
     jsonLd: section
-      ? {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: isKn ? section.titleKn : section.title,
-          description: seoDescription,
-          url: id ? `/section/${id}` : window.location.pathname,
-          image: section.image,
-          inLanguage: isKn ? "rw" : "en",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Discover Nyandungu Eco Park",
-            url: "/",
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: isKn ? section.titleKn : section.title,
+            alternateName: section.titleKn,
+            description: seoDescription,
+            url: sectionUrl,
+            image: section.image,
+            inLanguage: isKn ? "rw" : "en",
+            isPartOf: {
+              "@type": "WebSite",
+              name: SITE_NAME,
+              url: "/",
+            },
+            about: {
+              "@type": "TouristAttraction",
+              name: section.title,
+              description: seoDescription,
+              url: sectionUrl,
+              containedInPlace: {
+                "@type": "Place",
+                name: "Nyandungu Eco Park",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "Kigali",
+                  addressCountry: "RW",
+                },
+              },
+            },
           },
-        }
+          breadcrumbJsonLd,
+        ]
       : undefined,
   });
 
@@ -119,7 +160,14 @@ const SectionPage = () => {
   return (
     <div>
       <section className="relative h-[40vh] min-h-[280px]">
-        <img src={section.image} alt={section.title} className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          src={section.image}
+          alt={`${section.title} at Nyandungu Eco Park`}
+          className="absolute inset-0 h-full w-full object-cover"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+        />
         <div className="absolute inset-0 bg-gradient-overlay" />
         <div className="relative z-10 flex h-full flex-col justify-end p-6 md:p-12">
           <div className="mb-2 flex items-center justify-between">
@@ -157,6 +205,7 @@ const SectionPage = () => {
                   controls
                   className="w-full rounded-xl"
                   preload="metadata"
+                  aria-label={`${section.title} visitor video`}
                 />
               </div>
             )}
@@ -191,8 +240,10 @@ const SectionPage = () => {
                         <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-gray-100">
                           <img
                             src={highlightImages[highlightImageIndices[index] || 0]}
-                            alt={`${highlight.title} - Image ${(highlightImageIndices[index] || 0) + 1}`}
+                            alt={`${highlight.title} at ${section.title}, image ${(highlightImageIndices[index] || 0) + 1}`}
                             className="h-full w-full object-cover transition-all duration-1000"
+                            loading="lazy"
+                            decoding="async"
                           />
                           {highlightImages.length > 1 && (
                             <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 space-x-2">

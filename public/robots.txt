@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://nyandungu-eco-park.vercel.app/sitemap.xml
