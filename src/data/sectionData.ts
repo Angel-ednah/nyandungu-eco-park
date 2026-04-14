@@ -20,6 +20,7 @@ export interface SectionContent {
   title: string;
   titleKn: string;
   image: string;
+  video?: string;
   gallery?: string[];
   highlights: SectionHighlight[];
   rules?: { en: string; kn: string }[];
