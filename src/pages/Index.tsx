@@ -25,7 +25,7 @@ import heroPark from "@/assets/nyandungu-gate.jpg";
 import peacockImg from "@/assets/peacock-real.jpg";
 
 import SectionCard from "@/components/SectionCard";
-import { useSEO } from "@/hooks/useSEO";
+import { SITE_NAME, useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 
 import { Bird, Leaf, Map, QrCode } from "lucide-react";
@@ -100,6 +100,7 @@ const Index = () => {
       "Plan your visit to Nyandungu Eco Park in Kigali. Explore trails, wildlife, top attractions, and QR-guided visitor information before you arrive.",
     path: "/",
     image: heroPark,
+    imageAlt: "Nyandungu Eco Park main gate in Kigali",
     keywords: [
       "Nyandungu Eco Park",
       "Kigali eco park",
@@ -107,21 +108,41 @@ const Index = () => {
       "Nyandungu trails",
       "Nyandungu QR guide",
     ],
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "TouristAttraction",
-      name: "Discover Nyandungu Eco Park",
-      description:
-        "QR-guided visitor experience for Nyandungu Eco Park featuring trails, wildlife, top attractions, and visitor information.",
-      image: heroPark,
-      url: "/",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Kigali",
-        addressCountry: "RW",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: SITE_NAME,
+        url: "/",
+        inLanguage: ["en", "rw"],
       },
-      touristType: ["Families", "Nature Lovers", "Birdwatchers", "Cyclists"],
-    },
+      {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        name: SITE_NAME,
+        description:
+          "QR-guided visitor experience for Nyandungu Eco Park featuring trails, wildlife, top attractions, and visitor information.",
+        image: heroPark,
+        url: "/",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Kigali",
+          addressCountry: "RW",
+        },
+        touristType: ["Families", "Nature Lovers", "Birdwatchers", "Cyclists"],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Nyandungu Eco Park sections",
+        itemListElement: sections.map((section, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: section.title,
+          url: `/section/${section.id}`,
+        })),
+      },
+    ],
   });
 
   useEffect(() => {
@@ -143,6 +164,9 @@ const Index = () => {
           className="absolute inset-0 h-full w-full object-cover transition-all duration-1000 ease-in-out"
           width={1920}
           height={1080}
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-overlay" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">

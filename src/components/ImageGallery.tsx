@@ -15,8 +15,10 @@ const ImageGallery = ({ images, sectionTitle }: ImageGalleryProps) => {
       <div className="rounded-xl overflow-hidden aspect-[4/3] bg-muted">
         <img
           src={images[selectedIndex]}
-          alt={`${sectionTitle} - photo ${selectedIndex + 1}`}
+          alt={`${sectionTitle} at Nyandungu Eco Park, photo ${selectedIndex + 1}`}
           className="w-full h-full object-cover transition-all duration-300"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       {images.length > 1 && (
@@ -29,7 +31,13 @@ const ImageGallery = ({ images, sectionTitle }: ImageGalleryProps) => {
                 i === selectedIndex ? "border-primary ring-2 ring-primary/30" : "border-border opacity-70 hover:opacity-100"
               }`}
             >
-              <img src={img} alt={`Thumbnail ${i + 1}`} className="w-full h-full object-cover" />
+              <img
+                src={img}
+                alt={`${sectionTitle} thumbnail ${i + 1}`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
             </button>
           ))}
         </div>

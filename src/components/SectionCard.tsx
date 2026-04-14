@@ -18,8 +18,9 @@ const SectionCard = ({ id, title, titleKn, description, image }: SectionCardProp
     <div className="relative h-48 overflow-hidden">
       <img
         src={image}
-        alt={title}
+        alt={`${title} section at Nyandungu Eco Park`}
         loading="lazy"
+        decoding="async"
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
       <div className="absolute inset-0 bg-gradient-overlay" />
