@@ -11,6 +11,7 @@ import docFlameTree from "@/assets/doc-flame-tree.jpeg";
 
 import docKingfisher from "@/assets/doc-kingfisher.jpg";
 import giantKingfisherNew from "@/assets/giant-kingfisher-new.jpg";
+import whiteOliveback from "@/assets/white-oliveback.jpg";
 
 import dracaenaAfromontana from "@/assets/dracaena-afromontana-new.jpeg";
 
@@ -168,6 +169,7 @@ export const trailsSection: SectionContent = {
         "Very rare—hard to find even in large forests like Nyungwe or Volcanoes National Park, but it has found a safe home here in Nyandungu.",
       descriptionKn:
         "Ni imbonekarime cyane. Nubwo kuyibona bitoroshye ndetse no mu mashyamba manini nka Nyungwe, yatoranyije Nyandungu nk'ubuhungiro bwayo.",
+      image: whiteOliveback,
       details: [
         {
           label: "Strength in Numbers",
