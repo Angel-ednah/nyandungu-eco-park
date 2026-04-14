@@ -4,12 +4,9 @@ import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { sectionData } from "@/data/sectionData";
-import { trackVisit } from "@/lib/visitTracker";
-
 import { ArrowLeft, Globe, MessageSquare, Send, Star } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import { toast } from "sonner";
 
 const SectionPage = () => {
@@ -64,12 +61,6 @@ const SectionPage = () => {
         }
       : undefined,
   });
-
-  useEffect(() => {
-    if (id) {
-      trackVisit(id);
-    }
-  }, [id]);
 
   useEffect(() => {
     if (!section?.highlights) {
