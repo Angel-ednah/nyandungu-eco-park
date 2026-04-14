@@ -195,7 +195,7 @@ const Index = () => {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+                className="border-primary-foreground/40 bg-primary-foreground/10 text-primary-foreground backdrop-blur-sm hover:bg-primary-foreground hover:text-primary"
               >
                 <Link to="/section/nyandungu-info">Plan Your Visit</Link>
               </Button>

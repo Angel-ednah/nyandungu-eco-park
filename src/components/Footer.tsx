@@ -16,6 +16,11 @@ const visitLinks = [
 ];
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="border-t border-border bg-muted/60 no-print">
       <div className="container py-12">
@@ -68,10 +73,10 @@ const Footer = () => {
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>(c) {new Date().getFullYear()} Discover Nyandungu Eco Park. All rights reserved.</p>
-          <Link to="/" className="transition-colors hover:text-primary">
-            Back to home
-          </Link>
+          <p>&copy; {currentYear} Discover Nyandungu Eco Park. All rights reserved.</p>
+          <button type="button" onClick={handleBackToTop} className="text-left transition-colors hover:text-primary">
+            Back to top
+          </button>
         </div>
       </div>
     </footer>
