@@ -26,7 +26,13 @@ interface QRCodeCardProps {
 
 const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   const printRef = useRef<HTMLDivElement>(null);
-  const url = `${baseUrl}/section/${sectionId}`;
+  const sectionPaths: Record<string, string> = {
+    "nyandungu-info": "/nyandungu-info",
+    peacock: "/peacock",
+    "top-ten": "/top-ten",
+    trails: "/trails",
+  };
+  const url = `${baseUrl}${sectionPaths[sectionId] ?? `/section/${sectionId}`}`;
 
   const sectionLabels: Record<string, { subtitle: string; subtitleKn: string; tagline: string }> = {
     "nyandungu-info": {

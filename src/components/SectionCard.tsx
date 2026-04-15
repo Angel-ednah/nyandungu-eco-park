@@ -4,15 +4,16 @@ import { Link } from "react-router-dom";
 
 interface SectionCardProps {
   id: string;
+  path?: string;
   title: string;
   titleKn: string;
   description: string;
   image: string;
 }
 
-const SectionCard = ({ id, title, titleKn, description, image }: SectionCardProps) => (
+const SectionCard = ({ id, path, title, titleKn, description, image }: SectionCardProps) => (
   <Link
-    to={`/section/${id}`}
+    to={path ?? `/section/${id}`}
     className="group block rounded-xl overflow-hidden shadow-card border border-border bg-card hover:shadow-elevated transition-all duration-300"
   >
     <div className="relative h-48 overflow-hidden">

@@ -8,7 +8,7 @@ import SectionPage from "./pages/SectionPage";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 const App = () => (
   <TooltipProvider>
@@ -25,7 +25,15 @@ const App = () => (
       <main id="main-content" className="min-h-screen">
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/nyandungu-info" element={<SectionPage sectionId="nyandungu-info" canonicalPath="/nyandungu-info" />} />
+          <Route path="/peacock" element={<SectionPage sectionId="peacock" canonicalPath="/peacock" />} />
+          <Route path="/top-ten" element={<SectionPage sectionId="top-ten" canonicalPath="/top-ten" />} />
+          <Route path="/trails" element={<SectionPage sectionId="trails" canonicalPath="/trails" />} />
           <Route path="/section" element={<SectionsPage />} />
+          <Route path="/section/nyandungu-info" element={<Navigate to="/nyandungu-info" replace />} />
+          <Route path="/section/peacock" element={<Navigate to="/peacock" replace />} />
+          <Route path="/section/top-ten" element={<Navigate to="/top-ten" replace />} />
+          <Route path="/section/trails" element={<Navigate to="/trails" replace />} />
           <Route path="/section/:id" element={<SectionPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

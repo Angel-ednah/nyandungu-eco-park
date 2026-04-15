@@ -41,7 +41,7 @@ const SectionsPage = () => {
           "@type": "ListItem",
           position: index + 1,
           name: section.title,
-          url: `/section/${section.id}`,
+          url: section.path,
         })),
       },
     ],

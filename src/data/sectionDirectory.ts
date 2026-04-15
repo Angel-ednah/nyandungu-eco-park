@@ -5,6 +5,7 @@ import trailsImg from "@/assets/18.jpeg";
 
 export interface SectionDirectoryItem {
   id: string;
+  path: string;
   title: string;
   titleKn: string;
   description: string;
@@ -14,6 +15,7 @@ export interface SectionDirectoryItem {
 export const sectionDirectory: SectionDirectoryItem[] = [
   {
     id: "nyandungu-info",
+    path: "/nyandungu-info",
     title: "Nyandungu Info",
     titleKn: "Amakuru ya Nyandungu",
     description:
@@ -22,6 +24,7 @@ export const sectionDirectory: SectionDirectoryItem[] = [
   },
   {
     id: "peacock",
+    path: "/peacock",
     title: "Peacock Sanctuary",
     titleKn: "Aho Inkanga Ziri",
     description:
@@ -30,6 +33,7 @@ export const sectionDirectory: SectionDirectoryItem[] = [
   },
   {
     id: "top-ten",
+    path: "/top-ten",
     title: "Top 10 Attractions",
     titleKn: "Ahantu 10 Heza Cyane",
     description:
@@ -38,6 +42,7 @@ export const sectionDirectory: SectionDirectoryItem[] = [
   },
   {
     id: "trails",
+    path: "/trails",
     title: "Trails and Wildlife",
     titleKn: "Inzira n'Ibinyabuzima",
     description:

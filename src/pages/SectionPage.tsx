@@ -8,9 +8,21 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const GOOGLE_REVIEW_URL = "https://share.google/2uD5Q43HBBiGSpYtA";
+const SECTION_PATHS: Record<string, string> = {
+  "nyandungu-info": "/nyandungu-info",
+  peacock: "/peacock",
+  "top-ten": "/top-ten",
+  trails: "/trails",
+};
 
-const SectionPage = () => {
-  const { id } = useParams<{ id: string }>();
+interface SectionPageProps {
+  canonicalPath?: string;
+  sectionId?: string;
+}
+
+const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
+  const { id: routeId } = useParams<{ id: string }>();
+  const id = sectionId ?? routeId;
   const section = id ? sectionData[id] : null;
   const baseUrl = window.location.origin;
   const [lang, setLang] = useState<"en" | "kn">("en");
@@ -30,7 +42,7 @@ const SectionPage = () => {
           : section.highlights.map((highlight) => highlight.description).join(" ")
       ).slice(0, 180)
     : "Explore Nyandungu Eco Park section information, highlights, and visitor guidance.";
-  const sectionUrl = id ? `/section/${id}` : window.location.pathname;
+  const sectionUrl = canonicalPath ?? (id ? SECTION_PATHS[id] ?? `/section/${id}` : window.location.pathname);
   const breadcrumbJsonLd = section
     ? {
         "@context": "https://schema.org",

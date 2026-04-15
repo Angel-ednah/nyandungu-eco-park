@@ -16,7 +16,7 @@ This codebase now focuses only on the visitor-facing experience. Previous admin 
 
 ## Park Sections
 
-- `nyandungu-info` - Nyandungu Info
+- `/nyandungu-info` - Nyandungu Info
 - `peacock` - Peacock Sanctuary
 - `top-ten` - Top 10 Attractions
 - `trails` - Trails and Wildlife
@@ -53,7 +53,10 @@ public/
 ## Routes
 
 - `/` - Home page
-- `/section/:id` - Visitor section page
+- `/nyandungu-info` - Nyandungu Info page
+- `/peacock` - Peacock Sanctuary page
+- `/top-ten` - Top 10 Attractions page
+- `/trails` - Trails and Wildlife page
 
 ## Getting Started
 
