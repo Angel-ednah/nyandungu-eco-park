@@ -82,8 +82,8 @@ export const trailsSection: SectionContent = {
       ],
     },
     {
-      title: "2. Double-Toothed Barbet (Ikigumbira)",
-      titleKn: "Ikigumbira",
+      title: "2. Double-Toothed Barbet",
+     
       description:
         "A rare and special resident of Nyandungu. These birds prefer to live in holes they create in dead trees, transforming what seems lifeless into a beautiful home.",
       descriptionKn:
@@ -107,8 +107,8 @@ export const trailsSection: SectionContent = {
       ],
     },
     {
-      title: "3. Giant Kingfisher (Umunyamyira)",
-      titleKn: "Umunyamyira",
+      title: "3. Giant Kingfisher",
+      
       description:
         "The largest of all Kingfishers. Its impressive size and powerful beak make it a true master of the water bodies in Nyandungu.",
       descriptionKn:
@@ -139,7 +139,7 @@ export const trailsSection: SectionContent = {
     },
     {
       title: "4. African Fish Eagle (Kagoma)",
-      titleKn: "Inkora",
+     
       description:
         "A majestic bird, often seen as a symbol of power and leadership. Can catch a fish weighing up to 4kg and fly with it!",
       descriptionKn:

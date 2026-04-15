@@ -169,7 +169,7 @@ export const topTenSection: SectionContent = {
       details: [
         {
           label: "Kivu Belt Trail",
-          labelKn: "Umukandara w'Ikivu",
+          
           text: "Walk or cycle along the scenic path inspired by the famous western coastline, offering a refreshing breeze.",
           textKn:
             "Tambuka cyangwa unyure n'igare mu nzira ya 'Kivu Belt,' yubatswe hashingiwe ku bwiza bw'inkengero z'ikiyaga cya Kivu.",
@@ -191,7 +191,7 @@ export const topTenSection: SectionContent = {
     },
     {
       title: "6. Restaurant",
-      titleKn: "Resitora ya Vandunge",
+      titleKn: "Resitora ya nyandunge",
       description:
         "Enjoy a delicious meal or a refreshing drink while surrounded by the calming sights and sounds of nature.",
       descriptionKn:
@@ -221,7 +221,7 @@ export const topTenSection: SectionContent = {
       ],
     },
     {
-      title: "7. Sanctuary of Silence",
+      title: "7. Sanctuary of Silence(Sector Five(5))",
       titleKn: "Ahantu h'Ituze",
       description:
         "The quietest sector in the park, specifically preserved for meditation, yoga, and those seeking deep silence away from city noise.",
@@ -253,7 +253,7 @@ export const topTenSection: SectionContent = {
     },
     {
       title: "8. The Peacock Sanctuary",
-      titleKn: "Icyanya cy'Inkanga",
+      titleKn: "Icyanya cya peacock",
       description:
         "Visit the home of the majestic peacocks, the most colorful and iconic birds of the park. Watch them display their beautiful feathers in their natural habitat.",
       descriptionKn:
