@@ -3,7 +3,7 @@ import { NavLink } from "./NavLink";
 
 const exploreLinks = [
   { to: "/", label: "Home", end: true },
-  { to: "/section/nyandungu-info", label: "Visitor Guide" },
+  { to: "/section/nyandungu-info", label: "Nyandungu Info" },
   { to: "/section/peacock", label: "Peacock Sanctuary" },
   { to: "/section/top-ten", label: "Top 10 Attractions" },
   { to: "/section/trails", label: "Trails and Wildlife" },
