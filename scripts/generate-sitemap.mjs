@@ -5,10 +5,10 @@ const FALLBACK_SITE_URL = "https://nyandungu-eco-park.vercel.app";
 
 const routes = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
-  { path: "/section/nyandungu-info", changefreq: "monthly", priority: "0.9" },
-  { path: "/section/peacock", changefreq: "monthly", priority: "0.8" },
-  { path: "/section/top-ten", changefreq: "monthly", priority: "0.8" },
-  { path: "/section/trails", changefreq: "monthly", priority: "0.8" },
+  { path: "/nyandungu-info", changefreq: "monthly", priority: "0.9" },
+  { path: "/peacock", changefreq: "monthly", priority: "0.8" },
+  { path: "/top-ten", changefreq: "monthly", priority: "0.8" },
+  { path: "/trails", changefreq: "monthly", priority: "0.8" },
 ];
 
 function normalizeSiteUrl(value) {

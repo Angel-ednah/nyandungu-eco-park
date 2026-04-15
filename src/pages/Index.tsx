@@ -107,7 +107,7 @@ const Index = () => {
           "@type": "ListItem",
           position: index + 1,
           name: section.title,
-          url: `/section/${section.id}`,
+          url: section.path,
         })),
       },
     ],
@@ -165,7 +165,7 @@ const Index = () => {
                 size="lg"
                 className="border-primary-foreground/40 bg-primary-foreground/10 text-primary-foreground backdrop-blur-sm hover:bg-primary-foreground hover:text-primary"
               >
-                <Link to="/section/nyandungu-info">Plan Your Visit</Link>
+                <Link to="/nyandungu-info">Plan Your Visit</Link>
               </Button>
             </div>
           </div>

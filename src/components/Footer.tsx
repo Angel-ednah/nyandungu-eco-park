@@ -3,16 +3,16 @@ import { NavLink } from "./NavLink";
 
 const exploreLinks = [
   { to: "/", label: "Home", end: true },
-  { to: "/section/nyandungu-info", label: "Nyandungu Info" },
-  { to: "/section/peacock", label: "Peacock Sanctuary" },
-  { to: "/section/top-ten", label: "Top 10 Attractions" },
-  { to: "/section/trails", label: "Trails and Wildlife" },
+  { to: "/nyandungu-info", label: "Nyandungu Info" },
+  { to: "/peacock", label: "Peacock Sanctuary" },
+  { to: "/top-ten", label: "Top 10 Attractions" },
+  { to: "/trails", label: "Trails and Wildlife" },
 ];
 
 const visitLinks = [
   { to: "/section", label: "Browse sections" },
-  { to: "/section/nyandungu-info", label: "Park rules and fees" },
-  { to: "/section/top-ten", label: "Plan a full visit" },
+  { to: "/nyandungu-info", label: "Park rules and fees" },
+  { to: "/top-ten", label: "Plan a full visit" },
 ];
 
 const Footer = () => {
