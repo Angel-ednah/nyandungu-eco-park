@@ -302,7 +302,7 @@ export const topTenSection: SectionContent = {
     },
     {
       title: "10. The Information Center",
-      titleKn: "Ikigo Nkungurabumenyi",
+      titleKn: "Ikigo Nyungurabumenyi",
       description:
         "The Information Center is your first stop! Learn about the history of the park's restoration and get an overview of the 100+ hectares of biodiversity.",
       descriptionKn:
