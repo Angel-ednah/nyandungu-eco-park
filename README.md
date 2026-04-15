@@ -16,7 +16,7 @@ This codebase now focuses only on the visitor-facing experience. Previous admin 
 
 ## Park Sections
 
-- `nyandungu-info` - Visitor Guide
+- `nyandungu-info` - Nyandungu Info
 - `peacock` - Peacock Sanctuary
 - `top-ten` - Top 10 Attractions
 - `trails` - Trails and Wildlife

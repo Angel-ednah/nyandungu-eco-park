@@ -14,7 +14,7 @@ export interface SectionDirectoryItem {
 export const sectionDirectory: SectionDirectoryItem[] = [
   {
     id: "nyandungu-info",
-    title: "Visitor Guide",
+    title: "Nyandungu Info",
     titleKn: "Amakuru ya Nyandungu",
     description:
       "Discover nature, wildlife, peaceful trails, visitor rules, and useful park information.",

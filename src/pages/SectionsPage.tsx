@@ -8,13 +8,13 @@ const SectionsPage = () => {
   useSEO({
     title: "Park Sections",
     description:
-      "Browse the four main Nyandungu Eco Park sections: Visitor Guide, Peacock Sanctuary, Top 10 Attractions, and Trails and Wildlife.",
+      "Browse the four main Nyandungu Eco Park sections: Nyandungu Info, Peacock Sanctuary, Top 10 Attractions, and Trails and Wildlife.",
     path: "/section",
     image: sectionDirectory[0]?.image,
     imageAlt: "Nyandungu Eco Park public section guide",
     keywords: [
       "Nyandungu Eco Park sections",
-      "Visitor Guide",
+      "Nyandungu Info",
       "Peacock Sanctuary",
       "Top 10 Attractions",
       "Trails and Wildlife",
