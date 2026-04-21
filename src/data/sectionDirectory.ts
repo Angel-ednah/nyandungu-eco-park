@@ -26,7 +26,7 @@ export const sectionDirectory: SectionDirectoryItem[] = [
     id: "peacock",
     path: "/peacock",
     title: "Peacock Sanctuary",
-    titleKn: "Aho Inkanga Ziri",
+    titleKn: "Aho peacock Ziri",
     description:
       "Discover the beauty of the peafowl and learn their story, behavior, and protection guidelines.",
     image: peacockImg,

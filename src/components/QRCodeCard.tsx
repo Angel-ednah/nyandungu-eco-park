@@ -42,7 +42,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     },
     peacock: {
       subtitle: "Discover the Beauty of the Peacock",
-      subtitleKn: "Vumbura ubwiza bw'inkanga",
+      subtitleKn: "Vumbura ubwiza bwa peacock",
       tagline: "Please Respect Our Peafowls",
     },
     "top-ten": {
@@ -359,7 +359,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
                 <div class="entry-fee">
                   <h4>Entry Fee for Rwandans Only</h4>
                   <div class="price">2,000 RWF</div>
-                  <div class="price-note">Myishyuro yoroshye kuri bose - Ingo mwisura!</div>
+                  <div class="price-note">igiciro kiza kuri buri wese!</div>
                 </div>
               </div>
             </div>

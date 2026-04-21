@@ -214,7 +214,7 @@ const Index = () => {
           <h2 className="font-heading mb-4 text-2xl font-bold">Plan Your Visit</h2>
           <div className="rounded-xl border border-border bg-card p-6 shadow-card">
             <p className="text-lg font-semibold text-foreground">Entry fee for Rwandans: 2,000 RWF</p>
-            <p className="mt-1 text-sm text-muted-foreground">Myishyuro yoroshye kuri bose</p>
+            <p className="mt-1 text-sm text-muted-foreground">igiciro kiza kinogeye buri wese</p>
             <p className="mt-4 text-sm text-muted-foreground">
               No smoking - No outside food - No littering - No pets
             </p>

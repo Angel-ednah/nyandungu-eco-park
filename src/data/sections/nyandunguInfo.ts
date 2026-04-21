@@ -74,7 +74,7 @@ export const nyandunguInfoSection: SectionContent = {
       description:
         "See various beautiful birds in their natural wetland habitat including cranes, peacocks and kingfishers.",
       descriptionKn:
-        "Reba inyoni nziza zitandukanye mu ishyamba ryazo kamere harimo ingabo, inkanga n'izindi.",
+        "Reba inyoni nziza zitandukanye mu ishyamba ryazo kamere harimo ingabo, peacock n'izindi.",
       image: docCranes,
       carouselImages: [img1, img10, peacock, fishEagle, kingfisher, docBarbet2, docBarbet, docKingfisher],
     },
