@@ -257,7 +257,7 @@ export const topTenSection: SectionContent = {
       description:
         "Visit the home of the majestic peacocks, the most colorful and iconic birds of the park. Watch them display their beautiful feathers in their natural habitat.",
       descriptionKn:
-        "Sura ubu busitani bw'inkanga, inyoni zirangwa n'amabara atangaje n'ubwiza budasanzwe. Ihere ijisho uko zitembera n'uko zigaba amababa yazo muri uyu mwanya wazo w'umwimerere.",
+        "Sura ubu busitani bwa peacock, inyoni zirangwa n'amabara atangaje n'ubwiza budasanzwe. Ihere ijisho uko zitembera n'uko zigaba amababa yazo muri uyu mwanya wazo w'umwimerere.",
       image: docPeacockDisplay,
       details: [
         {
@@ -265,7 +265,7 @@ export const topTenSection: SectionContent = {
           labelKn: "Kwiga ku rusobe rw'ibinyabuzima",
           text: "Beyond peacocks, this site is a hub for various other bird species and small wildlife like turtles. It is the perfect spot for nature lovers.",
           textKn:
-            "Usibye n'inkanga, hano ni ihuriro ry'ubwoko bwinshi bw'inyoni n'utunyamaswa duto nka tureture. Ni ahantu heza ho kwigira ku rusobe rw'ibinyabuzima.",
+            "Usibye na peacock, hano ni ihuriro ry'ubwoko bwinshi bw'inyoni n'utunyamaswa duto nka tureture. Ni ahantu heza ho kwigira ku rusobe rw'ibinyabuzima.",
         },
         {
           label: "Visitor Respect",
