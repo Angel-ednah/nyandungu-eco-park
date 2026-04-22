@@ -29,6 +29,8 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   const printRef = useRef<HTMLDivElement>(null);
   const printWidth = "70cm";
   const printHeight = "90cm";
+  const parkInfoPrintZoom = 3.8;
+  const standardPrintZoom = 4.4;
   const sectionPaths: Record<string, string> = {
     "nyandungu-info": "/nyandungu-info",
     peacock: "/peacock",
@@ -84,14 +86,14 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
             * { margin: 0; padding: 0; box-sizing: border-box; }
             html, body { width: ${printWidth}; min-height: ${printHeight}; }
-            body { display:flex; align-items:center; justify-content:center; min-height:${printHeight}; font-family:'Inter',Arial,sans-serif; background:#1a3d2e; padding: 1.5cm; }
+            body { display:flex; align-items:flex-start; justify-content:center; min-height:${printHeight}; font-family:'Inter',Arial,sans-serif; background:#1a3d2e; padding: 1cm; overflow: hidden; }
             .billboard {
-              width: 100%;
-              min-height: 100%;
+              width: 500px;
               background: white;
               border-radius: 8px;
               overflow: hidden;
               box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+              zoom: ${parkInfoPrintZoom};
             }
             .header {
               background: linear-gradient(135deg, #1a4d3a 0%, #2d6a4f 100%);
@@ -459,16 +461,16 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap');
           * { margin: 0; padding: 0; box-sizing: border-box; }
           html, body { width: ${printWidth}; min-height: ${printHeight}; }
-          body { display:flex; align-items:center; justify-content:center; min-height:${printHeight}; font-family:'Inter',Arial,sans-serif; background:#f5f5f0; padding: 1.5cm; }
+          body { display:flex; align-items:flex-start; justify-content:center; min-height:${printHeight}; font-family:'Inter',Arial,sans-serif; background:#f5f5f0; padding: 1cm; overflow: hidden; }
           .card {
-            width: 100%;
-            min-height: 100%;
+            width: 420px;
             background: linear-gradient(135deg, #f8f6f0 0%, #e8e4d8 100%);
             border: 3px solid #2d5a27;
             border-radius: 16px;
             text-align: center;
             box-shadow: 0 8px 32px rgba(0,0,0,0.15);
             overflow: hidden;
+            zoom: ${standardPrintZoom};
           }
           .card-photo {
             width: 100%;
