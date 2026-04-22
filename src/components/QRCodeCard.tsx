@@ -73,6 +73,117 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     const heroImageSrc = isParkInfo ? wetlandsImage : cardImage;
     const qrMarkup = printContent.innerHTML;
 
+    const printBody = isParkInfo
+      ? `
+        <div class="poster-container park-info-poster">
+          <div class="park-info-header">
+            <div class="park-info-brand">
+              <div class="brand-mark"></div>
+              <div class="brand-copy">
+                <h1>Nyandungu</h1>
+                <p>Eco-Park</p>
+                <span>Discover · Learn · Protect</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="park-info-banner">Welcome to Nyandungu Eco-Park</div>
+
+          <div class="hero-section park-info-hero">
+            <img src="${heroImageSrc}" alt="${sectionName}" />
+          </div>
+
+          <div class="park-info-main">
+            <div class="park-info-qr-panel">
+              <div class="park-info-qr-box">${qrMarkup}</div>
+              <div class="park-info-scan-button"><span class="scan-icon">📍</span><span>Scan Here</span></div>
+            </div>
+
+            <div class="park-info-copy">
+              <h2>Scan to See the Hidden Beauty of Nyandungu</h2>
+              <p>Discover nature, wildlife, and peaceful trails inside.</p>
+              <div class="park-info-fee">
+                <div class="fee-title">Entry Fee for Rwandans Only</div>
+                <div class="fee-price">2,000 RWF</div>
+                <div class="fee-note">igiciro kiza kinogeye buri wese!</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="park-info-discover">
+            <div class="park-info-section-title">🌿 What You Will Discover 🌿</div>
+            <div class="park-info-thumbs">
+              <div class="park-info-thumb">
+                <img src="${heroImageSrc}" alt="Beautiful Wetlands" />
+                <span>Beautiful Wetlands</span>
+              </div>
+              <div class="park-info-thumb">
+                <img src="${heroImageSrc}" alt="Birds & Wildlife" />
+                <span>Birds & Wildlife</span>
+              </div>
+              <div class="park-info-thumb">
+                <img src="${heroImageSrc}" alt="Walking & Cycling" />
+                <span>Walking & Cycling</span>
+              </div>
+              <div class="park-info-thumb">
+                <img src="${heroImageSrc}" alt="Relaxing Nature" />
+                <span>Relaxing Nature</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="park-info-prohibited">
+            <div class="park-info-section-title">🚫 Prohibited Activities 🚫</div>
+            <div class="park-info-prohibited-list">
+              <div class="prohibited-item"><div class="prohibited-icon">🚭</div><span>No Smoking</span></div>
+              <div class="prohibited-item"><div class="prohibited-icon">🍔</div><span>No Outside Food</span></div>
+              <div class="prohibited-item"><div class="prohibited-icon">🥤</div><span>No Plastic Bottles</span></div>
+              <div class="prohibited-item"><div class="prohibited-icon">🐕</div><span>No Pets</span></div>
+            </div>
+          </div>
+
+          <div class="park-info-cta">
+            <div class="park-info-cta-top">📍 Turn Your Curiosity Into a Real Experience</div>
+            <div class="park-info-cta-title">Visit Nyandungu Today!</div>
+            <div class="park-info-cta-bottom">Scan · Learn · Protect</div>
+          </div>
+
+          <div class="park-info-footer">Dufatanye kurinda no gutsaara pariki Nyandungu</div>
+        </div>
+      `
+      : `
+        <div class="poster-container">
+          <div class="hero-section">
+            <img src="${heroImageSrc}" alt="${sectionName}" />
+          </div>
+
+          <div class="content">
+            <div class="header-group">
+              <h1 class="park-name">Nyandungu Eco-Park</h1>
+              <p class="park-subline">Discover · Learn · Protect</p>
+              <div class="main-titles">
+                <p class="title-en">${label.subtitle}</p>
+                <p class="title-kn">${label.subtitleKn || "Sikana hano kumenya byinshi"}</p>
+              </div>
+            </div>
+
+            <div class="qr-wrapper">
+              ${qrMarkup}
+              <p class="scan-instruction"><span class="scan-icon">📍</span><span>Scan Here / Sikana Hano</span></p>
+              <p class="scan-note">For more information, scan the code above</p>
+            </div>
+
+            <div class="rules-box">
+              <p class="rules-title"><span class="rule-icon">🌿</span><span>${label.tagline}</span><span class="rule-icon">🌿</span></p>
+              <p class="rules-text">Respect nature · Follow park rules · Have a memorable experience!</p>
+            </div>
+
+            <p class="bottom-motto">Scan · Learn · Protect</p>
+            <p class="poster-url">${url}</p>
+          </div>
+        </div>
+      `;
+
     win.document.write(`
       <html>
       <head>
@@ -206,7 +317,6 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             font-size: 1.4rem;
             font-weight: 700;
             color: #1a4d3a;
-            letter-spacing: 0;
             display: flex;
             align-items: center;
             gap: 0.45rem;
@@ -250,7 +360,6 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
           .rules-text {
             font-size: 0.92rem;
-            opacity: 0.95;
             line-height: 1.4;
             color: rgba(255, 255, 255, 0.9);
           }
@@ -269,51 +378,276 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             text-transform: uppercase;
           }
 
-          .footer-tagline {
-            display: none;
-          }
-
           .poster-url {
             font-size: 1rem;
             color: #1f2937;
             max-width: 48cm;
             word-break: break-word;
           }
+
+          .park-info-poster {
+            background: #1f5a3c;
+          }
+
+          .park-info-header {
+            background: linear-gradient(135deg, #1e6b47 0%, #235d40 100%);
+            padding: 1.3cm 1.6cm;
+            color: white;
+          }
+
+          .park-info-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1cm;
+          }
+
+          .brand-mark {
+            width: 2.6cm;
+            height: 2.6cm;
+            border-radius: 0.9cm;
+            background: linear-gradient(135deg, #34d399 0%, #16a34a 55%, #3b82f6 56%, #2563eb 100%);
+          }
+
+          .brand-copy h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14rem;
+          }
+
+          .brand-copy p,
+          .brand-copy span {
+            text-transform: uppercase;
+            letter-spacing: 0.18rem;
+            font-size: 0.95rem;
+          }
+
+          .brand-copy span {
+            display: block;
+            margin-top: 0.35cm;
+            text-transform: none;
+            letter-spacing: 0.08rem;
+          }
+
+          .park-info-banner {
+            background: #f8f6ef;
+            color: #25553d;
+            text-align: center;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            padding: 0.9cm 1cm;
+            border-bottom: 6px solid #d4a843;
+          }
+
+          .park-info-hero {
+            height: 21cm;
+          }
+
+          .park-info-main {
+            background: #f8f6ef;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 1.4cm;
+            padding: 1.4cm;
+            align-items: start;
+          }
+
+          .park-info-qr-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55cm;
+          }
+
+          .park-info-qr-box {
+            background: white;
+            border: 5px solid #235d40;
+            border-radius: 0.5cm;
+            padding: 0.9cm;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .park-info-qr-box .qr-container {
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+          }
+
+          .park-info-qr-box .qr-container svg {
+            width: 15cm;
+            height: 15cm;
+            display: block;
+          }
+
+          .park-info-scan-button {
+            background: #235d40;
+            color: white;
+            border-radius: 0.2cm;
+            padding: 0.45cm 0.8cm;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            letter-spacing: 0.06rem;
+          }
+
+          .park-info-copy h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.6rem;
+            color: #25553d;
+            line-height: 1.15;
+            margin-bottom: 0.55cm;
+          }
+
+          .park-info-copy p {
+            font-size: 1.2rem;
+            color: #5f6b63;
+            margin-bottom: 0.8cm;
+          }
+
+          .park-info-fee {
+            background: linear-gradient(135deg, #f5c542 0%, #f0ab00 100%);
+            border-radius: 0.45cm;
+            padding: 0.85cm 1cm;
+            text-align: center;
+            color: #25553d;
+          }
+
+          .fee-title {
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            font-weight: 700;
+            font-size: 1rem;
+          }
+
+          .fee-price {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.7rem;
+            font-weight: 700;
+            margin: 0.25cm 0;
+          }
+
+          .fee-note {
+            font-size: 0.9rem;
+          }
+
+          .park-info-discover {
+            background: #235d40;
+            color: white;
+            padding: 1cm 1.2cm;
+          }
+
+          .park-info-section-title {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            font-weight: 700;
+            font-size: 1.35rem;
+            margin-bottom: 0.65cm;
+          }
+
+          .park-info-thumbs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5cm;
+          }
+
+          .park-info-thumb {
+            text-align: center;
+            color: white;
+          }
+
+          .park-info-thumb img {
+            width: 100%;
+            height: 3.6cm;
+            object-fit: cover;
+            border-radius: 0.18cm;
+            border: 3px solid white;
+            margin-bottom: 0.18cm;
+          }
+
+          .park-info-thumb span {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+          }
+
+          .park-info-prohibited {
+            background: #1f7a3f;
+            color: white;
+            padding: 1cm 1.2cm;
+          }
+
+          .park-info-prohibited-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5cm;
+            text-align: center;
+          }
+
+          .prohibited-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.18cm;
+            font-size: 0.82rem;
+          }
+
+          .prohibited-icon {
+            width: 1.8cm;
+            height: 1.8cm;
+            border-radius: 999px;
+            background: white;
+            color: #1f7a3f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+          }
+
+          .park-info-cta {
+            background: linear-gradient(135deg, #17823f 0%, #169a44 100%);
+            text-align: center;
+            color: white;
+            padding: 1.2cm 1cm 0.9cm;
+          }
+
+          .park-info-cta-top {
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            font-size: 1rem;
+            margin-bottom: 0.3cm;
+          }
+
+          .park-info-cta-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            color: #f6d24a;
+            text-transform: uppercase;
+            font-size: 2rem;
+            margin-bottom: 0.25cm;
+          }
+
+          .park-info-cta-bottom {
+            letter-spacing: 0.08rem;
+            font-size: 1rem;
+          }
+
+          .park-info-footer {
+            background: #235d40;
+            color: rgba(255,255,255,0.75);
+            text-align: center;
+            padding: 0.5cm 1cm;
+            font-size: 0.9rem;
+          }
         </style>
       </head>
       <body>
-        <div class="poster-container">
-          <div class="hero-section">
-            <img src="${heroImageSrc}" alt="${sectionName}" />
-          </div>
-
-          <div class="content">
-            <div class="header-group">
-              <h1 class="park-name">Nyandungu Eco-Park</h1>
-              <p class="park-subline">Discover · Learn · Protect</p>
-              <div class="main-titles">
-                <p class="title-en">${label.subtitle}</p>
-                <p class="title-kn">${label.subtitleKn || "Sikana hano kumenya byinshi"}</p>
-              </div>
-            </div>
-
-            <div class="qr-wrapper">
-              ${qrMarkup}
-              <p class="scan-instruction"><span class="scan-icon">📍</span><span>Scan Here / Sikana Hano</span></p>
-              <p class="scan-note">For more information, scan the code above</p>
-            </div>
-
-            <div class="rules-box">
-              <p class="rules-title"><span class="rule-icon">🌿</span><span>${label.tagline}</span><span class="rule-icon">🌿</span></p>
-              <p class="rules-text">Respect nature · Follow park rules · Have a memorable experience!</p>
-            </div>
-
-            <p class="bottom-motto">Scan · Learn · Protect</p>
-            <p class="footer-tagline">${label.tagline}</p>
-            <p class="poster-url">${url}</p>
-          </div>
-        </div>
-
+        ${printBody}
         <script>
           window.onload = function () {
             setTimeout(function () { window.print(); }, 500);
