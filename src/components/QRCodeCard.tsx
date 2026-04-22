@@ -225,12 +225,16 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
 
           .rules-box {
-            color: #2f6b3b;
+            background: #2f6b3b;
+            color: white;
             width: min(42cm, 100%);
             display: flex;
             flex-direction: column;
             gap: 0.15cm;
             align-items: center;
+            padding: 1.2cm 1.4cm;
+            border-radius: 1cm;
+            box-shadow: 0 10px 30px rgba(31, 95, 44, 0.18);
           }
 
           .rules-title {
@@ -238,7 +242,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             font-weight: 700;
             letter-spacing: 0.08rem;
             text-transform: uppercase;
-            color: #2f6b3b;
+            color: white;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -248,11 +252,11 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             font-size: 0.92rem;
             opacity: 0.95;
             line-height: 1.4;
-            color: #7ea06d;
+            color: rgba(255, 255, 255, 0.9);
           }
 
           .rule-icon {
-            color: #7ea06d;
+            color: #7ee787;
             font-size: 1.05rem;
             line-height: 1;
           }
