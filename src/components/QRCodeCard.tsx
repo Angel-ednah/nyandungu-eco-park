@@ -78,10 +78,11 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         win.document.write(`
           <html><head><title>QR Code - ${sectionName}</title>
           <style>
+            @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
             * { margin: 0; padding: 0; box-sizing: border-box; }
-            body { display:flex; align-items:center; justify-content:center; min-height:100vh; font-family:'Times New Roman', Times, serif; background:#1a3d2e; padding: 20px; }
+            body { display:flex; align-items:center; justify-content:center; min-height:100vh; font-family:'Inter',Arial,sans-serif; background:#1a3d2e; padding: 20px; }
             .billboard {
-              width: 560px;
+              width: 500px;
               background: white;
               border-radius: 8px;
               overflow: hidden;
@@ -121,8 +122,8 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               text-align: left;
             }
             .park-title h1 {
-              font-family: 'Times New Roman', Times, serif;
-              font-size: 24px;
+              font-family: 'Playfair Display', Georgia, serif;
+              font-size: 20px;
               font-weight: 700;
               color: white;
               letter-spacing: 3px;
@@ -130,15 +131,15 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               margin: 0;
             }
             .park-title .subtitle {
-              font-size: 12px;
+              font-size: 9px;
               color: rgba(255,255,255,0.8);
-              letter-spacing: 2px;
+              letter-spacing: 4px;
               text-transform: uppercase;
             }
             .tagline-header {
-              font-size: 14px;
+              font-size: 11px;
               color: rgba(255,255,255,0.9);
-              letter-spacing: 1px;
+              letter-spacing: 2px;
               margin-top: 4px;
             }
             .welcome-banner {
@@ -148,15 +149,16 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               border-bottom: 2px solid #d4a843;
             }
             .welcome-banner h2 {
-              font-family: 'Times New Roman', Times, serif;
-              font-size: 28px;
+              font-family: 'Playfair Display', Georgia, serif;
+              font-size: 22px;
               font-weight: 700;
               color: #1a4d3a;
-              letter-spacing: 1px;
+              letter-spacing: 2px;
+              text-transform: uppercase;
             }
             .hero-image {
               width: 100%;
-              height: 280px;
+              height: 220px;
               object-fit: cover;
             }
             .scan-section {
@@ -181,24 +183,24 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               color: white;
               padding: 6px 12px;
               border-radius: 4px;
-              font-size: 15px;
+              font-size: 12px;
               font-weight: 700;
-              letter-spacing: 0.5px;
+              letter-spacing: 1px;
               text-transform: uppercase;
             }
             .info-area {
               flex: 1;
             }
             .hidden-beauty {
-              font-family: 'Times New Roman', Times, serif;
-              font-size: 24px;
+              font-family: 'Playfair Display', Georgia, serif;
+              font-size: 20px;
               font-weight: 700;
               color: #1a4d3a;
               line-height: 1.3;
               margin-bottom: 8px;
             }
             .discover-text {
-              font-size: 15px;
+              font-size: 12px;
               color: #666;
               margin-bottom: 12px;
             }
@@ -209,20 +211,20 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               text-align: center;
             }
             .entry-fee h4 {
-              font-size: 13px;
+              font-size: 10px;
               color: #1a4d3a;
               text-transform: uppercase;
-              letter-spacing: 0.5px;
+              letter-spacing: 1px;
               margin-bottom: 4px;
             }
             .entry-fee .price {
-              font-family: 'Times New Roman', Times, serif;
-              font-size: 30px;
+              font-family: 'Playfair Display', Georgia, serif;
+              font-size: 24px;
               font-weight: 700;
               color: #1a4d3a;
             }
             .entry-fee .price-note {
-              font-size: 12px;
+              font-size: 9px;
               color: #1a4d3a;
               opacity: 0.8;
             }
@@ -232,9 +234,9 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .discover-title {
               color: white;
-              font-size: 16px;
+              font-size: 12px;
               font-weight: 700;
-              letter-spacing: 0.5px;
+              letter-spacing: 2px;
               text-transform: uppercase;
               text-align: center;
               margin-bottom: 12px;
@@ -245,19 +247,19 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               justify-content: center;
             }
             .thumb {
-              width: 92px;
-              height: 72px;
+              width: 80px;
+              height: 60px;
               object-fit: cover;
               border-radius: 4px;
               border: 2px solid white;
             }
             .thumb-label {
-              font-size: 11px;
+              font-size: 8px;
               color: rgba(255,255,255,0.8);
               text-align: center;
               margin-top: 4px;
               text-transform: uppercase;
-              letter-spacing: 0.3px;
+              letter-spacing: 0.5px;
             }
             .rules-section {
               background: #991b1b;
@@ -266,9 +268,9 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .rules-title {
               color: white;
-              font-size: 15px;
+              font-size: 11px;
               font-weight: 700;
-              letter-spacing: 0.5px;
+              letter-spacing: 2px;
               text-transform: uppercase;
               margin-bottom: 8px;
             }
@@ -288,7 +290,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               font-size: 20px;
             }
             .rule-text {
-              font-size: 11px;
+              font-size: 8px;
               color: rgba(255,255,255,0.9);
               margin-top: 4px;
               max-width: 50px;
@@ -306,23 +308,23 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .cta-text {
               color: white;
-              font-size: 13px;
-              letter-spacing: 0.5px;
+              font-size: 10px;
+              letter-spacing: 1px;
               text-transform: uppercase;
               margin-bottom: 4px;
             }
             .cta-highlight {
-              font-family: 'Times New Roman', Times, serif;
-              font-size: 22px;
+              font-family: 'Playfair Display', Georgia, serif;
+              font-size: 16px;
               font-weight: 700;
               color: #fbbf24;
-              letter-spacing: 0.5px;
+              letter-spacing: 1px;
               text-transform: uppercase;
             }
             .cta-tagline {
               color: rgba(255,255,255,0.8);
-              font-size: 12px;
-              letter-spacing: 0.5px;
+              font-size: 10px;
+              letter-spacing: 2px;
               margin-top: 8px;
             }
             .footer-bar {
@@ -332,8 +334,8 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .footer-bar p {
               color: rgba(255,255,255,0.6);
-              font-size: 12px;
-              letter-spacing: 0.3px;
+              font-size: 9px;
+              letter-spacing: 1px;
             }
           </style></head><body>
           <div class="billboard">
@@ -448,10 +450,11 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       win.document.write(`
         <html><head><title>QR Code - ${sectionName}</title>
         <style>
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap');
           * { margin: 0; padding: 0; box-sizing: border-box; }
-          body { display:flex; align-items:center; justify-content:center; min-height:100vh; font-family:'Times New Roman', Times, serif; background:#f5f5f0; padding: 20px; }
+          body { display:flex; align-items:center; justify-content:center; min-height:100vh; font-family:'Inter',Arial,sans-serif; background:#f5f5f0; padding: 20px; }
           .card {
-            width: 480px;
+            width: 420px;
             background: linear-gradient(135deg, #f8f6f0 0%, #e8e4d8 100%);
             border: 3px solid #2d5a27;
             border-radius: 16px;
@@ -461,27 +464,27 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
           .card-photo {
             width: 100%;
-            height: 240px;
+            height: 200px;
             object-fit: cover;
           }
           .content {
-            padding: 24px 30px 28px;
+            padding: 20px 28px 24px;
           }
           .park-name {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 24px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 20px;
             font-weight: 700;
             color: #2d5a27;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 2px;
           }
           .park-tagline {
-            font-size: 14px;
+            font-size: 12px;
             color: #8b7d3c;
-            letter-spacing: 0.8px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
           }
           .divider {
             width: 60px;
@@ -490,66 +493,66 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             margin: 0 auto 12px;
           }
           .subtitle {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
             color: #333;
-            margin-bottom: 6px;
+            margin-bottom: 2px;
           }
           .subtitle-kn {
-            font-size: 16px;
+            font-size: 13px;
             color: #666;
             font-style: italic;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
           }
           .qr-container {
             background: white;
-            padding: 18px;
+            padding: 14px;
             border-radius: 12px;
             display: inline-block;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
           }
           .scan-label {
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
             color: #2d5a27;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
           }
           .scan-label-kn {
-            font-size: 14px;
+            font-size: 12px;
             color: #666;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
           }
           .rules-bar {
             background: #2d5a27;
             color: white;
-            padding: 14px 18px;
+            padding: 10px 16px;
             border-radius: 8px;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
           }
           .rules-bar h4 {
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
           }
           .rules-bar p {
-            font-size: 14px;
+            font-size: 11px;
             opacity: 0.9;
           }
           .tagline-bottom {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: #d4a843;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
           }
           .url {
-            font-size: 12px;
+            font-size: 10px;
             color: #999;
             word-break: break-all;
-            margin-top: 10px;
+            margin-top: 6px;
           }
         </style></head><body>
         <div class="card">
@@ -587,29 +590,26 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   };
 
   return (
-    <div
-      className="bg-card rounded-xl overflow-hidden shadow-card border border-border flex flex-col items-center gap-4"
-      style={{ fontFamily: '"Times New Roman", Times, serif' }}
-    >
+    <div className="bg-card rounded-xl overflow-hidden shadow-card border border-border flex flex-col items-center gap-4">
       {isParkInfo ? (
-        <img src={wetlandsImage} alt="Nyandungu Wetlands" className="w-full h-52 object-cover" />
+        <img src={wetlandsImage} alt="Nyandungu Wetlands" className="w-full h-44 object-cover" />
       ) : (
-        <img src={cardImage} alt={sectionName} className="w-full h-48 object-cover" />
+        <img src={cardImage} alt={sectionName} className="w-full h-40 object-cover" />
       )}
       <div className="px-6 w-full text-center">
-        <p className="text-sm font-bold text-primary tracking-wide uppercase">Nyandungu Eco-Park</p>
-        <h3 className="text-2xl font-bold text-foreground mt-2">{sectionName}</h3>
-        <p className="text-base text-muted-foreground mt-2">{label.subtitle}</p>
+        <p className="text-sm font-bold text-primary tracking-widest uppercase">Nyandungu Eco-Park</p>
+        <h3 className="text-xl font-bold text-foreground mt-1">{sectionName}</h3>
+        <p className="text-sm text-muted-foreground mt-1">{label.subtitle}</p>
         {isParkInfo && (
-          <p className="text-base text-primary font-semibold mt-2">Entry: 2,000 RWF (Rwandans)</p>
+          <p className="text-sm text-primary font-semibold mt-1">Entry: 2,000 RWF (Rwandans)</p>
         )}
       </div>
-      <div ref={printRef} className="bg-card p-5 rounded-lg">
+      <div ref={printRef} className="bg-card p-4 rounded-lg">
         <div className="qr-container">
           <QRCodeSVG value={url} size={180} level="H" includeMargin />
         </div>
       </div>
-      <p className="text-sm text-muted-foreground break-all text-center max-w-[260px] px-6">{url}</p>
+      <p className="text-xs text-muted-foreground break-all text-center max-w-[220px] px-6">{url}</p>
       <div className="flex gap-2 pb-6">
         <Button variant="outline" size="sm" onClick={handlePrint}>
           <Printer className="mr-1 h-4 w-4" /> Print
