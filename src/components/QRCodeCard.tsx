@@ -260,7 +260,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               letter-spacing: 0.5px;
             }
             .rules-section {
-              background: #991b1b;
+              background: #1f7a3f;
               padding: 12px 20px;
               text-align: center;
             }
