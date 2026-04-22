@@ -73,584 +73,200 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     const heroImageSrc = isParkInfo ? wetlandsImage : cardImage;
     const qrMarkup = printContent.innerHTML;
 
-    const printBody = isParkInfo
-      ? `
-        <div class="poster-container park-info-poster">
-          <div class="park-info-header">
-            <div class="park-info-brand">
-              <div class="brand-mark"></div>
-              <div class="brand-copy">
-                <h1>Nyandungu</h1>
-                <p>Eco-Park</p>
-                <span>Discover · Learn · Protect</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="park-info-banner">Welcome to Nyandungu Eco-Park</div>
-
-          <div class="hero-section park-info-hero">
-            <img src="${heroImageSrc}" alt="${sectionName}" />
-          </div>
-
-          <div class="park-info-main">
-            <div class="park-info-qr-panel">
-              <div class="park-info-qr-box">${qrMarkup}</div>
-              <div class="park-info-scan-button"><span class="scan-icon">📍</span><span>Scan Here</span></div>
-            </div>
-
-            <div class="park-info-copy">
-              <h2>Scan to See the Hidden Beauty of Nyandungu</h2>
-              <p>Discover nature, wildlife, and peaceful trails inside.</p>
-              <div class="park-info-fee">
-                <div class="fee-title">Entry Fee for Rwandans Only</div>
-                <div class="fee-price">2,000 RWF</div>
-                <div class="fee-note">igiciro kiza kinogeye buri wese!</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="park-info-discover">
-            <div class="park-info-section-title">🌿 What You Will Discover 🌿</div>
-            <div class="park-info-thumbs">
-              <div class="park-info-thumb">
-                <img src="${heroImageSrc}" alt="Beautiful Wetlands" />
-                <span>Beautiful Wetlands</span>
-              </div>
-              <div class="park-info-thumb">
-                <img src="${heroImageSrc}" alt="Birds & Wildlife" />
-                <span>Birds & Wildlife</span>
-              </div>
-              <div class="park-info-thumb">
-                <img src="${heroImageSrc}" alt="Walking & Cycling" />
-                <span>Walking & Cycling</span>
-              </div>
-              <div class="park-info-thumb">
-                <img src="${heroImageSrc}" alt="Relaxing Nature" />
-                <span>Relaxing Nature</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="park-info-prohibited">
-            <div class="park-info-section-title">🚫 Prohibited Activities 🚫</div>
-            <div class="park-info-prohibited-list">
-              <div class="prohibited-item"><div class="prohibited-icon">🚭</div><span>No Smoking</span></div>
-              <div class="prohibited-item"><div class="prohibited-icon">🍔</div><span>No Outside Food</span></div>
-              <div class="prohibited-item"><div class="prohibited-icon">🥤</div><span>No Plastic Bottles</span></div>
-              <div class="prohibited-item"><div class="prohibited-icon">🐕</div><span>No Pets</span></div>
-            </div>
-          </div>
-
-          <div class="park-info-cta">
-            <div class="park-info-cta-top">📍 Turn Your Curiosity Into a Real Experience</div>
-            <div class="park-info-cta-title">Visit Nyandungu Today!</div>
-            <div class="park-info-cta-bottom">Scan · Learn · Protect</div>
-          </div>
-
-          <div class="park-info-footer">Dufatanye kurinda no gutsaara pariki Nyandungu</div>
-        </div>
-      `
-      : `
-        <div class="poster-container">
-          <div class="hero-section">
-            <img src="${heroImageSrc}" alt="${sectionName}" />
-          </div>
-
-          <div class="content">
-            <div class="header-group">
-              <h1 class="park-name">Nyandungu Eco-Park</h1>
-              <p class="park-subline">Discover · Learn · Protect</p>
-              <div class="main-titles">
-                <p class="title-en">${label.subtitle}</p>
-                <p class="title-kn">${label.subtitleKn || "Sikana hano kumenya byinshi"}</p>
-              </div>
-            </div>
-
-            <div class="qr-wrapper">
-              ${qrMarkup}
-              <p class="scan-instruction"><span class="scan-icon">📍</span><span>Scan Here / Sikana Hano</span></p>
-              <p class="scan-note">For more information, scan the code above</p>
-            </div>
-
-            <div class="rules-box">
-              <p class="rules-title"><span class="rule-icon">🌿</span><span>${label.tagline}</span><span class="rule-icon">🌿</span></p>
-              <p class="rules-text">Respect nature · Follow park rules · Have a memorable experience!</p>
-            </div>
-
-            <p class="bottom-motto">Scan · Learn · Protect</p>
-            <p class="poster-url">${url}</p>
-          </div>
-        </div>
-      `;
-
     win.document.write(`
       <html>
       <head>
         <title>Print - ${sectionName}</title>
         <style>
-          @page {
-            size: ${printWidth} ${printHeight};
-            margin: 0;
-          }
-
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap');
-
+          @page { size: 70cm 90cm; margin: 0; }
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+          
           * { margin: 0; padding: 0; box-sizing: border-box; }
-
-          html, body {
+          body {
             width: ${printWidth};
             height: ${printHeight};
+            font-family: 'Inter', sans-serif;
+            background: #0c2118;
+            color: white;
+            overflow: hidden;
           }
 
-          body {
-            font-family: 'Inter', Arial, sans-serif;
-            background: #f9fafb;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
+          .poster-container { width: 100%; height: 100%; display: flex; flex-direction: column; background: #1a3d2e; }
 
-          .poster-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+          .header { padding: 2cm; display: flex; flex-direction: column; align-items: center; background: #0c2118; }
+          .logo-area { display: flex; align-items: center; gap: 1.5cm; margin-bottom: 0.8cm; }
+          .logo-circle { width: 4cm; height: 4cm; background: #22c55e; border-radius: 50% 0 50% 50%; }
+          .brand-text h1 { font-family: 'Playfair Display', serif; font-size: 5rem; text-transform: uppercase; letter-spacing: 8px; font-weight: 900; }
+          .brand-text p { font-size: 2rem; letter-spacing: 5px; color: #4ade80; font-weight: 700; }
+
+          .welcome-banner {
             background: white;
-            overflow: hidden;
-          }
-
-          .hero-section {
+            color: #0c2118;
             width: 100%;
-            height: 45%;
-            overflow: hidden;
+            text-align: center;
+            padding: 1.5cm;
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border-bottom: 10px solid #d4a843;
           }
 
-          .hero-section img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+          .hero-section { width: 100%; height: 30cm; overflow: hidden; }
+          .hero-section img { width: 100%; height: 100%; object-fit: cover; }
+
+          .middle-section {
+            display: flex;
+            background: white;
+            color: #333;
+            padding: 2.5cm;
+            gap: 2.5cm;
+            align-items: center;
+            height: 22cm;
+            border-top: 15px solid #d4a843;
+          }
+          
+          .qr-box-container { flex: 1; display: flex; flex-direction: column; align-items: center; }
+          .qr-border {
+            padding: 1.2cm;
+            border: 12px solid #1a3d2e;
+            border-radius: 1.5cm;
+            background: white;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+          }
+          .qr-border .qr-container { background: transparent; padding: 0; box-shadow: none; }
+          .qr-border svg { width: 14cm !important; height: 14cm !important; display: block; }
+          
+          .scan-btn {
+            background: #1a3d2e;
+            color: white;
+            padding: 0.8cm 2cm;
+            border-radius: 20px;
+            margin-top: 1cm;
+            font-weight: 900;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
           }
 
-          .content {
+          .info-text-area { flex: 1.5; }
+          .info-text-area h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.2rem;
+            color: #1a3d2e;
+            line-height: 1.1;
+            margin-bottom: 1cm;
+            font-weight: 900;
+          }
+          
+          .fee-box {
+            background: #f59e0b;
+            padding: 1.2cm;
+            border-radius: 25px;
+            text-align: center;
+            color: #0c2118;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          }
+          .fee-box h4 { font-size: 1.8rem; text-transform: uppercase; margin-bottom: 0.3cm; font-weight: 800; }
+          .fee-box .price { font-size: 5rem; font-weight: 950; letter-spacing: -2px; }
+
+          .discover-section { background: #0c2118; padding: 2cm; text-align: center; }
+          .section-title { font-size: 2.5rem; color: #4ade80; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 1.5cm; font-weight: 800; }
+          .thumbs { display: flex; justify-content: space-around; gap: 1cm; }
+          .thumb { width: 22%; }
+          .thumb img { width: 100%; height: 5cm; border-radius: 20px; object-fit: cover; border: 5px solid #d4a843; }
+          .thumb span { display: block; margin-top: 0.6cm; font-size: 1.4rem; font-weight: 700; color: #fff; }
+
+          .prohibited-section { background: #1a3d2e; padding: 2cm; text-align: center; border-top: 2px solid rgba(255,255,255,0.1); }
+          .pro-list { display: flex; justify-content: center; gap: 3cm; margin-top: 1cm; }
+          .pro-item { display: flex; flex-direction: column; align-items: center; gap: 0.5cm; }
+          .pro-icon {
+            width: 3.5cm; height: 3.5cm;
+            background: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2cm;
+            border: 6px solid #86efac;
+          }
+          .pro-item span { font-size: 1.5rem; font-weight: 700; }
+
+          .cta-area {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            padding: 4cm 2cm 3cm;
-            text-align: center;
-            gap: 1.25cm;
-          }
-
-          .header-group {
-            display: flex;
-            flex-direction: column;
-            gap: 1cm;
-            align-items: center;
-          }
-
-          .park-name {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 3.5rem;
-            color: #1a4d3a;
-            letter-spacing: 0.8rem;
-            text-transform: uppercase;
-          }
-
-          .park-subline {
-            font-size: 1.3rem;
-            color: #8b7d3c;
-            letter-spacing: 0.45rem;
-            text-transform: uppercase;
-          }
-
-          .main-titles {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5cm;
-            align-items: center;
-          }
-
-          .title-en {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #111827;
-            max-width: 50cm;
-            line-height: 1.15;
-          }
-
-          .title-kn {
-            font-size: 2.2rem;
-            color: #4b5563;
-            font-style: italic;
-            line-height: 1.2;
-          }
-
-          .qr-wrapper {
-            background: white;
+            justify-content: center;
+            background: #0c2118;
             padding: 1.5cm;
-            border: 10px solid #1a4d3a;
-            border-radius: 2cm;
-            margin: 1cm 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1cm;
-            box-shadow: 0 18px 50px rgba(26, 77, 58, 0.12);
+            border-top: 10px solid #d4a843;
           }
-
-          .qr-wrapper .qr-container {
-            background: transparent;
-            padding: 0;
-            border-radius: 0;
-            box-shadow: none;
-          }
-
-          .qr-wrapper .qr-container svg {
-            width: 22cm;
-            height: 22cm;
-            display: block;
-          }
-
-          .scan-instruction {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #1a4d3a;
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-          }
-
-          .scan-note {
-            font-size: 1rem;
-            color: #7a7a7a;
-            line-height: 1.4;
-          }
-
-          .scan-icon {
-            color: #ec4899;
-            font-size: 1.45rem;
-            line-height: 1;
-          }
-
-          .rules-box {
-            background: #2f6b3b;
-            color: white;
-            width: min(42cm, 100%);
-            display: flex;
-            flex-direction: column;
-            gap: 0.15cm;
-            align-items: center;
-            padding: 1.2cm 1.4cm;
-            border-radius: 1cm;
-            box-shadow: 0 10px 30px rgba(31, 95, 44, 0.18);
-          }
-
-          .rules-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: 0.08rem;
-            text-transform: uppercase;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-          }
-
-          .rules-text {
-            font-size: 0.92rem;
-            line-height: 1.4;
-            color: rgba(255, 255, 255, 0.9);
-          }
-
-          .rule-icon {
-            color: #7ee787;
-            font-size: 1.05rem;
-            line-height: 1;
-          }
-
-          .bottom-motto {
-            font-size: 1.75rem;
-            color: #a87400;
-            font-weight: 700;
-            letter-spacing: 0.14rem;
-            text-transform: uppercase;
-          }
-
-          .poster-url {
-            font-size: 1rem;
-            color: #1f2937;
-            max-width: 48cm;
-            word-break: break-word;
-          }
-
-          .park-info-poster {
-            background: #1f5a3c;
-          }
-
-          .park-info-header {
-            background: linear-gradient(135deg, #1e6b47 0%, #235d40 100%);
-            padding: 1.3cm 1.6cm;
-            color: white;
-          }
-
-          .park-info-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1cm;
-          }
-
-          .brand-mark {
-            width: 2.6cm;
-            height: 2.6cm;
-            border-radius: 0.9cm;
-            background: linear-gradient(135deg, #34d399 0%, #16a34a 55%, #3b82f6 56%, #2563eb 100%);
-          }
-
-          .brand-copy h1 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 2.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.14rem;
-          }
-
-          .brand-copy p,
-          .brand-copy span {
-            text-transform: uppercase;
-            letter-spacing: 0.18rem;
-            font-size: 0.95rem;
-          }
-
-          .brand-copy span {
-            display: block;
-            margin-top: 0.35cm;
-            text-transform: none;
-            letter-spacing: 0.08rem;
-          }
-
-          .park-info-banner {
-            background: #f8f6ef;
-            color: #25553d;
-            text-align: center;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 2.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08rem;
-            padding: 0.9cm 1cm;
-            border-bottom: 6px solid #d4a843;
-          }
-
-          .park-info-hero {
-            height: 21cm;
-          }
-
-          .park-info-main {
-            background: #f8f6ef;
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 1.4cm;
-            padding: 1.4cm;
-            align-items: start;
-          }
-
-          .park-info-qr-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 0.55cm;
-          }
-
-          .park-info-qr-box {
-            background: white;
-            border: 5px solid #235d40;
-            border-radius: 0.5cm;
-            padding: 0.9cm;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .park-info-qr-box .qr-container {
-            background: transparent;
-            padding: 0;
-            box-shadow: none;
-          }
-
-          .park-info-qr-box .qr-container svg {
-            width: 15cm;
-            height: 15cm;
-            display: block;
-          }
-
-          .park-info-scan-button {
-            background: #235d40;
-            color: white;
-            border-radius: 0.2cm;
-            padding: 0.45cm 0.8cm;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.35rem;
-            letter-spacing: 0.06rem;
-          }
-
-          .park-info-copy h2 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 2.6rem;
-            color: #25553d;
-            line-height: 1.15;
-            margin-bottom: 0.55cm;
-          }
-
-          .park-info-copy p {
-            font-size: 1.2rem;
-            color: #5f6b63;
-            margin-bottom: 0.8cm;
-          }
-
-          .park-info-fee {
-            background: linear-gradient(135deg, #f5c542 0%, #f0ab00 100%);
-            border-radius: 0.45cm;
-            padding: 0.85cm 1cm;
-            text-align: center;
-            color: #25553d;
-          }
-
-          .fee-title {
-            text-transform: uppercase;
-            letter-spacing: 0.08rem;
-            font-weight: 700;
-            font-size: 1rem;
-          }
-
-          .fee-price {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 2.7rem;
-            font-weight: 700;
-            margin: 0.25cm 0;
-          }
-
-          .fee-note {
-            font-size: 0.9rem;
-          }
-
-          .park-info-discover {
-            background: #235d40;
-            color: white;
-            padding: 1cm 1.2cm;
-          }
-
-          .park-info-section-title {
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.08rem;
-            font-weight: 700;
-            font-size: 1.35rem;
-            margin-bottom: 0.65cm;
-          }
-
-          .park-info-thumbs {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.5cm;
-          }
-
-          .park-info-thumb {
-            text-align: center;
-            color: white;
-          }
-
-          .park-info-thumb img {
-            width: 100%;
-            height: 3.6cm;
-            object-fit: cover;
-            border-radius: 0.18cm;
-            border: 3px solid white;
-            margin-bottom: 0.18cm;
-          }
-
-          .park-info-thumb span {
-            font-size: 0.78rem;
-            text-transform: uppercase;
-          }
-
-          .park-info-prohibited {
-            background: #1f7a3f;
-            color: white;
-            padding: 1cm 1.2cm;
-          }
-
-          .park-info-prohibited-list {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.5cm;
-            text-align: center;
-          }
-
-          .prohibited-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.18cm;
-            font-size: 0.82rem;
-          }
-
-          .prohibited-icon {
-            width: 1.8cm;
-            height: 1.8cm;
-            border-radius: 999px;
-            background: white;
-            color: #1f7a3f;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.05rem;
-          }
-
-          .park-info-cta {
-            background: linear-gradient(135deg, #17823f 0%, #169a44 100%);
-            text-align: center;
-            color: white;
-            padding: 1.2cm 1cm 0.9cm;
-          }
-
-          .park-info-cta-top {
-            text-transform: uppercase;
-            letter-spacing: 0.08rem;
-            font-size: 1rem;
-            margin-bottom: 0.3cm;
-          }
-
-          .park-info-cta-title {
-            font-family: 'Playfair Display', Georgia, serif;
-            color: #f6d24a;
-            text-transform: uppercase;
-            font-size: 2rem;
-            margin-bottom: 0.25cm;
-          }
-
-          .park-info-cta-bottom {
-            letter-spacing: 0.08rem;
-            font-size: 1rem;
-          }
-
-          .park-info-footer {
-            background: #235d40;
-            color: rgba(255,255,255,0.75);
-            text-align: center;
-            padding: 0.5cm 1cm;
-            font-size: 0.9rem;
-          }
+          .cta-title { font-size: 4.5rem; font-weight: 900; color: #4ade80; margin-bottom: 0.4cm; text-transform: uppercase; }
+          .cta-tagline { font-size: 2rem; letter-spacing: 12px; font-weight: 600; text-transform: uppercase; }
         </style>
       </head>
       <body>
-        ${printBody}
+        <div class="poster-container">
+          <div class="header">
+            <div class="logo-area">
+               <div class="logo-circle"></div>
+               <div class="brand-text">
+                 <h1>Nyandungu</h1>
+                 <p>ECO - PARK</p>
+               </div>
+            </div>
+          </div>
+
+          <div class="welcome-banner">Welcome to Nyandungu Eco-Park</div>
+
+          <div class="hero-section">
+            <img src="${heroImageSrc}" alt="Nyandungu" />
+          </div>
+
+          <div class="middle-section">
+            <div class="qr-box-container">
+              <div class="qr-border">${qrMarkup}</div>
+              <div class="scan-btn">● SCAN HERE TO DISCOVER</div>
+            </div>
+            <div class="info-text-area">
+              <h2>${label.subtitle}</h2>
+              <p style="font-size: 1.8rem; color: #555; margin-bottom: 1.5cm; font-weight: 500;">Use your phone camera to reveal the magic of Nyandungu.</p>
+              <div class="fee-box">
+                <h4>Entry Fee for Rwandans Only</h4>
+                <div class="price">2,000 RWF</div>
+                <p style="font-size: 1.4rem; font-weight: 700;">igiciro kiza kinogeye buri wese!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="discover-section">
+            <div class="section-title">🌿 What You Will Discover 🌿</div>
+            <div class="thumbs">
+              <div class="thumb"><img src="${heroImageSrc}" alt="Beautiful Wetlands" /><span>Beautiful Wetlands</span></div>
+              <div class="thumb"><img src="${heroImageSrc}" alt="Birds & Wildlife" /><span>Birds & Wildlife</span></div>
+              <div class="thumb"><img src="${heroImageSrc}" alt="Walking & Cycling" /><span>Walking & Cycling</span></div>
+              <div class="thumb"><img src="${heroImageSrc}" alt="Relaxing Nature" /><span>Relaxing Nature</span></div>
+            </div>
+          </div>
+
+          <div class="prohibited-section">
+            <div class="section-title" style="color: #86efac; font-size: 2.5rem;">🚫 Prohibited Activities 🚫</div>
+            <div class="pro-list">
+              <div class="pro-item"><div class="pro-icon">🚭</div><span>No Smoking</span></div>
+              <div class="pro-item"><div class="pro-icon">🍔</div><span>No Food</span></div>
+              <div class="pro-item"><div class="pro-icon">🥤</div><span>No Plastic</span></div>
+              <div class="pro-item"><div class="pro-icon">🐕</div><span>No Pets</span></div>
+            </div>
+          </div>
+
+          <div class="cta-area">
+            <div class="cta-title">Visit Nyandungu Today!</div>
+            <div class="cta-tagline">Scan · Learn · Protect</div>
+          </div>
+        </div>
         <script>
-          window.onload = function () {
-            setTimeout(function () { window.print(); }, 500);
+          window.onload = () => {
+            setTimeout(() => {
+              window.print();
+            }, 1000);
           };
         </script>
       </body>
