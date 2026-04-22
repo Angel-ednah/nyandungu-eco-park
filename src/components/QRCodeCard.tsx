@@ -203,17 +203,25 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
 
           .scan-instruction {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: #1a4d3a;
-            text-transform: uppercase;
-            letter-spacing: 0.4rem;
+            letter-spacing: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
           }
 
           .scan-note {
-            font-size: 1.15rem;
-            color: #6b7280;
+            font-size: 1rem;
+            color: #7a7a7a;
             line-height: 1.4;
+          }
+
+          .scan-icon {
+            color: #ec4899;
+            font-size: 1.45rem;
+            line-height: 1;
           }
 
           .rules-box {
@@ -221,27 +229,36 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             width: min(42cm, 100%);
             display: flex;
             flex-direction: column;
-            gap: 0.2cm;
+            gap: 0.15cm;
             align-items: center;
           }
 
           .rules-title {
-            font-size: 1.45rem;
+            font-size: 1.3rem;
             font-weight: 700;
             letter-spacing: 0.08rem;
             text-transform: uppercase;
             color: #b7b3b0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
           }
 
           .rules-text {
-            font-size: 1.05rem;
+            font-size: 0.92rem;
             opacity: 0.95;
             line-height: 1.4;
             color: #b7b3b0;
           }
 
+          .rule-icon {
+            color: #9eb96e;
+            font-size: 1.05rem;
+            line-height: 1;
+          }
+
           .bottom-motto {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             color: #a87400;
             font-weight: 700;
             letter-spacing: 0.14rem;
@@ -278,12 +295,12 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
             <div class="qr-wrapper">
               ${qrMarkup}
-              <p class="scan-instruction">Scan Here / Sikana Hano</p>
+              <p class="scan-instruction"><span class="scan-icon">📍</span><span>Scan Here / Sikana Hano</span></p>
               <p class="scan-note">For more information, scan the code above</p>
             </div>
 
             <div class="rules-box">
-              <p class="rules-title">🌿 ${label.tagline} 🌿</p>
+              <p class="rules-title"><span class="rule-icon">🌿</span><span>${label.tagline}</span><span class="rule-icon">🌿</span></p>
               <p class="rules-text">Respect nature · Follow park rules · Have a memorable experience!</p>
             </div>
 
