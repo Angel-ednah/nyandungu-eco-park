@@ -147,6 +147,13 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             text-transform: uppercase;
           }
 
+          .park-subline {
+            font-size: 1.3rem;
+            color: #8b7d3c;
+            letter-spacing: 0.45rem;
+            text-transform: uppercase;
+          }
+
           .main-titles {
             display: flex;
             flex-direction: column;
@@ -203,6 +210,37 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             letter-spacing: 0.4rem;
           }
 
+          .scan-note {
+            font-size: 1.15rem;
+            color: #6b7280;
+            line-height: 1.4;
+          }
+
+          .rules-box {
+            background: #1f5f2c;
+            color: white;
+            padding: 1.2cm 1.4cm;
+            border-radius: 1cm;
+            width: min(42cm, 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.35cm;
+            box-shadow: 0 10px 30px rgba(31, 95, 44, 0.18);
+          }
+
+          .rules-title {
+            font-size: 1.55rem;
+            font-weight: 700;
+            letter-spacing: 0.08rem;
+            text-transform: uppercase;
+          }
+
+          .rules-text {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            line-height: 1.4;
+          }
+
           .footer-tagline {
             font-size: 1.8rem;
             color: #1a4d3a;
@@ -230,6 +268,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           <div class="content">
             <div class="header-group">
               <h1 class="park-name">Nyandungu Eco-Park</h1>
+              <p class="park-subline">Discover · Learn · Protect</p>
               <div class="main-titles">
                 <p class="title-en">${label.subtitle}</p>
                 <p class="title-kn">${label.subtitleKn || "Sikana hano kumenya byinshi"}</p>
@@ -239,6 +278,12 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             <div class="qr-wrapper">
               ${qrMarkup}
               <p class="scan-instruction">Scan Here / Sikana Hano</p>
+              <p class="scan-note">For more information, scan the code above</p>
+            </div>
+
+            <div class="rules-box">
+              <p class="rules-title">${label.tagline}</p>
+              <p class="rules-text">Respect nature · Follow park rules · Have a memorable experience!</p>
             </div>
 
             <p class="footer-tagline">${label.tagline}</p>
