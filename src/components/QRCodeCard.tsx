@@ -1,5 +1,6 @@
 
 import wetlandsImage from "@/assets/14.jpeg";
+import peacockQrImage from "@/assets/1.jpeg";
 
 import docTrails from "@/assets/doc-bamboo-trail.jpg";
 
@@ -47,7 +48,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     },
     "top-ten": {
       subtitle: "Scan to Know Top Ten Good Places",
-      subtitleKn: "Sikana umenye ahantu cumi heza cyane",
+      subtitleKn: "Sikana umenye ahantu icumi heza cyane",
       tagline: "Enjoy Nature, Follow Park Rules",
     },
     trails: {
@@ -60,6 +61,10 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   const label = sectionLabels[sectionId] || { subtitle: sectionName, subtitleKn: "", tagline: "Scan · Learn · Protect" };
 
   const isParkInfo = sectionId === "nyandungu-info";
+  const sectionHeroImages: Record<string, string> = {
+    peacock: peacockQrImage,
+  };
+  const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
 
   const handlePrint = () => {
     const printContent = printRef.current;
@@ -439,9 +444,9 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     const canvas = document.createElement('canvas');
     const img = new Image();
     img.crossOrigin = "anonymous";
-    img.src = nyandunguGate;
+    img.src = cardImage;
 
-    const doPrint = (gateImgSrc: string) => {
+    const doPrint = (cardImgSrc: string) => {
       win.document.write(`
         <html><head><title>QR Code - ${sectionName}</title>
         <style>
@@ -457,7 +462,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             box-shadow: 0 8px 32px rgba(0,0,0,0.15);
             overflow: hidden;
           }
-          .gate-photo {
+          .card-photo {
             width: 100%;
             height: 160px;
             object-fit: cover;
@@ -551,7 +556,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
         </style></head><body>
         <div class="card">
-          <img src="${gateImgSrc}" class="gate-photo" alt="Nyandungu Gate" />
+          <img src="${cardImgSrc}" class="card-photo" alt="${sectionName}" />
           <div class="content">
             <div class="park-name">Nyandungu Eco-Park</div>
             <div class="park-tagline">Discover · Learn · Protect</div>
@@ -581,7 +586,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       ctx?.drawImage(img, 0, 0);
       doPrint(canvas.toDataURL('image/jpeg'));
     };
-    img.onerror = () => doPrint(nyandunguGate);
+    img.onerror = () => doPrint(cardImage);
   };
 
   return (
@@ -589,7 +594,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       {isParkInfo ? (
         <img src={wetlandsImage} alt="Nyandungu Wetlands" className="w-full h-40 object-cover" />
       ) : (
-        <img src={nyandunguGate} alt="Nyandungu Gate" className="w-full h-32 object-cover" />
+        <img src={cardImage} alt={sectionName} className="w-full h-32 object-cover" />
       )}
       <div className="px-6 w-full text-center">
         <p className="text-xs font-semibold text-primary tracking-widest uppercase">Nyandungu Eco-Park</p>
