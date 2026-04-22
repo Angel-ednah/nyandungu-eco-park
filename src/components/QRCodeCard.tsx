@@ -217,43 +217,44 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
 
           .rules-box {
-            background: #1f5f2c;
-            color: white;
-            padding: 1.2cm 1.4cm;
-            border-radius: 1cm;
+            color: #b7b3b0;
             width: min(42cm, 100%);
             display: flex;
             flex-direction: column;
-            gap: 0.35cm;
-            box-shadow: 0 10px 30px rgba(31, 95, 44, 0.18);
+            gap: 0.2cm;
+            align-items: center;
           }
 
           .rules-title {
-            font-size: 1.55rem;
+            font-size: 1.45rem;
             font-weight: 700;
             letter-spacing: 0.08rem;
             text-transform: uppercase;
+            color: #b7b3b0;
           }
 
           .rules-text {
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             opacity: 0.95;
             line-height: 1.4;
+            color: #b7b3b0;
+          }
+
+          .bottom-motto {
+            font-size: 1.8rem;
+            color: #a87400;
+            font-weight: 700;
+            letter-spacing: 0.14rem;
+            text-transform: uppercase;
           }
 
           .footer-tagline {
-            font-size: 1.8rem;
-            color: #1a4d3a;
-            border-top: 4px solid #d4a843;
-            padding-top: 1cm;
-            width: 40%;
-            font-weight: 600;
-            line-height: 1.3;
+            display: none;
           }
 
           .poster-url {
-            font-size: 1.2rem;
-            color: #6b7280;
+            font-size: 1rem;
+            color: #1f2937;
             max-width: 48cm;
             word-break: break-word;
           }
@@ -282,10 +283,11 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             </div>
 
             <div class="rules-box">
-              <p class="rules-title">${label.tagline}</p>
+              <p class="rules-title">🌿 ${label.tagline} 🌿</p>
               <p class="rules-text">Respect nature · Follow park rules · Have a memorable experience!</p>
             </div>
 
+            <p class="bottom-motto">Scan · Learn · Protect</p>
             <p class="footer-tagline">${label.tagline}</p>
             <p class="poster-url">${url}</p>
           </div>
