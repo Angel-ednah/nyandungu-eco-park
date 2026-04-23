@@ -42,8 +42,8 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     },
     "top-ten": {
       welcome: "Welcome to Nyandungu Eco-Park",
-      subtitle: " ",
-      subtitleKn: " ",
+      subtitle: "",
+      subtitleKn: "Sikana umenye ahantu icumi heza cyane",
       tagline: "Enjoy Nature, Follow Park Rules",
     },
     trails: {
