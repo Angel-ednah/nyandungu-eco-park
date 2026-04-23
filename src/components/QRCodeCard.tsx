@@ -68,6 +68,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   const sectionHeroImages: Record<string, string> = {
     peacock: peacockQrImage,
     trails: docKingfisher,
+    "top-ten": wetlandsImage,
   };
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
@@ -526,153 +527,208 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             color: rgba(255,255,255,0.95);
             line-height: 1.2;
           }
-          .content {
-            padding: 20px 28px 24px;
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+          html, body {
+            min-height: 100%;
+            background: #ece7d9;
+            font-family: 'Inter', Arial, sans-serif;
+            color: #203127;
+          }
+          body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+          }
+          .card {
+            width: 540px;
+            background: #f7f3e8;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+          }
+          .hero-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+          }
+          .header {
+            padding: 24px 28px 18px;
+            text-align: center;
           }
           .park-name {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 18px;
             font-weight: 700;
-            color: #2d5a27;
-            letter-spacing: 2px;
+            color: #2f5e34;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
-            margin-bottom: 2px;
           }
-          .park-tagline {
-            font-size: 10px;
-            color: #8b7d3c;
-            letter-spacing: 3px;
+          .brand-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 34px;
+            font-weight: 700;
+            color: #1b3d26;
+            margin: 12px 0 8px;
+            line-height: 1.05;
+          }
+          .brand-subtitle {
+            font-size: 11px;
+            color: #4b5f47;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            margin-bottom: 12px;
           }
-          .divider {
-            width: 60px;
-            height: 2px;
-            background: #d4a843;
-            margin: 0 auto 12px;
+          .content {
+            padding: 22px 28px 28px;
           }
-          .subtitle {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 2px;
-          }
-          .welcome-line {
+          .page-title {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 18px;
             font-weight: 700;
-            color: #2d5a27;
-            letter-spacing: 1px;
+            color: #1b3d26;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
           }
-          .top-ten-welcome-line {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: #222;
-            letter-spacing: 0;
-            text-transform: none;
-            line-height: 1.2;
-            margin-bottom: 6px;
-          }
-          .top-ten-title {
+          .section-description {
             font-size: 13px;
             font-weight: 700;
-            color: #2d5a27;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 4px;
+            color: #2f5e34;
+            margin-bottom: 8px;
           }
           .subtitle-kn {
             font-size: 11px;
-            color: #666;
+            color: #55654a;
             font-style: italic;
-            margin-bottom: 14px;
+            margin-bottom: 20px;
           }
-          .qr-container {
+          .qr-panel {
             background: white;
-            padding: 14px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-radius: 28px;
+            padding: 24px 22px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+            text-align: center;
+            margin-bottom: 20px;
+          }
+          .qr-panel .qr-container {
+            margin: 0 auto 18px;
           }
           .scan-label {
             font-size: 13px;
-            font-weight: 600;
-            color: #2d5a27;
-            margin-bottom: 2px;
+            font-weight: 700;
+            color: #1f4d2b;
+            margin-bottom: 5px;
           }
           .scan-label-kn {
             font-size: 11px;
-            color: #666;
-            margin-bottom: 12px;
+            color: #5a6b57;
+            margin-bottom: 18px;
           }
-          .rules-bar {
-            background: #2d5a27;
+          .info-box {
+            background: #1f7a3f;
+            border-radius: 22px;
+            padding: 16px 18px;
             color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 18px;
           }
-          .rules-bar h4 {
+          .info-box h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            margin-bottom: 6px;
+          }
+          .info-box p {
+            font-size: 10px;
+            line-height: 1.5;
+            opacity: 0.95;
+          }
+          .prohibited-section {
+            background: #2f7b3f;
+            border-radius: 24px;
+            padding: 18px 20px 20px;
+            color: white;
+            margin-bottom: 18px;
+          }
+          .prohibited-title {
             font-size: 11px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            margin-bottom: 4px;
+            margin-bottom: 12px;
+            text-align: center;
           }
-          .rules-bar p {
-            font-size: 10px;
-            opacity: 0.9;
+          .prohibited-icons {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
           }
-          .notice-sign {
-            margin: 14px auto 10px;
-            width: 110px;
-            border-radius: 12px;
-            border: 2px solid #d4a843;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+          .prohibited-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
           }
-          .notice-caption {
-            font-size: 10px;
-            color: #2d5a27;
-            font-weight: 600;
-            margin-bottom: 10px;
+          .prohibited-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: white;
+            color: #1f7a3f;
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+            font-weight: 700;
+          }
+          .prohibited-text {
+            font-size: 9px;
+            line-height: 1.2;
+            text-align: center;
+            color: rgba(255,255,255,0.95);
           }
           .tagline-bottom {
-            font-size: 12px;
-            font-weight: 600;
-            color: #d4a843;
-            letter-spacing: 1px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #4c633c;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 8px;
           }
           .url {
             font-size: 9px;
-            color: #999;
+            color: #6d6d6d;
+            text-align: center;
             word-break: break-all;
-            margin-top: 6px;
           }
         </style></head><body>
         <div class="card">
-          <img src="${heroImgSrc}" class="gate-photo${isTrailSection ? " trail-photo" : ""}" alt="${sectionName}" />
-          <div class="content">
+          <img src="${heroImgSrc}" class="hero-image" alt="${sectionName}" />
+          <div class="header">
             <div class="park-name">Nyandungu Eco-Park</div>
-            <div class="park-tagline">Discover · Learn · Protect</div>
-            <div class="divider"></div>
-            ${label.welcome ? `<div class="${isTopTenSection ? "top-ten-welcome-line" : "welcome-line"}">${label.welcome}</div>` : ""}
-            ${isTopTenSection ? `<div class="top-ten-title">${sectionName}</div>` : ""}
-            <div class="subtitle">${label.subtitle}</div>
-            <div class="subtitle-kn">${label.subtitleKn || "Sikana hano kumenya byinshi"}</div>
-            ${printContent.innerHTML}
-            <div class="scan-label">📍 Scan Here / Sikana Hano</div>
-            <div class="scan-label-kn">For more information, scan the code above</div>
-            <div class="rules-bar">
-              <h4>🌿 ${label.tagline} 🌿</h4>
+            <div class="brand-title">Nyandungu Eco-Park</div>
+            <div class="brand-subtitle">Discover · Learn · Protect</div>
+          </div>
+          <div class="content">
+            ${label.welcome ? `<div class="page-title">${label.welcome}</div>` : ""}
+            <div class="section-description">${sectionName}</div>
+            <div class="subtitle-kn">${label.subtitleKn || "Sikana umenye ahantu icumi heza cyane"}</div>
+            <div class="qr-panel">
+              ${printContent.innerHTML}
+              <div class="scan-label">📍 Scan Here / Sikana Hano</div>
+              <div class="scan-label-kn">For more information, scan the code above</div>
+            </div>
+            <div class="info-box">
+              <h4>Enjoy nature, follow park rules</h4>
               <p>Respect nature · Follow park rules · Have a memorable experience!</p>
             </div>
-            ${showProhibitedBanner ? `<div class="prohibited-section"><div class="prohibited-title">Prohibited Activities</div><div class="prohibited-icons"><div class="prohibited-item"><div class="prohibited-icon">&#128685;</div><div class="prohibited-text">No Smoking</div></div><div class="prohibited-item"><div class="prohibited-icon">&#127828;</div><div class="prohibited-text">unauthorized outside food</div></div><div class="prohibited-item"><div class="prohibited-icon">&#129380;</div><div class="prohibited-text">No Plastic Bottles</div></div><div class="prohibited-item"><div class="prohibited-icon">&#128054;</div><div class="prohibited-text">No Pets</div></div></div></div>` : ""}
-            ${isTrailSection ? `<img src="${driveSlowlySign}" class="notice-sign" alt="Drive slowly and watch for children sign" /><div class="notice-caption">Please drive slowly and watch for children.</div>` : ""}
+            ${showProhibitedBanner ? `<div class="prohibited-section"><div class="prohibited-title">Prohibited Activities</div><div class="prohibited-icons"><div class="prohibited-item"><div class="prohibited-icon">&#128685;</div><div class="prohibited-text">No Smoking</div></div><div class="prohibited-item"><div class="prohibited-icon">&#127828;</div><div class="prohibited-text">No Outside Food</div></div><div class="prohibited-item"><div class="prohibited-icon">&#129380;</div><div class="prohibited-text">No Plastic Bottles</div></div><div class="prohibited-item"><div class="prohibited-icon">&#128054;</div><div class="prohibited-text">No Pets</div></div></div></div>` : ""}
             <div class="tagline-bottom">Scan · Learn · Protect</div>
             <div class="url">${url}</div>
           </div>
