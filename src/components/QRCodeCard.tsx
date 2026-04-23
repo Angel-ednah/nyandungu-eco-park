@@ -70,7 +70,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
   const cardImageClassName = isTrailSection
-    ? "w-full h-40 object-cover object-center"
+    ? "w-full h-40 object-cover [object-position:center_38%]"
     : "w-full h-40 object-cover";
 
   const getPrintableImageSrc = (src: string) =>
@@ -484,7 +484,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
           .trail-photo {
             object-fit: cover;
-            object-position: center;
+            object-position: center 38%;
           }
           .prohibited-section {
             background: #1f7a3f;
