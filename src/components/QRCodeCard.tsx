@@ -68,7 +68,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   const sectionHeroImages: Record<string, string> = {
     peacock: peacockQrImage,
-    trails: docKingfisher,
+    trails: docTrails,
     "top-ten": docSanctuaryBird,
   };
 
