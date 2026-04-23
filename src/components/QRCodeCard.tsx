@@ -3,6 +3,7 @@ import peacockQrImage from "@/assets/1.jpeg";
 import docTrails from "@/assets/doc-bamboo-trail.jpg";
 import docBicycles from "@/assets/doc-bicycles.jpg";
 import docBirds from "@/assets/doc-cranes.jpg";
+import docSanctuaryBird from "@/assets/doc-sanctuary-bird.jpg";
 import docKingfisher from "@/assets/doc-kingfisher.jpg";
 import driveSlowlySign from "@/assets/44.jpeg";
 import nyandunguGate from "@/assets/nyandungu-gate.jpg";
@@ -68,7 +69,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   const sectionHeroImages: Record<string, string> = {
     peacock: peacockQrImage,
     trails: docKingfisher,
-    "top-ten": wetlandsImage,
+    "top-ten": docSanctuaryBird,
   };
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
