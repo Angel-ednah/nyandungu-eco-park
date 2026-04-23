@@ -29,7 +29,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   const url = `${baseUrl}${sectionPaths[sectionId] ?? `/section/${sectionId}`}`;
 
-  const sectionLabels: Record<string, { subtitle: string; subtitleKn: string; tagline: string }> = {
+  const sectionLabels: Record<string, { welcome?: string; subtitle: string; subtitleKn: string; tagline: string }> = {
     "nyandungu-info": {
       subtitle: "Scan to See the Hidden Beauty of Nyandungu",
       subtitleKn: "Sikana hano kumenya byinshi",
@@ -41,6 +41,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       tagline: "Please Respect Our Peafowls",
     },
     "top-ten": {
+      welcome: "Welcome to Nyandungu Eco-Park",
       subtitle: "Scan to Know Top Ten Good Places",
       subtitleKn: "Sikana umenye ahantu icumi heza cyane",
       tagline: "Enjoy Nature, Follow Park Rules",
@@ -53,6 +54,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   };
 
   const label = sectionLabels[sectionId] || {
+    welcome: "",
     subtitle: sectionName,
     subtitleKn: "",
     tagline: "Scan · Learn · Protect",
@@ -70,7 +72,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
   const cardImageClassName = isTrailSection
-    ? "w-full h-40 object-cover [object-position:center_38%]"
+    ? "w-full h-40 object-cover object-center"
     : "w-full h-40 object-cover";
 
   const getPrintableImageSrc = (src: string) =>
@@ -484,7 +486,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
           .trail-photo {
             object-fit: cover;
-            object-position: center 38%;
+            object-position: center;
           }
           .prohibited-section {
             background: #1f7a3f;
@@ -631,6 +633,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             <div class="park-name">Nyandungu Eco-Park</div>
             <div class="park-tagline">Discover · Learn · Protect</div>
             <div class="divider"></div>
+            ${label.welcome ? `<div class="subtitle">${label.welcome}</div>` : ""}
             <div class="subtitle">${label.subtitle}</div>
             <div class="subtitle-kn">${label.subtitleKn || "Sikana hano kumenya byinshi"}</div>
             ${printContent.innerHTML}
@@ -666,6 +669,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       <div className="px-6 w-full text-center">
         <p className="text-sm font-bold text-primary tracking-widest uppercase">Nyandungu Eco-Park</p>
         <h3 className="text-xl font-bold text-foreground mt-1">{sectionName}</h3>
+        {label.welcome && <p className="text-sm font-semibold text-primary mt-1">{label.welcome}</p>}
         <p className="text-sm text-muted-foreground mt-1">{label.subtitle}</p>
         {isParkInfo && <p className="text-sm text-primary font-semibold mt-1">Entry: 2,000 RWF (Rwandans)</p>}
       </div>
@@ -676,32 +680,32 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       </div>
       <p className="text-xs text-muted-foreground break-all text-center max-w-[220px] px-6">{url}</p>
       {showProhibitedBanner && (
-        <div className="mx-6 w-[calc(100%-3rem)] rounded-xl bg-[#1f7a3f] px-4 py-3 text-white shadow-sm">
+        <div className="mx-6 w-[calc(100%-3rem)] rounded-xl bg-[#1f7a3f] px-3 py-3 text-white shadow-sm">
           <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em]">
             Prohibited Activities
           </p>
-          <div className="mt-3 grid grid-cols-4 gap-3 text-center">
+          <div className="mt-3 grid grid-cols-4 gap-2 text-center">
             <div>
-              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#1f7a3f]">
-                🚭
+              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
+                NS
               </div>
               <p className="mt-1 text-[9px] leading-tight">No Smoking</p>
             </div>
             <div>
-              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#1f7a3f]">
-                🍔
+              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
+                NF
               </div>
-              <p className="mt-1 text-[9px] leading-tight">unauthorized outside food</p>
+              <p className="mt-1 text-[9px] leading-tight">No Outside Food</p>
             </div>
             <div>
-              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#1f7a3f]">
-                🥤
+              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
+                PB
               </div>
               <p className="mt-1 text-[9px] leading-tight">No Plastic Bottles</p>
             </div>
             <div>
-              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#1f7a3f]">
-                🐕
+              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
+                NP
               </div>
               <p className="mt-1 text-[9px] leading-tight">No Pets</p>
             </div>
@@ -733,4 +737,3 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 };
 
 export default QRCodeCard;
-
