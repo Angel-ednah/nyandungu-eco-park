@@ -1,5 +1,6 @@
 import wetlandsImage from "@/assets/14.jpeg";
 import peacockQrImage from "@/assets/1.jpeg";
+import docPeacockDisplay from "@/assets/doc-peacock-display.jpg";
 import docTrails from "@/assets/doc-bamboo-trail.jpg";
 import docBicycles from "@/assets/doc-bicycles.jpg";
 import docBirds from "@/assets/doc-cranes.jpg";
@@ -67,7 +68,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   const showProhibitedBanner = isTopTenSection;
 
   const sectionHeroImages: Record<string, string> = {
-    peacock: peacockQrImage,
+    peacock: docPeacockDisplay,
     trails: docTrails,
     "top-ten": docSanctuaryBird,
   };
