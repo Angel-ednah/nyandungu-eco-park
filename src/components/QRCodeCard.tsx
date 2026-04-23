@@ -70,7 +70,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
   const cardImageClassName = isTrailSection
-    ? "w-full h-40 object-contain bg-card p-2"
+    ? "w-full h-40 object-cover object-center"
     : "w-full h-40 object-cover";
 
   const getPrintableImageSrc = (src: string) =>
@@ -483,9 +483,8 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             object-fit: cover;
           }
           .trail-photo {
-            object-fit: contain;
-            background: #f8f6f0;
-            padding: 8px;
+            object-fit: cover;
+            object-position: center;
           }
           .prohibited-section {
             background: #1f7a3f;
@@ -641,7 +640,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               <h4>🌿 ${label.tagline} 🌿</h4>
               <p>Respect nature · Follow park rules · Have a memorable experience!</p>
             </div>
-            ${showProhibitedBanner ? `<div class="prohibited-section"><div class="prohibited-title">Prohibited Activities</div><div class="prohibited-icons"><div class="prohibited-item"><div class="prohibited-icon">NS</div><div class="prohibited-text">No Smoking</div></div><div class="prohibited-item"><div class="prohibited-icon">NF</div><div class="prohibited-text">No Outside Food</div></div><div class="prohibited-item"><div class="prohibited-icon">PB</div><div class="prohibited-text">No Plastic Bottles</div></div><div class="prohibited-item"><div class="prohibited-icon">NP</div><div class="prohibited-text">No Pets</div></div></div></div>` : ""}
+            ${showProhibitedBanner ? `<div class="prohibited-section"><div class="prohibited-title">Prohibited Activities</div><div class="prohibited-icons"><div class="prohibited-item"><div class="prohibited-icon">&#128685;</div><div class="prohibited-text">No Smoking</div></div><div class="prohibited-item"><div class="prohibited-icon">&#127828;</div><div class="prohibited-text">unauthorized outside food</div></div><div class="prohibited-item"><div class="prohibited-icon">&#129380;</div><div class="prohibited-text">No Plastic Bottles</div></div><div class="prohibited-item"><div class="prohibited-icon">&#128054;</div><div class="prohibited-text">No Pets</div></div></div></div>` : ""}
             ${isTrailSection ? `<img src="${driveSlowlySign}" class="notice-sign" alt="Drive slowly and watch for children sign" /><div class="notice-caption">Please drive slowly and watch for children.</div>` : ""}
             <div class="tagline-bottom">Scan · Learn · Protect</div>
             <div class="url">${url}</div>
@@ -677,32 +676,32 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       </div>
       <p className="text-xs text-muted-foreground break-all text-center max-w-[220px] px-6">{url}</p>
       {showProhibitedBanner && (
-        <div className="mx-6 w-[calc(100%-3rem)] rounded-xl bg-[#1f7a3f] px-3 py-3 text-white shadow-sm">
+        <div className="mx-6 w-[calc(100%-3rem)] rounded-xl bg-[#1f7a3f] px-4 py-3 text-white shadow-sm">
           <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em]">
             Prohibited Activities
           </p>
-          <div className="mt-3 grid grid-cols-4 gap-2 text-center">
+          <div className="mt-3 grid grid-cols-4 gap-3 text-center">
             <div>
-              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
-                NS
+              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#1f7a3f]">
+                🚭
               </div>
               <p className="mt-1 text-[9px] leading-tight">No Smoking</p>
             </div>
             <div>
-              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
-                NF
+              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#1f7a3f]">
+                🍔
               </div>
-              <p className="mt-1 text-[9px] leading-tight">No Outside Food</p>
+              <p className="mt-1 text-[9px] leading-tight">unauthorized outside food</p>
             </div>
             <div>
-              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
-                PB
+              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#1f7a3f]">
+                🥤
               </div>
               <p className="mt-1 text-[9px] leading-tight">No Plastic Bottles</p>
             </div>
             <div>
-              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
-                NP
+              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#1f7a3f]">
+                🐕
               </div>
               <p className="mt-1 text-[9px] leading-tight">No Pets</p>
             </div>
