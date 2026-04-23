@@ -60,6 +60,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   const isParkInfo = sectionId === "nyandungu-info";
   const isTrailSection = sectionId === "trails";
+  const isTopTenSection = sectionId === "top-ten";
 
   const sectionHeroImages: Record<string, string> = {
     peacock: peacockQrImage,
@@ -68,7 +69,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
   const cardImageClassName = isTrailSection
-    ? "w-full h-40 object-contain bg-card p-3"
+    ? "w-full h-40 object-cover object-center"
     : "w-full h-40 object-cover";
 
   const handlePrint = () => {
@@ -474,9 +475,46 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             object-fit: cover;
           }
           .trail-photo {
-            object-fit: contain;
-            background: #f8f6f0;
-            padding: 10px;
+            object-fit: cover;
+            object-position: center top;
+          }
+          .prohibited-section {
+            background: #1f7a3f;
+            padding: 12px 14px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+          }
+          .prohibited-title {
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+          }
+          .prohibited-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+          }
+          .prohibited-item {
+            max-width: 70px;
+          }
+          .prohibited-icon {
+            width: 34px;
+            height: 34px;
+            margin: 0 auto 4px;
+            background: white;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+          }
+          .prohibited-text {
+            font-size: 8px;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.2;
           }
           .content {
             padding: 20px 28px 24px;
@@ -594,6 +632,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               <h4>🌿 ${label.tagline} 🌿</h4>
               <p>Respect nature · Follow park rules · Have a memorable experience!</p>
             </div>
+            ${isTopTenSection ? `<div class="prohibited-section"><div class="prohibited-title">Prohibited Activities</div><div class="prohibited-icons"><div class="prohibited-item"><div class="prohibited-icon">1</div><div class="prohibited-text">No Smoking</div></div><div class="prohibited-item"><div class="prohibited-icon">2</div><div class="prohibited-text">No Outside Food</div></div><div class="prohibited-item"><div class="prohibited-icon">3</div><div class="prohibited-text">No Plastic Bottles</div></div><div class="prohibited-item"><div class="prohibited-icon">4</div><div class="prohibited-text">No Pets</div></div></div></div>` : ""}
             ${isTrailSection ? `<img src="${driveSlowlySign}" class="notice-sign" alt="Drive slowly and watch for children sign" /><div class="notice-caption">Please drive slowly and watch for children.</div>` : ""}
             <div class="tagline-bottom">Scan · Learn · Protect</div>
             <div class="url">${url}</div>
@@ -658,3 +697,4 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 };
 
 export default QRCodeCard;
+
