@@ -630,7 +630,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         <div class="card">
           <img src="${heroImgSrc}" class="gate-photo${isTrailSection ? " trail-photo" : ""}" alt="${sectionName}" />
           <div class="content">
-            <div class="park-name">Nyandungu Eco-Park</div>
+            <div class="park-name">Welcome To Nyandungu Eco-Park</div>
             <div class="park-tagline">Discover · Learn · Protect</div>
             <div class="divider"></div>
             ${label.welcome ? `<div class="subtitle">${label.welcome}</div>` : ""}
