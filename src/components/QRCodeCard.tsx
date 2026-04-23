@@ -42,8 +42,8 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     },
     "top-ten": {
       welcome: "Welcome to Nyandungu Eco-Park",
-      subtitle: "Scan to Know Top Ten Good Places",
-      subtitleKn: "Sikana umenye ahantu icumi heza cyane",
+      subtitle: " ",
+      subtitleKn: " ",
       tagline: "Enjoy Nature, Follow Park Rules",
     },
     trails: {
@@ -444,7 +444,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               <div class="cta-tagline">🌿 Scan · Learn · Protect 🌿</div>
             </div>
             <div class="footer-bar">
-              <p>Dufatanye kurinda no kubungabunga parike</p>
+              <p>Dufatanye kurinda no kubungabunga pariki</p>
             </div>
           </div>
           <script>window.onload=function(){setTimeout(function(){window.print();},500);}</script>
