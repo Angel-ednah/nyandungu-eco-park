@@ -1,11 +1,8 @@
 import wetlandsImage from "@/assets/14.jpeg";
 import peacockQrImage from "@/assets/1.jpeg";
-import docPeacockDisplay from "@/assets/doc-peacock-display.jpg";
-import docMedicinalSign from "@/assets/doc-medicinal-sign.jpg";
 import docTrails from "@/assets/doc-bamboo-trail.jpg";
 import docBicycles from "@/assets/doc-bicycles.jpg";
 import docBirds from "@/assets/doc-cranes.jpg";
-import docSanctuaryBird from "@/assets/doc-sanctuary-bird.jpg";
 import docKingfisher from "@/assets/doc-kingfisher.jpg";
 import driveSlowlySign from "@/assets/44.jpeg";
 import nyandunguGate from "@/assets/nyandungu-gate.jpg";
@@ -69,15 +66,12 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   const showProhibitedBanner = isTopTenSection;
 
   const sectionHeroImages: Record<string, string> = {
-    peacock: docPeacockDisplay,
-    trails: docTrails,
-    "top-ten": docMedicinalSign,
+    peacock: peacockQrImage,
+    trails: docKingfisher,
   };
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
-  const cardImageClassName = isTopTenSection
-    ? "w-full h-56 object-cover"
-    : isTrailSection
+  const cardImageClassName = isTrailSection
     ? "w-full h-40 object-cover object-center"
     : "w-full h-40 object-cover";
 
@@ -759,15 +753,10 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         <p className="text-sm font-bold text-primary tracking-widest uppercase">Nyandungu Eco-Park</p>
         {isTopTenSection && label.welcome ? (
           <>
-            <p className="mt-1 font-serif text-2xl md:text-3xl font-bold leading-tight text-foreground">
+            <p className="mt-1 font-serif text-[1.65rem] font-bold leading-tight text-foreground">
               {label.welcome}
             </p>
-            <p className="mt-2 text-sm md:text-base font-bold uppercase tracking-[0.24em] text-primary">
-              {sectionName}
-            </p>
-            {label.subtitleKn && (
-              <p className="mt-2 text-xs md:text-sm text-muted-foreground">{label.subtitleKn}</p>
-            )}
+            <p className="mt-1 text-sm font-bold uppercase tracking-wide text-primary">{sectionName}</p>
           </>
         ) : (
           <>
