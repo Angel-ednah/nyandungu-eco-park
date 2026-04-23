@@ -557,6 +557,15 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             color: #333;
             margin-bottom: 2px;
           }
+          .welcome-line {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2d5a27;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+          }
           .subtitle-kn {
             font-size: 11px;
             color: #666;
@@ -630,10 +639,10 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         <div class="card">
           <img src="${heroImgSrc}" class="gate-photo${isTrailSection ? " trail-photo" : ""}" alt="${sectionName}" />
           <div class="content">
-            <div class="park-name">Welcome To Nyandungu Eco-Park</div>
+            <div class="park-name">Nyandungu Eco-Park</div>
             <div class="park-tagline">Discover · Learn · Protect</div>
             <div class="divider"></div>
-            ${label.welcome ? `<div class="subtitle">${label.welcome}</div>` : ""}
+            ${label.welcome ? `<div class="welcome-line">${label.welcome}</div>` : ""}
             <div class="subtitle">${label.subtitle}</div>
             <div class="subtitle-kn">${label.subtitleKn || "Sikana hano kumenya byinshi"}</div>
             ${printContent.innerHTML}
@@ -669,7 +678,11 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       <div className="px-6 w-full text-center">
         <p className="text-sm font-bold text-primary tracking-widest uppercase">Nyandungu Eco-Park</p>
         <h3 className="text-xl font-bold text-foreground mt-1">{sectionName}</h3>
-        {label.welcome && <p className="text-sm font-semibold text-primary mt-1">{label.welcome}</p>}
+        {label.welcome && (
+          <p className="mt-1 font-serif text-lg font-bold uppercase tracking-wide text-primary">
+            {label.welcome}
+          </p>
+        )}
         <p className="text-sm text-muted-foreground mt-1">{label.subtitle}</p>
         {isParkInfo && <p className="text-sm text-primary font-semibold mt-1">Entry: 2,000 RWF (Rwandans)</p>}
       </div>
