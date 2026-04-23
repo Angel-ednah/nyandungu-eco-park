@@ -3,6 +3,8 @@ import peacockQrImage from "@/assets/1.jpeg";
 import docTrails from "@/assets/doc-bamboo-trail.jpg";
 import docBicycles from "@/assets/doc-bicycles.jpg";
 import docBirds from "@/assets/doc-cranes.jpg";
+import driveSlowlySign from "@/assets/44.jpeg";
+import fishEagleImage from "@/assets/fish-eagle.jpg";
 import nyandunguGate from "@/assets/nyandungu-gate.jpg";
 import { Button } from "@/components/ui/button";
 import { Link as LinkIcon, Printer } from "lucide-react";
@@ -57,9 +59,11 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   };
 
   const isParkInfo = sectionId === "nyandungu-info";
+  const isTrailSection = sectionId === "trails";
 
   const sectionHeroImages: Record<string, string> = {
     peacock: peacockQrImage,
+    trails: fishEagleImage,
   };
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
@@ -415,7 +419,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               <div class="cta-tagline">🌿 Scan · Learn · Protect 🌿</div>
             </div>
             <div class="footer-bar">
-              <p>Dufatanye kurinda no gutsaara pariki Nyandungu</p>
+              <p>Dufatanye kurinda no kubungabunga parike</p>
             </div>
           </div>
           <script>window.onload=function(){setTimeout(function(){window.print();},500);}</script>
@@ -441,9 +445,9 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     const canvas = document.createElement("canvas");
     const img = new Image();
     img.crossOrigin = "anonymous";
-    img.src = nyandunguGate;
+    img.src = cardImage;
 
-    const doPrint = (gateImgSrc: string) => {
+    const doPrint = (heroImgSrc: string) => {
       win.document.write(`
         <html><head><title>QR Code - ${sectionName}</title>
         <style>
@@ -538,6 +542,19 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             font-size: 10px;
             opacity: 0.9;
           }
+          .notice-sign {
+            margin: 14px auto 10px;
+            width: 110px;
+            border-radius: 12px;
+            border: 2px solid #d4a843;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+          }
+          .notice-caption {
+            font-size: 10px;
+            color: #2d5a27;
+            font-weight: 600;
+            margin-bottom: 10px;
+          }
           .tagline-bottom {
             font-size: 12px;
             font-weight: 600;
@@ -553,7 +570,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
         </style></head><body>
         <div class="card">
-          <img src="${gateImgSrc}" class="gate-photo" alt="Nyandungu Gate" />
+          <img src="${heroImgSrc}" class="gate-photo" alt="${sectionName}" />
           <div class="content">
             <div class="park-name">Nyandungu Eco-Park</div>
             <div class="park-tagline">Discover · Learn · Protect</div>
@@ -567,6 +584,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               <h4>🌿 ${label.tagline} 🌿</h4>
               <p>Respect nature · Follow park rules · Have a memorable experience!</p>
             </div>
+            ${isTrailSection ? `<img src="${driveSlowlySign}" class="notice-sign" alt="Drive slowly and watch for children sign" /><div class="notice-caption">Please drive slowly and watch for children.</div>` : ""}
             <div class="tagline-bottom">Scan · Learn · Protect</div>
             <div class="url">${url}</div>
           </div>
@@ -583,7 +601,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       ctx?.drawImage(img, 0, 0);
       doPrint(canvas.toDataURL("image/jpeg"));
     };
-    img.onerror = () => doPrint(nyandunguGate);
+    img.onerror = () => doPrint(cardImage);
   };
 
   return (
@@ -605,6 +623,18 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         </div>
       </div>
       <p className="text-xs text-muted-foreground break-all text-center max-w-[220px] px-6">{url}</p>
+      {isTrailSection && (
+        <div className="mx-6 mb-1 rounded-2xl border border-primary/20 bg-primary/5 p-3 text-center shadow-sm">
+          <img
+            src={driveSlowlySign}
+            alt="Drive slowly and watch for children sign"
+            className="mx-auto h-32 w-auto rounded-xl border border-primary/20 bg-white object-contain shadow-sm"
+          />
+          <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-primary">
+            Please drive slowly and watch for children
+          </p>
+        </div>
+      )}
       <div className="flex gap-2 pb-6">
         <Button variant="outline" size="sm" onClick={handlePrint}>
           <Printer className="mr-1 h-4 w-4" /> Print
