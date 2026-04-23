@@ -67,6 +67,9 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   };
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
+  const cardImageClassName = isTrailSection
+    ? "w-full h-40 object-contain bg-card p-3"
+    : "w-full h-40 object-cover";
 
   const handlePrint = () => {
     const printContent = printRef.current;
@@ -335,9 +338,11 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               text-align: center;
             }
             .footer-bar p {
-              color: rgba(255,255,255,0.6);
-              font-size: 9px;
-              letter-spacing: 1px;
+              color: rgba(255,255,255,0.95);
+              font-family: "Times New Roman", Times, serif;
+              font-size: 14px;
+              font-weight: 700;
+              letter-spacing: 0.5px;
             }
           </style></head><body>
           <div class="billboard">
@@ -400,7 +405,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
                 </div>
                 <div>
                   <div class="rule-icon">🍔</div>
-                  <div class="rule-text">No Outside Food</div>
+                  <div class="rule-text">unauthorized outside food</div>
                 </div>
                 <div>
                   <div class="rule-icon">🥤</div>
@@ -467,6 +472,11 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             width: 100%;
             height: 160px;
             object-fit: cover;
+          }
+          .trail-photo {
+            object-fit: contain;
+            background: #f8f6f0;
+            padding: 10px;
           }
           .content {
             padding: 20px 28px 24px;
@@ -570,7 +580,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
         </style></head><body>
         <div class="card">
-          <img src="${heroImgSrc}" class="gate-photo" alt="${sectionName}" />
+          <img src="${heroImgSrc}" class="gate-photo${isTrailSection ? " trail-photo" : ""}" alt="${sectionName}" />
           <div class="content">
             <div class="park-name">Nyandungu Eco-Park</div>
             <div class="park-tagline">Discover · Learn · Protect</div>
@@ -609,7 +619,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       {isParkInfo ? (
         <img src={wetlandsImage} alt="Nyandungu Wetlands" className="w-full h-44 object-cover" />
       ) : (
-        <img src={cardImage} alt={sectionName} className="w-full h-40 object-cover" />
+        <img src={cardImage} alt={sectionName} className={cardImageClassName} />
       )}
       <div className="px-6 w-full text-center">
         <p className="text-sm font-bold text-primary tracking-widest uppercase">Nyandungu Eco-Park</p>
