@@ -3,8 +3,8 @@ import peacockQrImage from "@/assets/1.jpeg";
 import docTrails from "@/assets/doc-bamboo-trail.jpg";
 import docBicycles from "@/assets/doc-bicycles.jpg";
 import docBirds from "@/assets/doc-cranes.jpg";
+import docKingfisher from "@/assets/doc-kingfisher.jpg";
 import driveSlowlySign from "@/assets/44.jpeg";
-import fishEagleImage from "@/assets/fish-eagle.jpg";
 import nyandunguGate from "@/assets/nyandungu-gate.jpg";
 import { Button } from "@/components/ui/button";
 import { Link as LinkIcon, Printer } from "lucide-react";
@@ -61,15 +61,16 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   const isParkInfo = sectionId === "nyandungu-info";
   const isTrailSection = sectionId === "trails";
   const isTopTenSection = sectionId === "top-ten";
+  const showProhibitedBanner = isTopTenSection;
 
   const sectionHeroImages: Record<string, string> = {
     peacock: peacockQrImage,
-    trails: fishEagleImage,
+    trails: docKingfisher,
   };
 
   const cardImage = sectionHeroImages[sectionId] ?? nyandunguGate;
   const cardImageClassName = isTrailSection
-    ? "w-full h-40 object-cover object-center"
+    ? "w-full h-40 object-contain bg-card p-2"
     : "w-full h-40 object-cover";
 
   const getPrintableImageSrc = (src: string) =>
@@ -482,8 +483,9 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             object-fit: cover;
           }
           .trail-photo {
-            object-fit: cover;
-            object-position: center top;
+            object-fit: contain;
+            background: #f8f6f0;
+            padding: 8px;
           }
           .prohibited-section {
             background: #1f7a3f;
@@ -639,7 +641,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               <h4>🌿 ${label.tagline} 🌿</h4>
               <p>Respect nature · Follow park rules · Have a memorable experience!</p>
             </div>
-            ${isTopTenSection ? `<div class="prohibited-section"><div class="prohibited-title">Prohibited Activities</div><div class="prohibited-icons"><div class="prohibited-item"><div class="prohibited-icon">1</div><div class="prohibited-text">No Smoking</div></div><div class="prohibited-item"><div class="prohibited-icon">2</div><div class="prohibited-text">No Outside Food</div></div><div class="prohibited-item"><div class="prohibited-icon">3</div><div class="prohibited-text">No Plastic Bottles</div></div><div class="prohibited-item"><div class="prohibited-icon">4</div><div class="prohibited-text">No Pets</div></div></div></div>` : ""}
+            ${showProhibitedBanner ? `<div class="prohibited-section"><div class="prohibited-title">Prohibited Activities</div><div class="prohibited-icons"><div class="prohibited-item"><div class="prohibited-icon">NS</div><div class="prohibited-text">No Smoking</div></div><div class="prohibited-item"><div class="prohibited-icon">NF</div><div class="prohibited-text">No Outside Food</div></div><div class="prohibited-item"><div class="prohibited-icon">PB</div><div class="prohibited-text">No Plastic Bottles</div></div><div class="prohibited-item"><div class="prohibited-icon">NP</div><div class="prohibited-text">No Pets</div></div></div></div>` : ""}
             ${isTrailSection ? `<img src="${driveSlowlySign}" class="notice-sign" alt="Drive slowly and watch for children sign" /><div class="notice-caption">Please drive slowly and watch for children.</div>` : ""}
             <div class="tagline-bottom">Scan · Learn · Protect</div>
             <div class="url">${url}</div>
@@ -674,6 +676,39 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         </div>
       </div>
       <p className="text-xs text-muted-foreground break-all text-center max-w-[220px] px-6">{url}</p>
+      {showProhibitedBanner && (
+        <div className="mx-6 w-[calc(100%-3rem)] rounded-xl bg-[#1f7a3f] px-3 py-3 text-white shadow-sm">
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em]">
+            Prohibited Activities
+          </p>
+          <div className="mt-3 grid grid-cols-4 gap-2 text-center">
+            <div>
+              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
+                NS
+              </div>
+              <p className="mt-1 text-[9px] leading-tight">No Smoking</p>
+            </div>
+            <div>
+              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
+                NF
+              </div>
+              <p className="mt-1 text-[9px] leading-tight">No Outside Food</p>
+            </div>
+            <div>
+              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
+                PB
+              </div>
+              <p className="mt-1 text-[9px] leading-tight">No Plastic Bottles</p>
+            </div>
+            <div>
+              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
+                NP
+              </div>
+              <p className="mt-1 text-[9px] leading-tight">No Pets</p>
+            </div>
+          </div>
+        </div>
+      )}
       {isTrailSection && (
         <div className="mx-6 mb-1 rounded-2xl border border-primary/20 bg-primary/5 p-3 text-center shadow-sm">
           <img
