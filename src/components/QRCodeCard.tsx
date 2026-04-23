@@ -72,6 +72,22 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     ? "w-full h-40 object-cover object-center"
     : "w-full h-40 object-cover";
 
+  const getPrintableImageSrc = (src: string) =>
+    new Promise<string>((resolve) => {
+      const canvas = document.createElement("canvas");
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = src;
+      img.onload = () => {
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext("2d");
+        ctx?.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL("image/jpeg"));
+      };
+      img.onerror = () => resolve(src);
+    });
+
   const handlePrint = () => {
     const printContent = printRef.current;
     if (!printContent) return;
@@ -80,7 +96,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     if (!win) return;
 
     if (isParkInfo) {
-      const doPrint = (wetlandSrc: string) => {
+      const doPrint = (wetlandSrc: string, birdsSrc: string, bicyclesSrc: string, trailsSrc: string) => {
         win.document.write(`
           <html><head><title>QR Code - ${sectionName}</title>
           <style>
@@ -384,15 +400,15 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
                   <div class="thumb-label">Beautiful Wetlands</div>
                 </div>
                 <div>
-                  <img src="${docBirds}" class="thumb" onerror="this.style.display='none'" />
+                  <img src="${birdsSrc}" class="thumb" onerror="this.style.display='none'" />
                   <div class="thumb-label">Birds & Wildlife</div>
                 </div>
                 <div>
-                  <img src="${docBicycles}" class="thumb" onerror="this.style.display='none'" />
+                  <img src="${bicyclesSrc}" class="thumb" onerror="this.style.display='none'" />
                   <div class="thumb-label">Walking & Cycling</div>
                 </div>
                 <div>
-                  <img src="${docTrails}" class="thumb" onerror="this.style.display='none'" />
+                  <img src="${trailsSrc}" class="thumb" onerror="this.style.display='none'" />
                   <div class="thumb-label">Relaxing Nature</div>
                 </div>
               </div>
@@ -433,25 +449,16 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         `);
       };
 
-      const canvas = document.createElement("canvas");
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.src = wetlandsImage;
-      img.onload = () => {
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-        const ctx = canvas.getContext("2d");
-        ctx?.drawImage(img, 0, 0);
-        doPrint(canvas.toDataURL("image/jpeg"));
-      };
-      img.onerror = () => doPrint(wetlandsImage);
+      Promise.all([
+        getPrintableImageSrc(wetlandsImage),
+        getPrintableImageSrc(docBirds),
+        getPrintableImageSrc(docBicycles),
+        getPrintableImageSrc(docTrails),
+      ]).then(([wetlandSrc, birdsSrc, bicyclesSrc, trailsSrc]) => {
+        doPrint(wetlandSrc, birdsSrc, bicyclesSrc, trailsSrc);
+      });
       return;
     }
-
-    const canvas = document.createElement("canvas");
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = cardImage;
 
     const doPrint = (heroImgSrc: string) => {
       win.document.write(`
@@ -643,14 +650,9 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       `);
     };
 
-    img.onload = () => {
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-      const ctx = canvas.getContext("2d");
-      ctx?.drawImage(img, 0, 0);
-      doPrint(canvas.toDataURL("image/jpeg"));
-    };
-    img.onerror = () => doPrint(cardImage);
+    getPrintableImageSrc(cardImage).then((heroImgSrc) => {
+      doPrint(heroImgSrc);
+    });
   };
 
   return (
