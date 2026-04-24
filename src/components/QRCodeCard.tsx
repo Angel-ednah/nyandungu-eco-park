@@ -103,11 +103,14 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         win.document.write(`
           <html><head><title>QR Code - ${sectionName}</title>
           <style>
+            @page { size: A4 portrait; margin: 10mm; }
             @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
-            * { margin: 0; padding: 0; box-sizing: border-box; }
-            body { display:flex; align-items:center; justify-content:center; min-height:100vh; font-family:'Inter',Arial,sans-serif; background:#1a3d2e; padding: 20px; }
+            * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            html, body { width: 100%; min-height: 100%; }
+            body { display:flex; align-items:center; justify-content:center; font-family:'Inter',Arial,sans-serif; background:#1a3d2e; padding: 10px; }
             .billboard {
-              width: 500px;
+              width: 100%;
+              max-width: 520px;
               background: white;
               border-radius: 8px;
               overflow: hidden;
@@ -183,31 +186,29 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .hero-image {
               width: 100%;
-              height: 200px;
+              height: 170px;
               object-fit: cover;
             }
             .scan-section {
               display: flex;
-              padding: 20px;
-              gap: 20px;
+              flex-wrap: wrap;
+              padding: 14px;
+              gap: 14px;
               background: #f8f8f5;
             }
             .qr-area {
-              flex: 0 0 140px;
+              flex: 0 0 130px;
               text-align: center;
             }
             .qr-box {
               background: white;
-              padding: 12px;
-              border-radius: 8px;
-              border: 3px solid #1a4d3a;
+              padding: 14px;
+              border-radius: 12px;
+              border: 2px solid #1a4d3a;
               margin-bottom: 8px;
             }
             .scan-here {
-              background: #1a4d3a;
-              color: white;
-              padding: 6px 12px;
-              border-radius: 4px;
+              color: #1a4d3a;
               font-size: 11px;
               font-weight: 700;
               letter-spacing: 1px;
@@ -218,20 +219,20 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .hidden-beauty {
               font-family: 'Playfair Display', Georgia, serif;
-              font-size: 18px;
+              font-size: 20px;
               font-weight: 700;
               color: #1a4d3a;
-              line-height: 1.3;
+              line-height: 1.15;
               margin-bottom: 8px;
             }
             .discover-text {
-              font-size: 11px;
-              color: #666;
-              margin-bottom: 12px;
+              font-size: 10px;
+              color: #444;
+              margin-bottom: 10px;
             }
             .entry-fee {
               background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-              padding: 12px;
+              padding: 10px;
               border-radius: 8px;
               text-align: center;
             }
@@ -244,42 +245,42 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .entry-fee .price {
               font-family: 'Playfair Display', Georgia, serif;
-              font-size: 24px;
+              font-size: 20px;
               font-weight: 700;
               color: #1a4d3a;
             }
             .entry-fee .price-note {
-              font-size: 9px;
+              font-size: 8px;
               color: #1a4d3a;
               opacity: 0.8;
             }
             .discover-section {
-              padding: 16px 20px;
+              padding: 12px 16px;
               background: #1a4d3a;
             }
             .discover-title {
               color: white;
-              font-size: 12px;
+              font-size: 11px;
               font-weight: 700;
               letter-spacing: 2px;
               text-transform: uppercase;
               text-align: center;
-              margin-bottom: 12px;
+              margin-bottom: 10px;
             }
             .thumbnails {
               display: flex;
-              gap: 8px;
+              gap: 6px;
               justify-content: center;
             }
             .thumb {
-              width: 80px;
-              height: 60px;
+              width: 70px;
+              height: 52px;
               object-fit: cover;
               border-radius: 4px;
               border: 2px solid white;
             }
             .thumb-label {
-              font-size: 8px;
+              font-size: 7px;
               color: rgba(255,255,255,0.8);
               text-align: center;
               margin-top: 4px;
@@ -288,12 +289,12 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .rules-section {
               background: #1f7a3f;
-              padding: 12px 20px;
+              padding: 10px 16px;
               text-align: center;
             }
             .rules-title {
               color: white;
-              font-size: 11px;
+              font-size: 10px;
               font-weight: 700;
               letter-spacing: 2px;
               text-transform: uppercase;
@@ -302,20 +303,20 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             .rules-icons {
               display: flex;
               justify-content: center;
-              gap: 16px;
+              gap: 12px;
             }
             .rule-icon {
-              width: 40px;
-              height: 40px;
+              width: 36px;
+              height: 36px;
               background: white;
               border-radius: 50%;
               display: flex;
               align-items: center;
               justify-content: center;
-              font-size: 20px;
+              font-size: 18px;
             }
             .rule-text {
-              font-size: 8px;
+              font-size: 7px;
               color: rgba(255,255,255,0.9);
               margin-top: 4px;
               max-width: 50px;
@@ -324,23 +325,23 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .footer-cta {
               background: linear-gradient(135deg, #166534 0%, #15803d 100%);
-              padding: 16px 20px;
+              padding: 12px 16px;
               text-align: center;
             }
             .cta-icon {
-              font-size: 20px;
+              font-size: 18px;
               margin-bottom: 4px;
             }
             .cta-text {
               color: white;
-              font-size: 10px;
+              font-size: 9px;
               letter-spacing: 1px;
               text-transform: uppercase;
               margin-bottom: 4px;
             }
             .cta-highlight {
               font-family: 'Playfair Display', Georgia, serif;
-              font-size: 16px;
+              font-size: 14px;
               font-weight: 700;
               color: #fbbf24;
               letter-spacing: 1px;
@@ -348,21 +349,21 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             }
             .cta-tagline {
               color: rgba(255,255,255,0.8);
-              font-size: 10px;
-              letter-spacing: 2px;
-              margin-top: 8px;
+              font-size: 9px;
+              letter-spacing: 1.5px;
+              margin-top: 6px;
             }
             .footer-bar {
               background: #1a4d3a;
-              padding: 8px;
+              padding: 6px;
               text-align: center;
             }
             .footer-bar p {
               color: rgba(255,255,255,0.95);
               font-family: "Times New Roman", Times, serif;
-              font-size: 14px;
+              font-size: 12px;
               font-weight: 700;
-              letter-spacing: 0.5px;
+              letter-spacing: 0.4px;
             }
           </style></head><body>
           <div class="billboard">
@@ -467,13 +468,16 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       win.document.write(`
         <html><head><title>QR Code - ${sectionName}</title>
         <style>
+          @page { size: A4 portrait; margin: 10mm; }
           @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap');
-          * { margin: 0; padding: 0; box-sizing: border-box; }
-          body { display:flex; align-items:center; justify-content:center; min-height:100vh; font-family:'Inter',Arial,sans-serif; background:#f5f5f0; }
+          * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          html, body { width: 100%; min-height: 100%; }
+          body { display:flex; align-items:center; justify-content:center; font-family:'Inter',Arial,sans-serif; background:#f5f5f0; padding: 10px; }
           .card {
-            width: 420px;
+            width: 100%;
+            max-width: 460px;
             background: linear-gradient(135deg, #f8f6f0 0%, #e8e4d8 100%);
-            border: 3px solid #2d5a27;
+            border: 2px solid #2d5a27;
             border-radius: 16px;
             text-align: center;
             box-shadow: 0 8px 32px rgba(0,0,0,0.15);
@@ -526,6 +530,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             color: rgba(255,255,255,0.95);
             line-height: 1.2;
           }
+          @page { size: A4 portrait; margin: 10mm; }
           * {
             margin: 0;
             padding: 0;
@@ -534,6 +539,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             print-color-adjust: exact;
           }
           html, body {
+            width: 100%;
             min-height: 100%;
             background: #ece7d9;
             font-family: 'Inter', Arial, sans-serif;
@@ -543,27 +549,28 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
+            padding: 12px;
           }
           .card {
-            width: 540px;
+            width: 100%;
+            max-width: 470px;
             background: #f7f3e8;
-            border-radius: 32px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
           }
           .hero-image {
             width: 100%;
-            height: 220px;
+            height: 170px;
             object-fit: cover;
           }
           .header {
-            padding: 24px 28px 18px;
+            padding: 18px 20px 14px;
             text-align: center;
           }
           .park-name {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #2f5e34;
             letter-spacing: 0.35em;
@@ -571,128 +578,128 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           }
           .brand-title {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 34px;
+            font-size: 28px;
             font-weight: 700;
             color: #1b3d26;
-            margin: 12px 0 8px;
+            margin: 10px 0 6px;
             line-height: 1.05;
           }
           .brand-subtitle {
-            font-size: 11px;
+            font-size: 10px;
             color: #4b5f47;
             letter-spacing: 0.3em;
             text-transform: uppercase;
           }
           .content {
-            padding: 22px 28px 28px;
+            padding: 16px 20px 20px;
           }
           .page-title {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #1b3d26;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
           }
           .section-description {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: #2f5e34;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
           }
           .subtitle-kn {
-            font-size: 11px;
+            font-size: 10px;
             color: #55654a;
             font-style: italic;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
           }
           .qr-panel {
             background: white;
-            border-radius: 28px;
-            padding: 24px 22px;
+            border-radius: 24px;
+            padding: 18px 18px;
             box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
           }
           .qr-panel .qr-container {
-            margin: 0 auto 18px;
+            margin: 0 auto 16px;
           }
           .scan-label {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: #1f4d2b;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
           }
           .scan-label-kn {
-            font-size: 11px;
+            font-size: 10px;
             color: #5a6b57;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
           }
           .info-box {
             background: #1f7a3f;
-            border-radius: 22px;
-            padding: 16px 18px;
+            border-radius: 20px;
+            padding: 14px 16px;
             color: white;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
           }
           .info-box h4 {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.18em;
             margin-bottom: 6px;
           }
           .info-box p {
-            font-size: 10px;
-            line-height: 1.5;
+            font-size: 9px;
+            line-height: 1.4;
             opacity: 0.95;
           }
           .prohibited-section {
             background: #2f7b3f;
-            border-radius: 24px;
-            padding: 18px 20px 20px;
+            border-radius: 22px;
+            padding: 16px 18px 18px;
             color: white;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
           }
           .prohibited-title {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.16em;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             text-align: center;
           }
           .prohibited-icons {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 10px;
+            gap: 8px;
           }
           .prohibited-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
           }
           .prohibited-icon {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 999px;
             background: white;
             color: #1f7a3f;
             display: grid;
             place-items: center;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
           }
           .prohibited-text {
-            font-size: 9px;
+            font-size: 8px;
             line-height: 1.2;
             text-align: center;
             color: rgba(255,255,255,0.95);
           }
           .tagline-bottom {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             color: #4c633c;
             letter-spacing: 0.18em;
@@ -701,7 +708,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             margin-bottom: 8px;
           }
           .url {
-            font-size: 9px;
+            font-size: 8px;
             color: #6d6d6d;
             text-align: center;
             word-break: break-all;
