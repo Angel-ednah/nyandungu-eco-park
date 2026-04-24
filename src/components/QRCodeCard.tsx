@@ -723,7 +723,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           </div>
           <div class="content">
             ${label.welcome ? `<div class="page-title">${label.welcome}</div>` : ""}
-            ${isTopTenSection ? "" : `<div class=\"section-description\">${sectionName}</div>`}
+            ${isTopTenSection ? `<div class="section-description">TOP 10 SITES TO VISIT IN NYANDUNGU</div>` : `<div class=\"section-description\">${sectionName}</div>`}
             <div class="subtitle-kn">${label.subtitleKn || "Sikana umenye ahantu icumi heza cyane"}</div>
             <div class="qr-panel">
               ${printContent.innerHTML}
