@@ -710,7 +710,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         <div class="card">
           <img src="${heroImgSrc}" class="hero-image" alt="${sectionName}" />
           <div class="header">
-            <div class="park-name">Nyandungu Eco-Park</div>
+            <div class="park-name"></div>
             <div class="brand-title">Nyandungu Eco-Park</div>
             <div class="brand-subtitle">Discover · Learn · Protect</div>
           </div>
