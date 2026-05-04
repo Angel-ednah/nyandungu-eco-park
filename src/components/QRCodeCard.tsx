@@ -38,7 +38,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     peacock: {
       subtitle: "Discover the Beauty of the Peacock",
       subtitleKn: "Vumbura ubwiza bwa peacock",
-      tagline: "Please Respect Our Peafowls",
+      tagline: "Please Be Mindful Our Peafowls",
     },
     "top-ten": {
       welcome: "Welcome to Nyandungu Eco-Park",
@@ -49,7 +49,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     trails: {
       subtitle: "Welcome to Umudobori Lane",
       subtitleKn: "Murakaza neza muri Umudobori Lane",
-      tagline: "Scan to Know Exciting Plants and Birds",
+      tagline: "Scan To Discover Or Learn About Exciting Plants",
     },
   };
 
@@ -800,13 +800,13 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
                 NF
               </div>
-              <p className="mt-1 text-[9px] leading-tight">No Outside Food</p>
+              <p className="mt-1 text-[9px] leading-tight">No unauthorized outside food</p>
             </div>
             <div>
               <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
                 PB
               </div>
-              <p className="mt-1 text-[9px] leading-tight">No Plastic Bottles</p>
+              <p className="mt-1 text-[9px] leading-tight">No single use plastic</p>
             </div>
             <div>
               <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[#1f7a3f]">
@@ -825,7 +825,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             className="mx-auto h-32 w-auto rounded-xl border border-primary/20 bg-white object-contain shadow-sm"
           />
           <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-primary">
-            Please drive slowly and watch for children
+            Go Slow Be Mindful Of Terrain And Other Lane Users
           </p>
         </div>
       )}

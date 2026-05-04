@@ -143,7 +143,7 @@ export const nyandunguInfoSection: SectionContent = {
   ],
   rules: [
     { en: "No Smoking", kn: "Kunywa itabi birabujijwe" },
-    { en: "No Outside Food", kn: "Ntagwinjiza Ibiryo Biturutse Hanze" },
+    { en: "No Outside Food", kn: "Ntakwinjiza Ibiryo Biturutse Hanze" },
     { en: "No Outside Food or Drink (Without Authorization)", kn: "Nta mafunguro cyangwa ibinyobwa byo hanze (uretse ubyemerewe)" },
     { en: "No Littering (Plastic Bottles)", kn: "Ntajugunya ya Pulasitiki" },
     { en: "No Single-Use Plastic Bottles", kn: "Amacupa ya pulasitiki akoreshwa rimwe arabujijwe" },
