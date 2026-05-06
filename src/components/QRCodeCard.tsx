@@ -464,7 +464,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       return;
     }
 
-    const doPrint = (heroImgSrc: string) => {
+    const doPrint = (heroImgSrc: string, stickerSrc?: string) => {
       win.document.write(`
         <html><head><title>QR Code - ${sectionName}</title>
         <style>
@@ -713,6 +713,22 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             text-align: center;
             word-break: break-all;
           }
+          .drive-slowly-wrapper {
+            margin-top: 10px;
+            margin-bottom: 16px;
+            text-align: center;
+          }
+          .drive-slowly-image {
+            display: block;
+            margin: 0 auto;
+            height: 110px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 18px;
+            background: #fdfdfd;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(15, 23, 42, 0.1);
+          }
         </style></head><body>
         <div class="card">
           <img src="${heroImgSrc}" class="hero-image" alt="${sectionName}" />
@@ -735,6 +751,9 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               <p>Respect nature · Follow park rules · Have a memorable experience!</p>
             </div>
             ${showProhibitedBanner ? `<div class="prohibited-section"><div class="prohibited-title">Prohibited Activities</div><div class="prohibited-icons"><div class="prohibited-item"><div class="prohibited-icon">&#128685;</div><div class="prohibited-text">No Smoking</div></div><div class="prohibited-item"><div class="prohibited-icon">&#127828;</div><div class="prohibited-text">No Outside Food</div></div><div class="prohibited-item"><div class="prohibited-icon">&#129380;</div><div class="prohibited-text">No Plastic Bottles</div></div><div class="prohibited-item"><div class="prohibited-icon">&#128054;</div><div class="prohibited-text">No Pets</div></div></div></div>` : ""}
+            ${(isTrailSection || isTopTenSection) && stickerSrc ? `<div class="drive-slowly-wrapper">
+                <img src="${stickerSrc}" alt="Drive slowly and watch for children sign" class="drive-slowly-image" />
+              </div>` : ""}
             <div class="tagline-bottom">Scan · Learn · Protect</div>
             <div class="url">${url}</div>
           </div>
@@ -744,9 +763,17 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       `);
     };
 
-    getPrintableImageSrc(cardImage).then((heroImgSrc) => {
-      doPrint(heroImgSrc);
-    });
+    if (isTrailSection || isTopTenSection) {
+      Promise.all([getPrintableImageSrc(cardImage), getPrintableImageSrc(driveSlowlySign)]).then(
+        ([heroImgSrc, stickerSrc]) => {
+          doPrint(heroImgSrc, stickerSrc);
+        },
+      );
+    } else {
+      getPrintableImageSrc(cardImage).then((heroImgSrc) => {
+        doPrint(heroImgSrc);
+      });
+    }
   };
 
   return (
