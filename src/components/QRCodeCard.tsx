@@ -400,8 +400,8 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
                 <div class="hidden-beauty">Scan to See the<br>Hidden Beauty of<br>Nyandungu</div>
                 <div class="discover-text">Discover nature, wildlife, and peaceful trails inside</div>
                 <div class="entry-fee">
-                  <h4>Entry Fee for Rwandans Only</h4>
-                  <div class="price">2,000 RWF</div>
+                  <h4>Entry Fee for Rwandans/EA Citizens</h4>
+                  <div class="price">2,000 RWF per day</div>
                   <div class="price-note">igiciro kiza kuri buri wese!</div>
                 </div>
               </div>
