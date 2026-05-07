@@ -440,7 +440,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
                 </div>
                 <div>
                   <div class="rule-icon">🥤</div>
-                  <div class="rule-text">No Plastic Bottles</div>
+                  <div class="rule-text">No single use Plastic Bottles</div>
                 </div>
                 <div>
                   <div class="rule-icon">🐕</div>
