@@ -29,27 +29,35 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   const url = `${baseUrl}${sectionPaths[sectionId] ?? `/section/${sectionId}`}`;
 
-  const sectionLabels: Record<string, { welcome?: string; subtitle: string; subtitleKn: string; tagline: string }> = {
+  const sectionLabels: Record<string, { welcome?: string; subtitle: string; subtitleKn: string; tagline: string; infoBoxTitle?: string; infoBoxText?: string }> = {
     "nyandungu-info": {
       subtitle: "Scan to See the Hidden Beauty of Nyandungu",
       subtitleKn: "Sikana hano kumenya byinshi",
       tagline: "Turn Your Curiosity Into a Real Experience",
+      infoBoxTitle: "Enjoy nature, follow park rules",
+      infoBoxText: "Respect nature · Follow park rules · Have a memorable experience!",
     },
     peacock: {
       subtitle: "Discover the Beauty of the Peacock",
       subtitleKn: "Vumbura ubwiza bwa peacock",
-      tagline: "🌿Please Be Mindful Our Peafowls🌿",
+      tagline: "🌿Please Be Mindful of Our Peafowls🌿",
+      infoBoxTitle: "Please Be Mindful of Our Peafowls",
+      infoBoxText: "Keep a safe distance · No feeding · No loud noises · Respect their habitat",
     },
     "top-ten": {
       welcome: "Welcome to Nyandungu Eco-Park",
       subtitle: "",
       subtitleKn: "Sikana umenye ahantu icumi heza cyane",
       tagline: "🌿Enjoy Nature, Follow Park Rules🌿",
+      infoBoxTitle: "Enjoy nature, follow park rules",
+      infoBoxText: "Respect nature · Follow park rules · Have a memorable experience!",
     },
     trails: {
       subtitle: "Welcome to Umudobori Lane",
       subtitleKn: "Murakaza neza muri Umudobori Lane",
       tagline: "Scan To Discover Or Learn About Exciting Plants",
+      infoBoxTitle: "Trail Safety Guidelines",
+      infoBoxText: "Stay on marked trails · No littering · Watch for wildlife · Have a safe hike!",
     },
   };
 
@@ -58,11 +66,14 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     subtitle: sectionName,
     subtitleKn: "",
     tagline: "Scan · Learn · Protect",
+    infoBoxTitle: "Enjoy nature, follow park rules",
+    infoBoxText: "Respect nature · Follow park rules · Have a memorable experience!",
   };
 
   const isParkInfo = sectionId === "nyandungu-info";
   const isTrailSection = sectionId === "trails";
   const isTopTenSection = sectionId === "top-ten";
+  const isPeacockSection = sectionId === "peacock";
   const showProhibitedBanner = isTopTenSection;
 
   const sectionHeroImages: Record<string, string> = {
@@ -637,7 +648,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             margin-bottom: 14px;
           }
           .info-box {
-            background: #1f7a3f;
+            background: ${isPeacockSection ? '#8B5CF6' : '#1f7a3f'};
             border-radius: 20px;
             padding: 14px 16px;
             color: white;
@@ -747,14 +758,14 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
               <div class="scan-label-kn">For more information, scan the code above</div>
             </div>
             <div class="info-box">
-              <h4>Enjoy nature, follow park rules</h4>
-              <p>Respect nature · Follow park rules · Have a memorable experience!</p>
+              <h4>${label.infoBoxTitle || "Enjoy nature, follow park rules"}</h4>
+              <p>${label.infoBoxText || "Respect nature · Follow park rules · Have a memorable experience!"}</p>
             </div>
             ${showProhibitedBanner ? `<div class="prohibited-section"><div class="prohibited-title">Prohibited Activities</div><div class="prohibited-icons"><div class="prohibited-item"><div class="prohibited-icon">&#128685;</div><div class="prohibited-text">No Smoking</div></div><div class="prohibited-item"><div class="prohibited-icon">&#127828;</div><div class="prohibited-text">No Outside Food</div></div><div class="prohibited-item"><div class="prohibited-icon">&#129380;</div><div class="prohibited-text">No Plastic Bottles</div></div><div class="prohibited-item"><div class="prohibited-icon">&#128054;</div><div class="prohibited-text">No Pets</div></div></div></div>` : ""}
             ${(isTrailSection || isTopTenSection) && stickerSrc ? `<div class="drive-slowly-wrapper">
                 <img src="${stickerSrc}" alt="Drive slowly and watch for children sign" class="drive-slowly-image" />
               </div>` : ""}
-            <div class="tagline-bottom">Scan · Learn · Protect</div>
+            <div class="tagline-bottom">${label.tagline || "Scan · Learn · Protect"}</div>
             <div class="url">${url}</div>
           </div>
         </div>
@@ -856,16 +867,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           </p>
         </div>
       )}
-      <div className="flex gap-2 pb-6">
-        <Button variant="outline" size="sm" onClick={handlePrint}>
-          <Printer className="mr-1 h-4 w-4" /> Print
-        </Button>
-        <Button variant="outline" size="sm" onClick={() => { navigator.clipboard.writeText(url); }}>
-          <LinkIcon className="mr-1 h-4 w-4" /> Copy Link
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-export default QRCodeCard;
+      {isPeacockSection && (
+        <div className="mx-6 mb-1 rounded-2xl border border-purple-200 bg-purple-50 p-3 text-center shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-wide text-purple-700">
+            🌿 Please Be Mindful of Our Peafowls
