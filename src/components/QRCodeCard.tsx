@@ -38,7 +38,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     peacock: {
       subtitle: "Discover the Beauty of the Peacock",
       subtitleKn: "Vumbura ubwiza bwa peacock",
-      tagline: "Please Be Mindful Our Peafowls",
+      tagline: "🌿Please Be Mindful Of Our Peafowls🌿",
     },
     "top-ten": {
       welcome: "Welcome to Nyandungu Eco-Park",
