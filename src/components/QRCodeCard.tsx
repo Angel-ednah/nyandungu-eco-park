@@ -29,7 +29,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
 
   const url = `${baseUrl}${sectionPaths[sectionId] ?? `/section/${sectionId}`}`;
 
-  const sectionLabels: Record<string, { welcome?: string; subtitle: string; subtitleKn: string; tagline: string; infoBoxTitle?: string; infoBoxText?: string }> = {
+  const sectionLabels: Record<string, { welcome?: string; subtitle: string; subtitleKn: string; tagline: string; infoBoxTitle?: string; infoBoxText?: string; qrAboveText?: string }> = {
     "nyandungu-info": {
       subtitle: "Scan to See the Hidden Beauty of Nyandungu",
       subtitleKn: "Sikana hano kumenya byinshi",
@@ -55,9 +55,10 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     trails: {
       subtitle: "Welcome to Umudobori Lane",
       subtitleKn: "Murakaza neza muri Umudobori Lane",
-      tagline: "Scan To Discover Or Learn About Exciting Plants",
+      tagline: "Go slow be mindful of terrain and other lane users",
       infoBoxTitle: "Trail Safety Guidelines",
       infoBoxText: "Stay on marked trails · No littering · Watch for wildlife · Have a safe hike!",
+      qrAboveText: "Scan To Discover Or Learn About Exciting Plants",
     },
   };
 
@@ -624,6 +625,15 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             font-style: italic;
             margin-bottom: 16px;
           }
+          .qr-above-text {
+            font-size: 11px;
+            font-weight: 700;
+            color: #2f5e34;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+            margin-bottom: 12px;
+          }
           .qr-panel {
             background: white;
             border-radius: 24px;
@@ -751,6 +761,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             ${label.welcome ? `<div class="page-title">${label.welcome}</div>` : ""}
             ${isTopTenSection ? `<div class="section-description">TOP 10 SITES TO VISIT IN NYANDUNGU</div>` : `<div class="section-description">${sectionName}</div>`}
             <div class="subtitle-kn">${label.subtitleKn || "Sikana umenye ahantu icumi heza cyane"}</div>
+            ${isTrailSection && label.qrAboveText ? `<div class="qr-above-text">${label.qrAboveText}</div>` : ""}
             <div class="qr-panel">
               ${printContent.innerHTML}
               <div class="scan-label">📍 Scan Here / Sikana Hano</div>
@@ -815,6 +826,11 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
         <p className="text-sm text-muted-foreground mt-1">{label.subtitle}</p>
         {isParkInfo && <p className="text-sm text-primary font-semibold mt-1">Entry: 2,000 RWF (Rwandans)</p>}
       </div>
+      {isTrailSection && label.qrAboveText && (
+        <p className="text-xs font-bold text-primary uppercase tracking-wide text-center px-6">
+          {label.qrAboveText}
+        </p>
+      )}
       <div ref={printRef} className="bg-card p-4 rounded-lg">
         <div className="qr-container">
           <QRCodeSVG value={url} size={180} level="H" includeMargin />
