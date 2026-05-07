@@ -40,7 +40,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     peacock: {
       subtitle: "Discover the Beauty of the Peacock",
       subtitleKn: "Vumbura ubwiza bwa peacock",
-      tagline: "🌿Please Be Mindful of Our Peafowls🌿",
+      tagline: "Please Be Mindful of Our Peafowls",
       infoBoxTitle: "Please Be Mindful of Our Peafowls",
       infoBoxText: "Keep a safe distance · No feeding · No loud noises · Respect their habitat",
     },
@@ -48,7 +48,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       welcome: "Welcome to Nyandungu Eco-Park",
       subtitle: "",
       subtitleKn: "Sikana umenye ahantu icumi heza cyane",
-      tagline: "🌿Enjoy Nature, Follow Park Rules🌿",
+      tagline: "Enjoy Nature, Follow Park Rules",
       infoBoxTitle: "Enjoy nature, follow park rules",
       infoBoxText: "Respect nature · Follow park rules · Have a memorable experience!",
     },
@@ -73,7 +73,6 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
   const isParkInfo = sectionId === "nyandungu-info";
   const isTrailSection = sectionId === "trails";
   const isTopTenSection = sectionId === "top-ten";
-  const isPeacockSection = sectionId === "peacock";
   const showProhibitedBanner = isTopTenSection;
 
   const sectionHeroImages: Record<string, string> = {
@@ -648,7 +647,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
             margin-bottom: 14px;
           }
           .info-box {
-            background: ${isPeacockSection ? '#8B5CF6' : '#1f7a3f'};
+            background: #1f7a3f;
             border-radius: 20px;
             padding: 14px 16px;
             color: white;
@@ -750,7 +749,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           </div>
           <div class="content">
             ${label.welcome ? `<div class="page-title">${label.welcome}</div>` : ""}
-            ${isTopTenSection ? `<div class="section-description">TOP 10 SITES TO VISIT IN NYANDUNGU</div>` : `<div class=\"section-description\">${sectionName}</div>`}
+            ${isTopTenSection ? `<div class="section-description">TOP 10 SITES TO VISIT IN NYANDUNGU</div>` : `<div class="section-description">${sectionName}</div>`}
             <div class="subtitle-kn">${label.subtitleKn || "Sikana umenye ahantu icumi heza cyane"}</div>
             <div class="qr-panel">
               ${printContent.innerHTML}
@@ -867,7 +866,16 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
           </p>
         </div>
       )}
-      {isPeacockSection && (
-        <div className="mx-6 mb-1 rounded-2xl border border-purple-200 bg-purple-50 p-3 text-center shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-wide text-purple-700">
-            🌿 Please Be Mindful of Our Peafowls
+      <div className="flex gap-2 pb-6">
+        <Button variant="outline" size="sm" onClick={handlePrint}>
+          <Printer className="mr-1 h-4 w-4" /> Print
+        </Button>
+        <Button variant="outline" size="sm" onClick={() => { navigator.clipboard.writeText(url); }}>
+          <LinkIcon className="mr-1 h-4 w-4" /> Copy Link
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default QRCodeCard;
