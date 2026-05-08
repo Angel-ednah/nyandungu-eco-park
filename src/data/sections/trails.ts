@@ -27,7 +27,7 @@ import skyView from "@/assets/sky-view.jpeg";
 import type { SectionContent } from "../sectionData";
 
 export const trailsSection: SectionContent = {
-  title: "Umudobori Lane — Trails & Wildlife",
+  title: "Welcome To Umudobori Lane — Trails & Wildlife",
   titleKn: "Murakaza neza muri Umudobori Lane",
   image: skyView,
   gallery: [docTrailCranes, docBarbet, docBarbet2, docFishEagle, docKingfisher, docFlameTree, docBambooPath],
