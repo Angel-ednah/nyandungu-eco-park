@@ -57,7 +57,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
       subtitleKn: "Murakaza neza muri Umudobori Lane",
       tagline: "Go slow be mindful of terrain and other lane users",
       infoBoxTitle: "Trail Safety Guidelines",
-      infoBoxText: "Stay on marked trails · No littering · Watch for wildlife · Have a safe hike!",
+      infoBoxText: "Stay on marked trails · No littering · Watch for wildlife · Have a safe journey!",
       qrAboveText: "Scan To Discover Or Learn About Exciting Plants",
     },
   };
