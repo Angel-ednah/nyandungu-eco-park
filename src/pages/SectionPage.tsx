@@ -7,7 +7,7 @@ import { ArrowLeft, ExternalLink, Globe, MessageSquare } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const GOOGLE_REVIEW_URL = "https://share.google/2uD5Q43HBBiGSpYtA";
+const googleReviewUrl = import.meta.env.VITE_GOOGLE_REVIEW_URL?.trim() ?? "";
 const SECTION_PATHS: Record<string, string> = {
   "nyandungu-info": "/nyandungu-info",
   peacock: "/peacock",
@@ -299,6 +299,7 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
               </div>
             )}
 
+            {googleReviewUrl && (
             <div className="rounded-xl border border-border bg-card p-6">
               <div className="mb-4 flex items-center gap-2">
                 <MessageSquare className="h-5 w-5 text-primary" />
@@ -316,13 +317,14 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                     : "If you enjoyed your visit, please leave us a review on Google."}
                 </p>
                 <Button asChild className="mt-4 w-full sm:w-auto">
-                  <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noreferrer">
+                  <a href={googleReviewUrl} target="_blank" rel="noreferrer">
                     <ExternalLink className="mr-2 h-4 w-4" />
                     {isKn ? "Duhere Isubiramo kuri Google" : "Leave a Google Review"}
                   </a>
                 </Button>
               </div>
             </div>
+            )}
           </div>
 
           <aside className="space-y-6">
