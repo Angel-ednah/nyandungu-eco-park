@@ -2,12 +2,16 @@ import ImageGallery from "@/components/ImageGallery";
 import QRCodeCard from "@/components/QRCodeCard";
 import { SITE_NAME, useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { sectionData } from "@/data/sectionData";
-import { ArrowLeft, ExternalLink, Globe, MessageSquare } from "lucide-react";
+import { AlertCircle, ArrowLeft, CheckCircle2, Globe, Loader2, Mail, MessageSquare, Send } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
-const googleReviewUrl = import.meta.env.VITE_GOOGLE_REVIEW_URL?.trim() ?? "";
+const feedbackEmail = import.meta.env.VITE_FEEDBACK_EMAIL?.trim() ?? "";
+const feedbackEndpoint = feedbackEmail ? `https://formsubmit.co/ajax/${encodeURIComponent(feedbackEmail)}` : "";
 const SECTION_PATHS: Record<string, string> = {
   "nyandungu-info": "/nyandungu-info",
   peacock: "/peacock",
@@ -27,6 +31,8 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
   const baseUrl = window.location.origin;
   const [lang, setLang] = useState<"en" | "kn">("en");
   const [highlightImageIndices, setHighlightImageIndices] = useState<Record<number, number>>({});
+  const [feedbackForm, setFeedbackForm] = useState({ name: "", email: "", message: "" });
+  const [feedbackStatus, setFeedbackStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const isKn = lang === "kn";
   const getHighlightImages = (highlight: { image?: string; carouselImages?: string[] }) =>
     highlight.carouselImages && highlight.carouselImages.length > 0
@@ -133,6 +139,44 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
 
     return () => intervals.forEach(clearInterval);
   }, [section]);
+
+  const handleFeedbackSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!feedbackEndpoint || feedbackStatus === "sending") {
+      return;
+    }
+
+    setFeedbackStatus("sending");
+
+    try {
+      const response = await fetch(feedbackEndpoint, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: feedbackForm.name,
+          email: feedbackForm.email,
+          message: feedbackForm.message,
+          section: section.title,
+          page: window.location.href,
+          _subject: `Nyandungu Eco Park feedback: ${section.title}`,
+          _template: "table",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Feedback request failed");
+      }
+
+      setFeedbackStatus("success");
+      setFeedbackForm({ name: "", email: "", message: "" });
+    } catch {
+      setFeedbackStatus("error");
+    }
+  };
 
   if (!section) {
     return (
@@ -299,7 +343,6 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
               </div>
             )}
 
-            {googleReviewUrl && (
             <div className="rounded-xl border border-border bg-card p-6">
               <div className="mb-4 flex items-center gap-2">
                 <MessageSquare className="h-5 w-5 text-primary" />
@@ -310,21 +353,112 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
               <p className="mb-4 text-sm text-muted-foreground">
                 {isKn ? "Ese amakuru yagufashije? Tugire icyo utubwira!" : "Did you find this information useful? Let us know!"}
               </p>
-              <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
-                <p className="text-sm text-muted-foreground">
+              {feedbackEndpoint ? (
+                <form onSubmit={handleFeedbackSubmit} className="space-y-4">
+                  <input type="hidden" name="section" value={section.title} />
+                  <input type="hidden" name="page" value={window.location.href} />
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="feedback-name">{isKn ? "Izina" : "Name"}</Label>
+                      <Input
+                        id="feedback-name"
+                        name="name"
+                        value={feedbackForm.name}
+                        onChange={(event) => {
+                          setFeedbackForm((current) => ({ ...current, name: event.target.value }));
+                          setFeedbackStatus("idle");
+                        }}
+                        placeholder={isKn ? "Andika izina ryawe" : "Your name"}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="feedback-email">{isKn ? "Imeyili" : "Email"}</Label>
+                      <Input
+                        id="feedback-email"
+                        name="email"
+                        type="email"
+                        value={feedbackForm.email}
+                        onChange={(event) => {
+                          setFeedbackForm((current) => ({ ...current, email: event.target.value }));
+                          setFeedbackStatus("idle");
+                        }}
+                        placeholder={isKn ? "Imeyili yawe" : "Your email"}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="feedback-message">{isKn ? "Ubutumwa" : "Message"}</Label>
+                    <Textarea
+                      id="feedback-message"
+                      name="message"
+                      value={feedbackForm.message}
+                      onChange={(event) => {
+                        setFeedbackForm((current) => ({ ...current, message: event.target.value }));
+                        setFeedbackStatus("idle");
+                      }}
+                      placeholder={isKn ? "Tubwire igitekerezo cyawe..." : "Tell us what you think..."}
+                      required
+                      rows={5}
+                    />
+                  </div>
+
+                  {feedbackStatus === "success" && (
+                    <div className="flex items-start gap-2 rounded-lg border border-primary/20 bg-primary/5 p-3 text-sm text-primary">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                      <span>
+                        {isKn
+                          ? "Murakoze! Igitekerezo cyawe cyoherejwe."
+                          : "Thank you! Your feedback has been sent."}
+                      </span>
+                    </div>
+                  )}
+
+                  {feedbackStatus === "error" && (
+                    <div className="flex items-start gap-2 rounded-lg border border-destructive/20 bg-destructive/5 p-3 text-sm text-destructive">
+                      <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                      <span>
+                        {isKn
+                          ? "Ntibyashobotse kohereza igitekerezo. Ongera ugerageze."
+                          : "We could not send your feedback. Please try again."}
+                      </span>
+                    </div>
+                  )}
+
+                  <Button type="submit" className="w-full sm:w-auto" disabled={feedbackStatus === "sending"}>
+                    {feedbackStatus === "sending" ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <Send className="mr-2 h-4 w-4" />
+                    )}
+                    {feedbackStatus === "sending"
+                      ? isKn
+                        ? "Biroherezwa..."
+                        : "Sending..."
+                      : isKn
+                        ? "Ohereza Igitekerezo"
+                        : "Send Feedback"}
+                  </Button>
+                </form>
+              ) : (
+                <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+                  <div className="mb-2 flex items-center gap-2">
+                    <Mail className="h-4 w-4 text-primary" />
+                    <p className="text-sm font-medium text-foreground">
+                      {isKn ? "Shyiramo imeyili yo kwakira ibitekerezo" : "Set a feedback email address"}
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
                   {isKn
-                    ? "Niba wishimiye uruzinduko rwawe, wadusigira isubiramo kuri Google."
-                    : "If you enjoyed your visit, please leave us a review on Google."}
-                </p>
-                <Button asChild className="mt-4 w-full sm:w-auto">
-                  <a href={googleReviewUrl} target="_blank" rel="noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    {isKn ? "Duhere Isubiramo kuri Google" : "Leave a Google Review"}
-                  </a>
-                </Button>
-              </div>
+                    ? "Ongeramo VITE_FEEDBACK_EMAIL muri .env kugira ngo iyi fomu yohereze ibitekerezo."
+                    : "Add VITE_FEEDBACK_EMAIL to .env so this form can send visitor feedback."}
+                  </p>
+                </div>
+              )}
             </div>
-            )}
           </div>
 
           <aside className="space-y-6">
