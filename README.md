@@ -104,6 +104,12 @@ VITE_GTM_ID=GTM-XXXXXXX
 
 QR codes include tracking parameters such as `utm_source=qr`, `section=top-ten`, and `qr_id=park_sign_top-ten`. When a visitor opens a QR link, the app sends a `qr_scan` event to Google Analytics with the section ID, QR sign ID, source, campaign, and page path. If `VITE_GTM_ID` is set, the same event is pushed into the GTM data layer.
 
+For testing, add `debug_analytics=1` to a QR URL and watch **Admin > DebugView** in Google Analytics. Example:
+
+```text
+https://nyandungu-eco-park.vercel.app/top-ten?utm_source=qr&utm_medium=park_sign&utm_campaign=section_qr&section=top-ten&qr_id=park_sign_top-ten&debug_analytics=1
+```
+
 In Google Analytics, check:
 
 - **Reports > Realtime** to see current visitors and QR scans
