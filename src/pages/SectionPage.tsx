@@ -10,8 +10,10 @@ import { ArrowLeft, Globe, Mail, MessageSquare, Send } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const feedbackAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
-const feedbackEndpoint = "https://api.web3forms.com/submit";
+const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() ?? "";
+const web3FormsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
+const feedbackEndpoint = formspreeEndpoint || (web3FormsAccessKey ? "https://api.web3forms.com/submit" : "");
+const isUsingWeb3Forms = Boolean(web3FormsAccessKey && !formspreeEndpoint);
 const SECTION_PATHS: Record<string, string> = {
   "nyandungu-info": "/nyandungu-info",
   peacock: "/peacock",
@@ -313,13 +315,13 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
               <p className="mb-5 text-sm text-muted-foreground">
                 {isKn ? "Ese amakuru yagufashije? Tugire icyo utubwira!" : "Did you find this information useful? Let us know!"}
               </p>
-              {feedbackAccessKey ? (
+              {feedbackEndpoint ? (
                 <form
                   action={feedbackEndpoint}
                   method="POST"
                   className="space-y-5"
                 >
-                  <input type="hidden" name="access_key" value={feedbackAccessKey} />
+                  {isUsingWeb3Forms && <input type="hidden" name="access_key" value={web3FormsAccessKey} />}
                   <input type="hidden" name="section" value={section.title} />
                   <input type="hidden" name="page" value={window.location.href} />
                   <input type="hidden" name="subject" value={`Nyandungu Eco Park feedback: ${section.title}`} />
@@ -386,8 +388,8 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                   </div>
                   <p className="text-sm text-muted-foreground">
                   {isKn
-                    ? "Ongeramo VITE_WEB3FORMS_ACCESS_KEY muri .env kugira ngo iyi fomu yohereze ibitekerezo."
-                    : "Add VITE_WEB3FORMS_ACCESS_KEY to .env so this form can send visitor feedback."}
+                    ? "Ongeramo VITE_FORMSPREE_ENDPOINT muri .env kugira ngo iyi fomu yohereze ibitekerezo."
+                    : "Add VITE_FORMSPREE_ENDPOINT to .env so this form can send visitor feedback."}
                   </p>
                 </div>
               )}
