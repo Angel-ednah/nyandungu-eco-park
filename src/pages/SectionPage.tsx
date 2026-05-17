@@ -10,7 +10,7 @@ import { AlertCircle, ArrowLeft, CheckCircle2, Globe, Loader2, Mail, MessageSqua
 import { Link, useParams } from "react-router-dom";
 import { FormEvent, useEffect, useState } from "react";
 
-const feedbackEmail = import.meta.env.VITE_FEEDBACK_EMAIL?.trim() ?? "";
+const feedbackEmail = import.meta.env.VITE_FEEDBACK_EMAIL?.trim() || "angelusabyemaria@gmail.com";
 const feedbackEndpoint = feedbackEmail ? `https://formsubmit.co/ajax/${encodeURIComponent(feedbackEmail)}` : "";
 const SECTION_PATHS: Record<string, string> = {
   "nyandungu-info": "/nyandungu-info",
@@ -343,24 +343,26 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
               </div>
             )}
 
-            <div className="rounded-xl border border-border bg-card p-6">
-              <div className="mb-4 flex items-center gap-2">
-                <MessageSquare className="h-5 w-5 text-primary" />
+            <div className="border border-gray-300 bg-white p-4 shadow-sm md:p-6">
+              <div className="mb-5 flex items-center gap-2">
+                <MessageSquare className="h-5 w-5 text-[#2f7dbb]" />
                 <h2 className="font-heading text-lg font-semibold text-foreground">
                   {isKn ? "Tanga Igitekerezo" : "Share Your Feedback"}
                 </h2>
               </div>
-              <p className="mb-4 text-sm text-muted-foreground">
+              <p className="mb-5 text-sm text-muted-foreground">
                 {isKn ? "Ese amakuru yagufashije? Tugire icyo utubwira!" : "Did you find this information useful? Let us know!"}
               </p>
               {feedbackEndpoint ? (
-                <form onSubmit={handleFeedbackSubmit} className="space-y-4">
+                <form onSubmit={handleFeedbackSubmit} className="space-y-5">
                   <input type="hidden" name="section" value={section.title} />
                   <input type="hidden" name="page" value={window.location.href} />
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <Label htmlFor="feedback-name">{isKn ? "Izina" : "Name"}</Label>
+                  <div className="space-y-5">
+                    <div>
+                      <Label htmlFor="feedback-name" className="sr-only">
+                        {isKn ? "Amazina yanyu" : "Your name"}
+                      </Label>
                       <Input
                         id="feedback-name"
                         name="name"
@@ -369,12 +371,15 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                           setFeedbackForm((current) => ({ ...current, name: event.target.value }));
                           setFeedbackStatus("idle");
                         }}
-                        placeholder={isKn ? "Andika izina ryawe" : "Your name"}
+                        placeholder={isKn ? "Amazina yanyu" : "Your name"}
+                        className="h-16 rounded-lg border-2 border-slate-500 bg-white px-5 text-2xl text-foreground shadow-inner placeholder:text-gray-400 focus-visible:ring-[#2f7dbb]"
                         required
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="feedback-email">{isKn ? "Imeyili" : "Email"}</Label>
+                    <div>
+                      <Label htmlFor="feedback-email" className="sr-only">
+                        {isKn ? "Email yanyu" : "Your email"}
+                      </Label>
                       <Input
                         id="feedback-email"
                         name="email"
@@ -384,14 +389,17 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                           setFeedbackForm((current) => ({ ...current, email: event.target.value }));
                           setFeedbackStatus("idle");
                         }}
-                        placeholder={isKn ? "Imeyili yawe" : "Your email"}
+                        placeholder={isKn ? "Email yanyu" : "Your email"}
+                        className="h-16 rounded-lg border-2 border-slate-500 bg-white px-5 text-2xl text-foreground shadow-inner placeholder:text-gray-400 focus-visible:ring-[#2f7dbb]"
                         required
                       />
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="feedback-message">{isKn ? "Ubutumwa" : "Message"}</Label>
+                  <div>
+                    <Label htmlFor="feedback-message" className="sr-only">
+                      {isKn ? "Andika hano" : "Write here"}
+                    </Label>
                     <Textarea
                       id="feedback-message"
                       name="message"
@@ -400,9 +408,10 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                         setFeedbackForm((current) => ({ ...current, message: event.target.value }));
                         setFeedbackStatus("idle");
                       }}
-                      placeholder={isKn ? "Tubwire igitekerezo cyawe..." : "Tell us what you think..."}
+                      placeholder={isKn ? "Andika hano" : "Write here"}
+                      className="min-h-[280px] rounded-lg border-2 border-slate-500 bg-white px-5 py-6 text-2xl text-foreground shadow-inner placeholder:text-gray-400 focus-visible:ring-[#2f7dbb]"
                       required
-                      rows={5}
+                      rows={8}
                     />
                   </div>
 
@@ -428,7 +437,11 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                     </div>
                   )}
 
-                  <Button type="submit" className="w-full sm:w-auto" disabled={feedbackStatus === "sending"}>
+                  <Button
+                    type="submit"
+                    className="h-14 rounded-md bg-[#2f7dbb] px-8 text-xl font-semibold uppercase text-white shadow-md hover:bg-[#276da4]"
+                    disabled={feedbackStatus === "sending"}
+                  >
                     {feedbackStatus === "sending" ? (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     ) : (
@@ -439,8 +452,8 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                         ? "Biroherezwa..."
                         : "Sending..."
                       : isKn
-                        ? "Ohereza Igitekerezo"
-                        : "Send Feedback"}
+                        ? "OHEREZA"
+                        : "SEND"}
                   </Button>
                 </form>
               ) : (

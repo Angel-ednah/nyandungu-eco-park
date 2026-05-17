@@ -83,7 +83,7 @@ npm run dev
 Create a `.env` file from `.env.example` and set the email address that should receive visitor feedback:
 
 ```bash
-VITE_FEEDBACK_EMAIL=your-email@example.com
+VITE_FEEDBACK_EMAIL=angelusabyemaria@gmail.com
 ```
 
 The feedback form uses FormSubmit. The first submitted message will trigger a confirmation email to that address; approve it once so future visitor messages can be delivered.
