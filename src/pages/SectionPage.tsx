@@ -6,12 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { sectionData } from "@/data/sectionData";
-import { AlertCircle, ArrowLeft, CheckCircle2, Globe, Loader2, Mail, MessageSquare, Send } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Globe, Loader2, Mail, MessageSquare, Send } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { FormEvent, useEffect, useState } from "react";
 
 const feedbackEmail = import.meta.env.VITE_FEEDBACK_EMAIL?.trim() || "angelusabyemaria@gmail.com";
-const feedbackEndpoint = feedbackEmail ? `https://formsubmit.co/ajax/${encodeURIComponent(feedbackEmail)}` : "";
+const feedbackEndpoint = feedbackEmail ? `https://formsubmit.co/${encodeURIComponent(feedbackEmail)}` : "";
 const SECTION_PATHS: Record<string, string> = {
   "nyandungu-info": "/nyandungu-info",
   peacock: "/peacock",
@@ -32,7 +32,7 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
   const [lang, setLang] = useState<"en" | "kn">("en");
   const [highlightImageIndices, setHighlightImageIndices] = useState<Record<number, number>>({});
   const [feedbackForm, setFeedbackForm] = useState({ name: "", email: "", message: "" });
-  const [feedbackStatus, setFeedbackStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [feedbackStatus, setFeedbackStatus] = useState<"idle" | "sending" | "success">("idle");
   const isKn = lang === "kn";
   const getHighlightImages = (highlight: { image?: string; carouselImages?: string[] }) =>
     highlight.carouselImages && highlight.carouselImages.length > 0
@@ -141,41 +141,16 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
   }, [section]);
 
   const handleFeedbackSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
     if (!feedbackEndpoint || feedbackStatus === "sending") {
+      event.preventDefault();
       return;
     }
 
     setFeedbackStatus("sending");
-
-    try {
-      const response = await fetch(feedbackEndpoint, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: feedbackForm.name,
-          email: feedbackForm.email,
-          message: feedbackForm.message,
-          section: section.title,
-          page: window.location.href,
-          _subject: `Nyandungu Eco Park feedback: ${section.title}`,
-          _template: "table",
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Feedback request failed");
-      }
-
+    window.setTimeout(() => {
       setFeedbackStatus("success");
       setFeedbackForm({ name: "", email: "", message: "" });
-    } catch {
-      setFeedbackStatus("error");
-    }
+    }, 1200);
   };
 
   if (!section) {
@@ -354,9 +329,19 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                 {isKn ? "Ese amakuru yagufashije? Tugire icyo utubwira!" : "Did you find this information useful? Let us know!"}
               </p>
               {feedbackEndpoint ? (
-                <form onSubmit={handleFeedbackSubmit} className="space-y-5">
+                <form
+                  action={feedbackEndpoint}
+                  method="POST"
+                  target="feedback-submit-frame"
+                  onSubmit={handleFeedbackSubmit}
+                  className="space-y-5"
+                >
+                  <iframe name="feedback-submit-frame" title="Feedback submission" className="hidden" />
                   <input type="hidden" name="section" value={section.title} />
                   <input type="hidden" name="page" value={window.location.href} />
+                  <input type="hidden" name="_subject" value={`Nyandungu Eco Park feedback: ${section.title}`} />
+                  <input type="hidden" name="_template" value="table" />
+                  <input type="hidden" name="_captcha" value="false" />
 
                   <div className="space-y-5">
                     <div>
@@ -422,17 +407,6 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                         {isKn
                           ? "Murakoze! Igitekerezo cyawe cyoherejwe."
                           : "Thank you! Your feedback has been sent."}
-                      </span>
-                    </div>
-                  )}
-
-                  {feedbackStatus === "error" && (
-                    <div className="flex items-start gap-2 rounded-lg border border-destructive/20 bg-destructive/5 p-3 text-sm text-destructive">
-                      <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                      <span>
-                        {isKn
-                          ? "Ntibyashobotse kohereza igitekerezo. Ongera ugerageze."
-                          : "We could not send your feedback. Please try again."}
                       </span>
                     </div>
                   )}
