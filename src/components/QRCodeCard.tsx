@@ -33,6 +33,7 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     utm_medium: "park_sign",
     utm_campaign: "section_qr",
     section: sectionId,
+    qr_id: `park_sign_${sectionId}`,
   });
   const url = `${baseUrl}${path}?${qrParams.toString()}`;
 
