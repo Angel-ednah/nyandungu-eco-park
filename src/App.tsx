@@ -8,13 +8,14 @@ import SectionPage from "./pages/SectionPage";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-const App = () => (
-  <TooltipProvider>
-    <Toaster />
-    <Sonner />
-    <BrowserRouter>
+const AppRoutes = () => {
+  useAnalytics();
+
+  return (
+    <>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-foreground focus:shadow-card"
@@ -39,6 +40,16 @@ const App = () => (
         </Routes>
       </main>
       <Footer />
+    </>
+  );
+};
+
+const App = () => (
+  <TooltipProvider>
+    <Toaster />
+    <Sonner />
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   </TooltipProvider>
 );
