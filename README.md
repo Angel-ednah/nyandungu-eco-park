@@ -80,7 +80,7 @@ npm run dev
 
 ### 3. Configure feedback email
 
-Create a Formspree form for `angelusabyemaria@gmail.com` at https://formspree.io/. In the Formspree dashboard, open the form's Integration section and copy the endpoint URL. Then create a `.env` file from `.env.example` and paste the endpoint:
+Create a Formspree form for `niyigabamartial@gmail.com` at https://formspree.io/. In the Formspree dashboard, open the form's Integration section and copy the endpoint URL. Then create a `.env` file from `.env.example` and paste the endpoint:
 
 ```bash
 VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/your-form-id
