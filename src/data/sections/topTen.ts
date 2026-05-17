@@ -191,7 +191,7 @@ export const topTenSection: SectionContent = {
     },
     {
       title: "6. Restaurant",
-      titleKn: "Resitora ya nyandunge",
+      titleKn: "Resitora ya nyandungu",
       description:
         "Enjoy a delicious meal or a refreshing drink while surrounded by the calming sights and sounds of nature.",
       descriptionKn:
