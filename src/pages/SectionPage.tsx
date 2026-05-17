@@ -6,12 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { sectionData } from "@/data/sectionData";
-import { ArrowLeft, CheckCircle2, Globe, Loader2, Mail, MessageSquare, Send } from "lucide-react";
+import { ArrowLeft, Globe, Mail, MessageSquare, Send } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const feedbackEmail = import.meta.env.VITE_FEEDBACK_EMAIL?.trim() || "angelusabyemaria@gmail.com";
-const feedbackEndpoint = feedbackEmail ? `https://formsubmit.co/${encodeURIComponent(feedbackEmail)}` : "";
+const feedbackEndpoint = feedbackEmail ? `https://formsubmit.co/${feedbackEmail}` : "";
 const SECTION_PATHS: Record<string, string> = {
   "nyandungu-info": "/nyandungu-info",
   peacock: "/peacock",
@@ -31,8 +31,6 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
   const baseUrl = window.location.origin;
   const [lang, setLang] = useState<"en" | "kn">("en");
   const [highlightImageIndices, setHighlightImageIndices] = useState<Record<number, number>>({});
-  const [feedbackForm, setFeedbackForm] = useState({ name: "", email: "", message: "" });
-  const [feedbackStatus, setFeedbackStatus] = useState<"idle" | "sending" | "success">("idle");
   const isKn = lang === "kn";
   const getHighlightImages = (highlight: { image?: string; carouselImages?: string[] }) =>
     highlight.carouselImages && highlight.carouselImages.length > 0
@@ -139,19 +137,6 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
 
     return () => intervals.forEach(clearInterval);
   }, [section]);
-
-  const handleFeedbackSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    if (!feedbackEndpoint || feedbackStatus === "sending") {
-      event.preventDefault();
-      return;
-    }
-
-    setFeedbackStatus("sending");
-    window.setTimeout(() => {
-      setFeedbackStatus("success");
-      setFeedbackForm({ name: "", email: "", message: "" });
-    }, 1200);
-  };
 
   if (!section) {
     return (
@@ -332,11 +317,8 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                 <form
                   action={feedbackEndpoint}
                   method="POST"
-                  target="feedback-submit-frame"
-                  onSubmit={handleFeedbackSubmit}
                   className="space-y-5"
                 >
-                  <iframe name="feedback-submit-frame" title="Feedback submission" className="hidden" />
                   <input type="hidden" name="section" value={section.title} />
                   <input type="hidden" name="page" value={window.location.href} />
                   <input type="hidden" name="_subject" value={`Nyandungu Eco Park feedback: ${section.title}`} />
@@ -351,11 +333,6 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                       <Input
                         id="feedback-name"
                         name="name"
-                        value={feedbackForm.name}
-                        onChange={(event) => {
-                          setFeedbackForm((current) => ({ ...current, name: event.target.value }));
-                          setFeedbackStatus("idle");
-                        }}
                         placeholder={isKn ? "Amazina yanyu" : "Your name"}
                         className="h-16 rounded-lg border-2 border-slate-500 bg-white px-5 text-2xl text-foreground shadow-inner placeholder:text-gray-400 focus-visible:ring-[#2f7dbb]"
                         required
@@ -369,11 +346,6 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                         id="feedback-email"
                         name="email"
                         type="email"
-                        value={feedbackForm.email}
-                        onChange={(event) => {
-                          setFeedbackForm((current) => ({ ...current, email: event.target.value }));
-                          setFeedbackStatus("idle");
-                        }}
                         placeholder={isKn ? "Email yanyu" : "Your email"}
                         className="h-16 rounded-lg border-2 border-slate-500 bg-white px-5 text-2xl text-foreground shadow-inner placeholder:text-gray-400 focus-visible:ring-[#2f7dbb]"
                         required
@@ -388,11 +360,6 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                     <Textarea
                       id="feedback-message"
                       name="message"
-                      value={feedbackForm.message}
-                      onChange={(event) => {
-                        setFeedbackForm((current) => ({ ...current, message: event.target.value }));
-                        setFeedbackStatus("idle");
-                      }}
                       placeholder={isKn ? "Andika hano" : "Write here"}
                       className="min-h-[280px] rounded-lg border-2 border-slate-500 bg-white px-5 py-6 text-2xl text-foreground shadow-inner placeholder:text-gray-400 focus-visible:ring-[#2f7dbb]"
                       required
@@ -400,34 +367,12 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                     />
                   </div>
 
-                  {feedbackStatus === "success" && (
-                    <div className="flex items-start gap-2 rounded-lg border border-primary/20 bg-primary/5 p-3 text-sm text-primary">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                      <span>
-                        {isKn
-                          ? "Murakoze! Igitekerezo cyawe cyoherejwe."
-                          : "Thank you! Your feedback has been sent."}
-                      </span>
-                    </div>
-                  )}
-
                   <Button
                     type="submit"
                     className="h-14 rounded-md bg-[#2f7dbb] px-8 text-xl font-semibold uppercase text-white shadow-md hover:bg-[#276da4]"
-                    disabled={feedbackStatus === "sending"}
                   >
-                    {feedbackStatus === "sending" ? (
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    ) : (
-                      <Send className="mr-2 h-4 w-4" />
-                    )}
-                    {feedbackStatus === "sending"
-                      ? isKn
-                        ? "Biroherezwa..."
-                        : "Sending..."
-                      : isKn
-                        ? "OHEREZA"
-                        : "SEND"}
+                    <Send className="mr-2 h-4 w-4" />
+                    {isKn ? "OHEREZA" : "SEND"}
                   </Button>
                 </form>
               ) : (
