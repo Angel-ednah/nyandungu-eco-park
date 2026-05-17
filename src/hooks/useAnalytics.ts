@@ -5,6 +5,9 @@ import TagManager from "react-gtm-module";
 const defaultMeasurementId = "G-BF5SLPQQQ8";
 const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || defaultMeasurementId;
 const gtmId = import.meta.env.VITE_GTM_ID?.trim() ?? "";
+const formspreeEndpoint =
+  import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || "https://formspree.io/f/xpqnanrb";
+const shouldNotifyQrScans = import.meta.env.VITE_QR_SCAN_EMAIL_NOTIFICATIONS !== "false";
 let isTagManagerInstalled = false;
 
 declare global {
@@ -47,6 +50,45 @@ const getSectionFromPath = (path: string) => {
   return section || "home";
 };
 
+const notifyQrScan = (qrScanEvent: Record<string, unknown>) => {
+  if (!shouldNotifyQrScans || !formspreeEndpoint) {
+    return;
+  }
+
+  const notificationKey = `qr_scan_notified:${window.location.href}`;
+  if (sessionStorage.getItem(notificationKey)) {
+    return;
+  }
+
+  sessionStorage.setItem(notificationKey, "true");
+
+  const formData = new FormData();
+  formData.set("subject", `Nyandungu Eco Park QR scan: ${qrScanEvent.section_id}`);
+  formData.set("from_name", "Nyandungu Eco Park QR Tracker");
+  formData.set("event", "qr_scan");
+  formData.set("scanned_at", new Date().toISOString());
+  formData.set("page", window.location.href);
+  formData.set("referrer", document.referrer || "Direct / no referrer");
+  formData.set("visitor_language", navigator.language || "Unknown");
+  formData.set("visitor_timezone", Intl.DateTimeFormat().resolvedOptions().timeZone || "Unknown");
+  formData.set("visitor_device", navigator.userAgent);
+
+  Object.entries(qrScanEvent).forEach(([key, value]) => {
+    formData.set(key, String(value));
+  });
+
+  fetch(formspreeEndpoint, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+    keepalive: true,
+  }).catch(() => {
+    sessionStorage.removeItem(notificationKey);
+  });
+};
+
 export const useAnalytics = () => {
   const location = useLocation();
 
@@ -84,6 +126,7 @@ export const useAnalytics = () => {
       };
 
       window.gtag("event", "qr_scan", qrScanEvent);
+      notifyQrScan(qrScanEvent);
 
       TagManager.dataLayer({
         dataLayer: {
