@@ -88,6 +88,14 @@ VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/your-form-id
 
 The feedback form posts to Formspree, which forwards visitor messages to the email address connected to that form.
 
+QR scan notifications also use this Formspree endpoint. When someone opens a QR link, the app sends an email notification with the section, QR sign ID, scanned page, scan time, referrer, browser/device string, language, and timezone.
+
+```bash
+VITE_QR_SCAN_EMAIL_NOTIFICATIONS=true
+```
+
+Set `VITE_QR_SCAN_EMAIL_NOTIFICATIONS=false` if scan notification emails become too noisy.
+
 ### 4. Configure analytics
 
 Create a Google Analytics 4 property for the website, then open the web data stream and copy the Measurement ID. Google says this ID starts with `G-`. Add it to `.env`:
@@ -102,7 +110,7 @@ If you also use Google Tag Manager, create a GTM web container and add its conta
 VITE_GTM_ID=GTM-XXXXXXX
 ```
 
-QR codes include tracking parameters such as `utm_source=qr`, `section=top-ten`, and `qr_id=park_sign_top-ten`. When a visitor opens a QR link, the app sends a `qr_scan` event to Google Analytics with the section ID, QR sign ID, source, campaign, and page path. If `VITE_GTM_ID` is set, the same event is pushed into the GTM data layer.
+QR codes include tracking parameters such as `utm_source=qr`, `section=top-ten`, and `qr_id=park_sign_top-ten`. When a visitor opens a QR link, the app sends a `qr_scan` event to Google Analytics with the section ID, QR sign ID, source, campaign, and page path. It also sends an email notification through Formspree when `VITE_QR_SCAN_EMAIL_NOTIFICATIONS` is enabled. If `VITE_GTM_ID` is set, the same event is pushed into the GTM data layer.
 
 For testing, add `debug_analytics=1` to a QR URL and watch **Admin > DebugView** in Google Analytics. Example:
 
