@@ -91,6 +91,13 @@ export const useAnalytics = () => {
           ...qrScanEvent,
         },
       });
+
+      if (debugMode) {
+        console.info("[analytics] qr_scan sent", {
+          measurementId,
+          ...qrScanEvent,
+        });
+      }
     }
   }, [location.pathname, location.search]);
 };
