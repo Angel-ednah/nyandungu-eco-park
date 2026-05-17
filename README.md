@@ -88,13 +88,31 @@ VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/your-form-id
 
 The feedback form posts to Formspree, which forwards visitor messages to the email address connected to that form.
 
-### 4. Build for production
+### 4. Configure analytics
+
+Create a Google Analytics 4 property for the website, then open the web data stream and copy the Measurement ID. Google says this ID starts with `G-`. Add it to `.env`:
+
+```bash
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+QR codes include tracking parameters such as `utm_source=qr` and `section=top-ten`. When a visitor opens a QR link, the app sends a `qr_scan` event to Google Analytics with the section ID.
+
+In Google Analytics, check:
+
+- **Reports > Realtime** to see current visitors and QR scans
+- **Reports > Engagement > Events** to see `qr_scan`
+- **Reports > Acquisition > Traffic acquisition** to see `utm_source=qr`
+
+Analytics shows anonymous visitor data such as page, time, device, city/country, and traffic source. It does not show the real person's name unless they submit feedback or identify themselves.
+
+### 5. Build for production
 
 ```bash
 npm run build
 ```
 
-### 5. Preview the production build
+### 6. Preview the production build
 
 ```bash
 npm run preview
@@ -136,6 +154,7 @@ Each highlight can include:
 Each section page includes a QR card that:
 
 - builds the public section URL from `window.location.origin`
+- adds QR tracking parameters for analytics
 - renders a QR code for that section
 - supports link copying
 - supports print-friendly output
@@ -154,15 +173,15 @@ The app includes a reusable SEO hook that manages:
 - JSON-LD structured data
 - document language
 
-## Analytics Direction
+## Analytics
 
-This project no longer includes built-in admin traffic tracking or authentication.
+The app supports Google Analytics 4 through `VITE_GA_MEASUREMENT_ID`.
 
-Recommended approach:
+Tracked activity includes:
 
-- use Google Analytics or Google Tag Manager for visit analytics
-- keep the application focused on the public visitor experience
-- add analytics scripts through the app shell or deployment platform when ready
+- page views for every route
+- QR scan events when a QR-tagged URL is opened
+- section IDs for QR traffic, such as `top-ten`, `trails`, `peacock`, and `nyandungu-info`
 
 ## Testing
 
@@ -184,11 +203,10 @@ Before deploying, make sure:
 - the production build completes successfully
 - SPA routing is handled correctly by the host
 - `VITE_FORMSPREE_ENDPOINT` is configured in the deployment environment
-- any Google Analytics or tag manager script is configured in the target environment
+- `VITE_GA_MEASUREMENT_ID` is configured in the deployment environment
 
 ## Recommended Next Steps
 
-- add Google Analytics or Google Tag Manager
 - add meaningful tests for the public QR flows
 - optimize large image and video assets for mobile visitors
 - decide whether visitor feedback should move from Formspree to a shared backend later

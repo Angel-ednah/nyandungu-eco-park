@@ -27,7 +27,14 @@ const QRCodeCard = ({ sectionId, sectionName, baseUrl }: QRCodeCardProps) => {
     trails: "/trails",
   };
 
-  const url = `${baseUrl}${sectionPaths[sectionId] ?? `/section/${sectionId}`}`;
+  const path = sectionPaths[sectionId] ?? `/section/${sectionId}`;
+  const qrParams = new URLSearchParams({
+    utm_source: "qr",
+    utm_medium: "park_sign",
+    utm_campaign: "section_qr",
+    section: sectionId,
+  });
+  const url = `${baseUrl}${path}?${qrParams.toString()}`;
 
   const sectionLabels: Record<string, { welcome?: string; subtitle: string; subtitleKn: string; tagline: string; infoBoxTitle?: string; infoBoxText?: string; qrAboveText?: string }> = {
     "nyandungu-info": {
