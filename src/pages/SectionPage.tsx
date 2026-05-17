@@ -10,8 +10,8 @@ import { ArrowLeft, Globe, Mail, MessageSquare, Send } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const feedbackEmail = import.meta.env.VITE_FEEDBACK_EMAIL?.trim() || "angelusabyemaria@gmail.com";
-const feedbackEndpoint = feedbackEmail ? `https://formsubmit.co/${feedbackEmail}` : "";
+const feedbackAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
+const feedbackEndpoint = "https://api.web3forms.com/submit";
 const SECTION_PATHS: Record<string, string> = {
   "nyandungu-info": "/nyandungu-info",
   peacock: "/peacock",
@@ -313,17 +313,18 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
               <p className="mb-5 text-sm text-muted-foreground">
                 {isKn ? "Ese amakuru yagufashije? Tugire icyo utubwira!" : "Did you find this information useful? Let us know!"}
               </p>
-              {feedbackEndpoint ? (
+              {feedbackAccessKey ? (
                 <form
                   action={feedbackEndpoint}
                   method="POST"
                   className="space-y-5"
                 >
+                  <input type="hidden" name="access_key" value={feedbackAccessKey} />
                   <input type="hidden" name="section" value={section.title} />
                   <input type="hidden" name="page" value={window.location.href} />
-                  <input type="hidden" name="_subject" value={`Nyandungu Eco Park feedback: ${section.title}`} />
-                  <input type="hidden" name="_template" value="table" />
-                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="subject" value={`Nyandungu Eco Park feedback: ${section.title}`} />
+                  <input type="hidden" name="from_name" value="Nyandungu Eco Park Visitor Guide" />
+                  <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
 
                   <div className="space-y-5">
                     <div>
@@ -385,8 +386,8 @@ const SectionPage = ({ canonicalPath, sectionId }: SectionPageProps) => {
                   </div>
                   <p className="text-sm text-muted-foreground">
                   {isKn
-                    ? "Ongeramo VITE_FEEDBACK_EMAIL muri .env kugira ngo iyi fomu yohereze ibitekerezo."
-                    : "Add VITE_FEEDBACK_EMAIL to .env so this form can send visitor feedback."}
+                    ? "Ongeramo VITE_WEB3FORMS_ACCESS_KEY muri .env kugira ngo iyi fomu yohereze ibitekerezo."
+                    : "Add VITE_WEB3FORMS_ACCESS_KEY to .env so this form can send visitor feedback."}
                   </p>
                 </div>
               )}

@@ -80,13 +80,13 @@ npm run dev
 
 ### 3. Configure feedback email
 
-Create a `.env` file from `.env.example` and set the email address that should receive visitor feedback:
+Create a Web3Forms access key for `angelusabyemaria@gmail.com` at https://web3forms.com/. Then create a `.env` file from `.env.example` and paste the key:
 
 ```bash
-VITE_FEEDBACK_EMAIL=angelusabyemaria@gmail.com
+VITE_WEB3FORMS_ACCESS_KEY=your-web3forms-access-key
 ```
 
-The feedback form uses FormSubmit. The first submitted message will trigger a confirmation email to that address; approve it once so future visitor messages can be delivered.
+The feedback form posts to Web3Forms, which forwards visitor messages to the email address connected to that access key.
 
 ### 4. Build for production
 
@@ -183,7 +183,7 @@ Before deploying, make sure:
 
 - the production build completes successfully
 - SPA routing is handled correctly by the host
-- `VITE_FEEDBACK_EMAIL` is configured in the deployment environment
+- `VITE_WEB3FORMS_ACCESS_KEY` is configured in the deployment environment
 - any Google Analytics or tag manager script is configured in the target environment
 
 ## Recommended Next Steps
@@ -191,7 +191,7 @@ Before deploying, make sure:
 - add Google Analytics or Google Tag Manager
 - add meaningful tests for the public QR flows
 - optimize large image and video assets for mobile visitors
-- decide whether visitor feedback should move from FormSubmit to a shared backend later
+- decide whether visitor feedback should move from Web3Forms to a shared backend later
 
 ## License
 
