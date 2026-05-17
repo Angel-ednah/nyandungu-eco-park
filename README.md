@@ -96,7 +96,19 @@ Create a Google Analytics 4 property for the website, then open the web data str
 VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
-QR codes include tracking parameters such as `utm_source=qr` and `section=top-ten`. When a visitor opens a QR link, the app sends a `qr_scan` event to Google Analytics with the section ID.
+If you also use Google Tag Manager, create a GTM web container and add its container ID:
+
+```bash
+VITE_GTM_ID=GTM-XXXXXXX
+```
+
+QR codes include tracking parameters such as `utm_source=qr`, `section=top-ten`, and `qr_id=park_sign_top-ten`. When a visitor opens a QR link, the app sends a `qr_scan` event to Google Analytics with the section ID, QR sign ID, source, campaign, and page path. If `VITE_GTM_ID` is set, the same event is pushed into the GTM data layer.
+
+For testing, add `debug_analytics=1` to a QR URL and watch **Admin > DebugView** in Google Analytics. Example:
+
+```text
+https://nyandungu-eco-park.vercel.app/top-ten?utm_source=qr&utm_medium=park_sign&utm_campaign=section_qr&section=top-ten&qr_id=park_sign_top-ten&debug_analytics=1
+```
 
 In Google Analytics, check:
 
@@ -104,7 +116,7 @@ In Google Analytics, check:
 - **Reports > Engagement > Events** to see `qr_scan`
 - **Reports > Acquisition > Traffic acquisition** to see `utm_source=qr`
 
-Analytics shows anonymous visitor data such as page, time, device, city/country, and traffic source. It does not show the real person's name unless they submit feedback or identify themselves.
+Analytics shows anonymous visitor data such as page, time, device, city/country, traffic source, section, and QR sign ID. It does not show the real person's name unless they submit feedback or identify themselves.
 
 ### 5. Build for production
 

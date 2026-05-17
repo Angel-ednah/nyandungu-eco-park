@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import TagManager from "react-gtm-module";
 
-const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() ?? "";
+const defaultMeasurementId = "G-BF5SLPQQQ8";
+const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || defaultMeasurementId;
+const gtmId = import.meta.env.VITE_GTM_ID?.trim() ?? "";
+let isTagManagerInstalled = false;
 
 declare global {
   interface Window {
@@ -29,6 +33,15 @@ const installGoogleAnalytics = () => {
   document.head.appendChild(script);
 };
 
+const installGoogleTagManager = () => {
+  if (!gtmId || isTagManagerInstalled) {
+    return;
+  }
+
+  TagManager.initialize({ gtmId });
+  isTagManagerInstalled = true;
+};
+
 const getSectionFromPath = (path: string) => {
   const section = path.replace(/^\/+/, "").split("/")[0];
   return section || "home";
@@ -39,6 +52,7 @@ export const useAnalytics = () => {
 
   useEffect(() => {
     installGoogleAnalytics();
+    installGoogleTagManager();
   }, []);
 
   useEffect(() => {
@@ -49,19 +63,33 @@ export const useAnalytics = () => {
     const path = `${location.pathname}${location.search}`;
     const params = new URLSearchParams(location.search);
     const sectionId = params.get("section") ?? getSectionFromPath(location.pathname);
+    const debugMode = import.meta.env.DEV || params.get("debug_analytics") === "1";
 
     window.gtag("event", "page_view", {
       page_path: path,
       page_location: window.location.href,
       page_title: document.title,
       section_id: sectionId,
+      debug_mode: debugMode,
     });
 
     if (params.get("utm_source") === "qr") {
-      window.gtag("event", "qr_scan", {
+      const qrScanEvent = {
         section_id: sectionId,
+        qr_id: params.get("qr_id") ?? `park_sign_${sectionId}`,
         qr_source: params.get("utm_medium") ?? "park_sign",
         qr_campaign: params.get("utm_campaign") ?? "section_qr",
+        page_path: path,
+        debug_mode: debugMode,
+      };
+
+      window.gtag("event", "qr_scan", qrScanEvent);
+
+      TagManager.dataLayer({
+        dataLayer: {
+          event: "qr_scan",
+          ...qrScanEvent,
+        },
       });
     }
   }, [location.pathname, location.search]);
