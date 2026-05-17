@@ -78,13 +78,23 @@ npm.cmd install
 npm run dev
 ```
 
-### 3. Build for production
+### 3. Configure feedback email
+
+Create a `.env` file from `.env.example` and set the email address that should receive visitor feedback:
+
+```bash
+VITE_FEEDBACK_EMAIL=your-email@example.com
+```
+
+The feedback form uses FormSubmit. The first submitted message will trigger a confirmation email to that address; approve it once so future visitor messages can be delivered.
+
+### 4. Build for production
 
 ```bash
 npm run build
 ```
 
-### 4. Preview the production build
+### 5. Preview the production build
 
 ```bash
 npm run preview
@@ -173,6 +183,7 @@ Before deploying, make sure:
 
 - the production build completes successfully
 - SPA routing is handled correctly by the host
+- `VITE_FEEDBACK_EMAIL` is configured in the deployment environment
 - any Google Analytics or tag manager script is configured in the target environment
 
 ## Recommended Next Steps
@@ -180,7 +191,7 @@ Before deploying, make sure:
 - add Google Analytics or Google Tag Manager
 - add meaningful tests for the public QR flows
 - optimize large image and video assets for mobile visitors
-- decide whether visitor feedback should remain local or move to a shared backend later
+- decide whether visitor feedback should move from FormSubmit to a shared backend later
 
 ## License
 
