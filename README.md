@@ -88,13 +88,29 @@ VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/your-form-id
 
 The feedback form posts to Formspree, which forwards visitor messages to the email address connected to that form.
 
-QR scan notifications also use this Formspree endpoint. When someone opens a QR link, the app sends an email notification with the section, QR sign ID, scanned page, scan time, referrer, browser/device string, language, and timezone.
+QR scan notifications use this Formspree endpoint by default. When someone opens a QR link, the app sends an email notification with the section, QR sign ID, scanned page, scan time, referrer, browser/device string, language, and timezone.
 
 ```bash
 VITE_QR_SCAN_EMAIL_NOTIFICATIONS=true
 ```
 
 Set `VITE_QR_SCAN_EMAIL_NOTIFICATIONS=false` if scan notification emails become too noisy.
+
+If QR scan emails should go to a different Formspree form than visitor feedback, create a second Formspree form and add its endpoint:
+
+```bash
+VITE_QR_SCAN_FORMSPREE_ENDPOINT=https://formspree.io/f/your-scan-form-id
+```
+
+To send QR scan emails to the normal form and an extra email address, create another Formspree form for the extra email address and add it here:
+
+```bash
+VITE_QR_SCAN_EXTRA_FORMSPREE_ENDPOINTS=https://formspree.io/f/extra-form-id
+```
+
+You can add more than one extra scan endpoint by separating them with commas.
+
+To send QR scan emails to two people from the same Formspree form instead, invite the second email under **Account > Team** and make sure the invitation is accepted. Then add Formspree notification rules for the form: create one **Always** email rule for each verified recipient. Formspree's rules feature is the dashboard place that controls multiple email recipients.
 
 ### 4. Configure analytics
 
@@ -110,7 +126,7 @@ If you also use Google Tag Manager, create a GTM web container and add its conta
 VITE_GTM_ID=GTM-XXXXXXX
 ```
 
-QR codes include tracking parameters such as `utm_source=qr`, `section=top-ten`, and `qr_id=park_sign_top-ten`. When a visitor opens a QR link, the app sends a `qr_scan` event to Google Analytics with the section ID, QR sign ID, source, campaign, and page path. It also sends an email notification through Formspree when `VITE_QR_SCAN_EMAIL_NOTIFICATIONS` is enabled. If `VITE_GTM_ID` is set, the same event is pushed into the GTM data layer.
+QR codes include tracking parameters such as `utm_source=qr`, `section=top-ten`, and `qr_id=park_sign_top-ten`. When a visitor opens a QR link, the app sends a `qr_scan` event to Google Analytics with the section ID, QR sign ID, source, campaign, and page path. It also sends an email notification through Formspree when `VITE_QR_SCAN_EMAIL_NOTIFICATIONS` is enabled. If `VITE_QR_SCAN_FORMSPREE_ENDPOINT` is set, QR scan notifications use that endpoint; otherwise they use `VITE_FORMSPREE_ENDPOINT`. Any endpoints in `VITE_QR_SCAN_EXTRA_FORMSPREE_ENDPOINTS` also receive the same scan notification. If `VITE_GTM_ID` is set, the same event is pushed into the GTM data layer.
 
 For testing, add `debug_analytics=1` to a QR URL and watch **Admin > DebugView** in Google Analytics. Example:
 
