@@ -10,7 +10,7 @@ import { ArrowLeft, Globe, Mail, MessageSquare, Send } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || "https://formspree.io/f/xpqnanrb";
+const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || "https://formspree.io/f/xaqklnde";
 const web3FormsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
 const feedbackEndpoint = formspreeEndpoint || (web3FormsAccessKey ? "https://api.web3forms.com/submit" : "");
 const isUsingWeb3Forms = Boolean(web3FormsAccessKey && !formspreeEndpoint);

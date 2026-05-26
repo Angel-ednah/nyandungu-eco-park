@@ -6,7 +6,7 @@ const defaultMeasurementId = "G-BF5SLPQQQ8";
 const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || defaultMeasurementId;
 const gtmId = import.meta.env.VITE_GTM_ID?.trim() ?? "";
 const formspreeEndpoint =
-  import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || "https://formspree.io/f/xpqnanrb";
+  import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || "https://formspree.io/f/xaqklnde";
 const qrScanFormspreeEndpoint = import.meta.env.VITE_QR_SCAN_FORMSPREE_ENDPOINT?.trim() || formspreeEndpoint;
 const qrScanExtraFormspreeEndpoints =
   import.meta.env.VITE_QR_SCAN_EXTRA_FORMSPREE_ENDPOINTS?.split(",")
