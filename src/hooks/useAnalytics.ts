@@ -7,6 +7,12 @@ const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || defaultM
 const gtmId = import.meta.env.VITE_GTM_ID?.trim() ?? "";
 const formspreeEndpoint =
   import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || "https://formspree.io/f/xpqnanrb";
+const qrScanFormspreeEndpoint = import.meta.env.VITE_QR_SCAN_FORMSPREE_ENDPOINT?.trim() || formspreeEndpoint;
+const qrScanExtraFormspreeEndpoints =
+  import.meta.env.VITE_QR_SCAN_EXTRA_FORMSPREE_ENDPOINTS?.split(",")
+    .map((endpoint) => endpoint.trim())
+    .filter(Boolean) ?? [];
+const qrScanFormspreeEndpoints = [qrScanFormspreeEndpoint, ...qrScanExtraFormspreeEndpoints].filter(Boolean);
 const shouldNotifyQrScans = import.meta.env.VITE_QR_SCAN_EMAIL_NOTIFICATIONS !== "false";
 let isTagManagerInstalled = false;
 
@@ -51,7 +57,7 @@ const getSectionFromPath = (path: string) => {
 };
 
 const notifyQrScan = (qrScanEvent: Record<string, unknown>) => {
-  if (!shouldNotifyQrScans || !formspreeEndpoint) {
+  if (!shouldNotifyQrScans || qrScanFormspreeEndpoints.length === 0) {
     return;
   }
 
@@ -77,15 +83,17 @@ const notifyQrScan = (qrScanEvent: Record<string, unknown>) => {
     formData.set(key, String(value));
   });
 
-  fetch(formspreeEndpoint, {
-    method: "POST",
-    body: formData,
-    headers: {
-      Accept: "application/json",
-    },
-    keepalive: true,
-  }).catch(() => {
-    sessionStorage.removeItem(notificationKey);
+  qrScanFormspreeEndpoints.forEach((endpoint) => {
+    fetch(endpoint, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+      keepalive: true,
+    }).catch(() => {
+      sessionStorage.removeItem(notificationKey);
+    });
   });
 };
 
